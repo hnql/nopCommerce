@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Custom",
+  "FriendlyName": "Search Extend",
+  "SystemName": "DiHotel.Search",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Teams",
+  "DisplayOrder": 20,
+  "FileName": "Nop.Plugin.DiHotel.Search.dll",
+  "Description": "This plugin allows you to extend search feature"
+}
