@@ -341,6 +341,18 @@ namespace Nop.Web.Controllers
             return View(model);
         }
 
+        public virtual async Task<IActionResult> HomeStay()
+        {
+            if (!_catalogSettings.NewProductsEnabled)
+                return Content("");
+
+            var storeId = (await _storeContext.GetCurrentStoreAsync()).Id;
+            var products = await _productService.GetProductsMarkedAsNewAsync(storeId);
+            var model = (await _productModelFactory.PrepareProductOverviewModelsAsync(products)).ToList();
+
+            return View(model);
+        }
+
         [CheckLanguageSeoCode(true)]
         public virtual async Task<IActionResult> NewProductsRss()
         {
