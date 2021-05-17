@@ -3,16 +3,16 @@
 @inject Nop.Core.IWebHelper webHelper
 @if (Model.AvailableCurrencies.Count > 1)
 {
-    <div class="currency-selector">
+    <div class="col-md-6 col-xs-12">
         @{
             var returnUrl = webHelper.GetRawUrl(Context.Request);
-            var currencies = await Model.AvailableCurrencies.SelectAwait(async x => new SelectListItem
+            @foreach (var currency in Model.AvailableCurrencies)
             {
-                Text = x.Name,
-                Value = Url.RouteUrl("ChangeCurrency", new { customercurrency = x.Id, returnUrl }, webHelper.GetCurrentRequestProtocol()),
-                Selected = x.Id.Equals(Model.CurrentCurrencyId)
-            }).ToListAsync();
-            <select id="customerCurrency" name="customerCurrency" asp-items="@currencies" onchange="setLocation(this.value);" aria-label="@T("Currency.Selector.Label")"></select>
+                <a href="@Url.RouteUrl("ChangeCurrency", new { customercurrency = currency.Id, returnUrl }, webHelper.GetCurrentRequestProtocol())" class="is-flex middle-xs is-relative pointer @(currency.Id.Equals(Model.CurrentCurrencyId) ? "is-checked" : null)">
+                    <b>@currency.Name</b>
+                    <span class="px--12">@currency.Name</span>
+                </a>
+            }
         }
     </div>
 }

@@ -3,34 +3,30 @@
 @inject Nop.Core.IWebHelper webHelper
 @if (Model.AvailableLanguages.Count > 1)
 {
-    <div class="language-selector">
-        @{
-            var returnUrl = webHelper.GetRawUrl(Context.Request);
+<div class="col-md-6 col-xs-12">
+    @{
+        var returnUrl = webHelper.GetRawUrl(Context.Request);
 
-            if (Model.UseImages)
+        if (Model.UseImages)
+        {
+            @foreach (var lang in Model.AvailableLanguages)
             {
-                <ul class="language-list">
-                    @foreach (var lang in Model.AvailableLanguages)
-                    {
-                        <li>
-                            <a href="@Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol())" title="@lang.Name">
-                                <img title='@lang.Name' alt='@lang.Name' @(lang.Id == Model.CurrentLanguageId ? " class=selected" : null)
-                                     src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " />
-                            </a>
-                        </li>
-                    }
-                </ul>
-            }
-            else
-            {
-                var languages = await Model.AvailableLanguages.SelectAwait(async lang => new SelectListItem
-                {
-                    Text = lang.Name,
-                    Value = Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol()),
-                    Selected = lang.Id.Equals(Model.CurrentLanguageId)
-                }).ToListAsync();
-                <select id="customerlanguage" name="customerlanguage" asp-items="@languages" onchange="setLocation(this.value);" aria-label="@T("Languages.Selector.Label")"></select>
+                <a href="@Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol())" title="@lang.Name" class="is-flex middle-xs is-relative pointer @(lang.Id == Model.CurrentLanguageId ? "is-checked" : null)">    
+                    <img title='@lang.Name' alt='@lang.Name' src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " width="16" height="16">
+                    <span class="px--12">@lang.Name</span>
+                </a>
             }
         }
-    </div>
+        else
+        {
+            var languages = await Model.AvailableLanguages.SelectAwait(async lang => new SelectListItem
+            {
+                Text = lang.Name,
+                Value = Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol()),
+                Selected = lang.Id.Equals(Model.CurrentLanguageId)
+            }).ToListAsync();
+            <select id="customerlanguage" name="customerlanguage" asp-items="@languages" onchange="setLocation(this.value);" aria-label="@T("Languages.Selector.Label")"></select>
+        }
+    }
+</div>
 }
