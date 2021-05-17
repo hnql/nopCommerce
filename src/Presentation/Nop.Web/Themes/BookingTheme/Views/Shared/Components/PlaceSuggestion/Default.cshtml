@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PlaceSuggestionModel
+<!-- Location -->
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="29" readmore="29">
+                <div class="title">
+                    <h2 class="extra-bold p--giant">Địa điểm nổi bật</h2>
+                    <p class="d-none d-md-block">Cùng Luxstay bắt đầu chuyến hành trình chinh phục thế giới của bạn</p>
+                </div>
+                <div>
+                    <div class="location-slider">
+                        @foreach (var picture in Model.Pictures)
+                        {
+                            <div>
+                                <a href="https://www.luxstay.com/vi/vietnam/@picture.AltAttribute" target="_blank" tabindex="0" style="width: 100%; display: inline-block;">
+                                    <div class="product is-relative">
+                                        <div class="product__cover"><img width="336" height="420" class="product__image" data-src="@picture.VirtualPath" src="@picture.VirtualPath" lazy="loaded"></div>
+                                        <div class="product__content is-absolute white-deep">
+                                            <div class="product__title extra-bold">@picture.TitleAttribute</div>
+                                            <span class="product__price d-block"><b>2902</b> Chỗ ở</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

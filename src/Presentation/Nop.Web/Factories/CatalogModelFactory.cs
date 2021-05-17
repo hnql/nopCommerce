@@ -1997,6 +1997,21 @@ namespace Nop.Web.Factories
             return Task.FromResult(model);
         }
 
+        public virtual Task<PlaceSuggestionModel> PreparePlaceSuggestionModelAsync()
+        {
+            var model = new PlaceSuggestionModel();
+            model.Pictures = new List<Picture>();
+            var pictures = _pictureService.GetPicturesAsync("https:/");
+
+            foreach (var picture in pictures.Result)
+            {
+                model.Pictures.Add(picture);
+            }
+
+
+            return Task.FromResult(model);
+        }
+
         #endregion
     }
 }
