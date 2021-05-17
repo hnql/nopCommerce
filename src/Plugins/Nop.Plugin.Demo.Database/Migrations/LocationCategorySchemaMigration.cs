@@ -4,7 +4,7 @@ using Nop.Plugin.Demo.Database.Domains;
 namespace Nop.Plugin.Demo.Database.Migrations
 {
     [SkipMigrationOnUpdate]
-    [NopMigration("2021/05/12 12:00:00:0123453", "dbo.LocationCategory base schema")]
+    [NopMigration("2021/05/12 12:00:00:2000001", "dbo.LocationCategory base schema")]
     public class LocationCategorySchemaMigration : FluentMigrator.Migration
     {
         private readonly IMigrationManager _migrationManager;
@@ -19,12 +19,12 @@ namespace Nop.Plugin.Demo.Database.Migrations
         /// </summary>
         public override void Up()
         {
-            Alter.Table("LocationCategory").AddColumn("Description").AsString(400);
+            _migrationManager.BuildTable<LocationCategory>(Create);
         }
 
         public override void Down()
         {
-            Delete.Column("IsActive").FromTable("LocationCategory").InSchema("dbo");
+            Delete.Table("LocationCategory");
         }
     }
 }

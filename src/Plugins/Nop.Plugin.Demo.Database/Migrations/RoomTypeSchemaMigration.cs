@@ -4,7 +4,7 @@ using Nop.Plugin.Demo.Database.Domains;
 namespace Nop.Plugin.Demo.Database.Migrations
 {
     [SkipMigrationOnUpdate]
-    [NopMigration("2021/05/12 12:00:00:3456783", "dbo.RoomType base schema")]
+    [NopMigration("2021/05/12 12:00:00:1000001", "dbo.RoomType base schema")]
     public class RoomTypeSchemaMigration : FluentMigrator.Migration
     {
         private readonly IMigrationManager _migrationManager;
