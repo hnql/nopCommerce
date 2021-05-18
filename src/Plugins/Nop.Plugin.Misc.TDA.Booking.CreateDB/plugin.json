@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "TDA.Booking.CreateDB",
+  "SystemName": "Misc.TDA.Booking.CreateDB",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.TDA.Booking.CreateDB.dll",
+  "Description": ""
+}
