@@ -44,17 +44,22 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Remove="Themes\BookingTheme\Content\css\banner.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\destination.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\promotion.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\searchbox.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\toasted.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\js\banner.js" />
     <Content Remove="Themes\BookingTheme\Content\js\destination.js" />
     <Content Remove="Themes\BookingTheme\Content\js\discovery.js" />
     <Content Remove="Themes\BookingTheme\Content\js\place_suggestion.js" />
     <Content Remove="Themes\BookingTheme\Content\js\promotion.js" />
     <Content Remove="Themes\BookingTheme\Content\js\user_manual.js" />
+    <None Remove="Themes\BookingTheme\Content\images\banner_slide_1.png" />
+    <None Remove="Themes\BookingTheme\Content\images\banner_slide_2.png" />
+    <None Remove="Themes\BookingTheme\Content\images\banner_slide_3.png" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

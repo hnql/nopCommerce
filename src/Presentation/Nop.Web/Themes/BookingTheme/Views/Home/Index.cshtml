@@ -21,6 +21,7 @@
 }
 <div class="page home-page">
     <div class="page-body">
+        @await Component.InvokeAsync("Banner")
         @await Component.InvokeAsync("PlaceSuggestion")
         @await Component.InvokeAsync("Promotion")
         @await Component.InvokeAsync("Destination")

@@ -337,6 +337,8 @@ namespace Nop.Web.Factories
 
         Task<IntroductionModel> PrepareIntroductionModelAsync();
 
+        Task<BannerModel> PrepareBannerModelAsync();
+
         #endregion
     }
 }
