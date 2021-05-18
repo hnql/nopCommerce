@@ -4,6 +4,7 @@ using Nop.Plugin.Booking.DB.Domains;
 
 namespace Nop.Plugin.Booking.DB.Migrations
 {
+    [SkipMigrationOnUpdate] // If you want to re-install plugin, please remove [SkipMigrationOnUpdate]
     [NopMigration("2021/05/18 21:30:01:1234567", "Nop.Plugin.Booking.DB schema")]
     public class SchemaMigration : Migration
     {
