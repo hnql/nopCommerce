@@ -331,6 +331,10 @@ namespace Nop.Web.Factories
 
         Task<DestinationModel> PrepareDestinationModelAsync();
 
+        Task<DiscoveryModel> PrepareDiscoveryModelAsync();
+
+        Task<UserManualModel> PrepareUserManualModelAsync();
+
         #endregion
     }
 }

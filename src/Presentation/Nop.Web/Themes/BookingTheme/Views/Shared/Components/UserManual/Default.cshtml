@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model UserManualModel
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="36" readmore="36">
+                <div class="title">
+                    <h2 class="extra-bold p--giant">Hướng dẫn sử dụng</h2>
+                    <p>Đặt chỗ nhanh, thanh toán đơn giản, sử dụng dễ dàng</p>
+                </div>
+                <div class="user_manual">
+                    @foreach (var usermanual in Model.UserManuals) {
+                    <div>
+                        <div class="bg-img bg-img--95 is-relative radius-xs gutter-mt" style="width: 100%; display: inline-block; background-image: url(&quot;https://cdn.luxstay.com/home/theme/@usermanual.ImagePath&quot;);" data-src="https://cdn.luxstay.com/home/theme/@usermanual.ImagePath" lazy="loaded">
+                            <a href="https://www.luxstay.com/blog/cau-hoi-thuong-gap/@usermanual.Href" target="_blank" rel="noopener" tabindex="0">
+                                <div class="card is-absolute is-absolute--tl w--100 h--100">
+                                    <div class="card__inner"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

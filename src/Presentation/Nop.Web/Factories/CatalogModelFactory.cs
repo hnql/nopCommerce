@@ -2024,6 +2024,18 @@ namespace Nop.Web.Factories
             return Task.FromResult(model);
         }
 
+        public virtual Task<DiscoveryModel> PrepareDiscoveryModelAsync()
+        {
+            var model = new DiscoveryModel();
+            return Task.FromResult(model);
+        }
+
+        public virtual Task<UserManualModel> PrepareUserManualModelAsync()
+        {
+            var model = new UserManualModel();
+            return Task.FromResult(model);
+        }
+
         #endregion
     }
 }
