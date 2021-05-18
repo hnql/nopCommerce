@@ -329,6 +329,8 @@ namespace Nop.Web.Factories
 
         Task<PromotionModel> PreparePromotionModelAsync();
 
+        Task<DestinationModel> PrepareDestinationModelAsync();
+
         #endregion
     }
 }

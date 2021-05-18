@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model DestinationModel
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="93" readmore="93">
+                <div class="title mb--18">
+                    <h2 class="extra-bold p--giant">Gợi ý từ Luxstay</h2>
+                    <p>Những địa điểm thường đến mà Luxstay gợi ý dành cho bạn</p>
+                </div>
+                <div>
+                    <div class="destination-wrap">
+                        <div>
+                            @foreach (var destination in Model.Destinations) {
+                            <div>
+                                <a href="https://www.luxstay.com/vi/homestay/explore/@destination.Href" class="article is-relative" tabindex="-1" style="width: 100%; display: inline-block;">
+                                    <span class="is-block bg-img bg-img--85 radius-xs" data-src="https://cdn.luxstay.com/home/apartment/@destination.ImagePath" lazy="loaded" style="background-image: url(&quot;https://cdn.luxstay.com/home/apartment/@destination.ImagePath&quot;);"></span>
+                                    <div class="article__content">
+                                        <div class="article__title bold">@destination.Title</div>
+                                        <span class="article__excerpt">
+                                            <p>@destination.Excerpt</p>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

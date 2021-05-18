@@ -2018,6 +2018,12 @@ namespace Nop.Web.Factories
             return Task.FromResult(model);
         }
 
+        public virtual Task<DestinationModel> PrepareDestinationModelAsync()
+        {
+            var model = new DestinationModel();
+            return Task.FromResult(model);
+        }
+
         #endregion
     }
 }
