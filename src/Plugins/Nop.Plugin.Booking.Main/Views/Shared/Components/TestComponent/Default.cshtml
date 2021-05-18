@@ -1,0 +1,8 @@
+@model TestComponentModel
+@if (Model.Products.Length > 0)
+{
+<span>Hello world!</span>
+@foreach (var item in Model.Products)
+{
+    <p>@item</p>
+}}
