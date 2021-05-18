@@ -2036,6 +2036,11 @@ namespace Nop.Web.Factories
             return Task.FromResult(model);
         }
 
+        public virtual Task<IntroductionModel> PrepareIntroductionModelAsync()
+        {
+            var model = new IntroductionModel();
+            return Task.FromResult(model);
+        }
         #endregion
     }
 }

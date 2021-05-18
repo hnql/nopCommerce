@@ -335,6 +335,8 @@ namespace Nop.Web.Factories
 
         Task<UserManualModel> PrepareUserManualModelAsync();
 
+        Task<IntroductionModel> PrepareIntroductionModelAsync();
+
         #endregion
     }
 }
