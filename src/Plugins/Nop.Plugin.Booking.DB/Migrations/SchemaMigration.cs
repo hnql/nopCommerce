@@ -1,12 +1,11 @@
 ﻿using FluentMigrator;
 using Nop.Data.Migrations;
-using Nop.Plugin.Misc.TDA.Booking.CreateDB.Domains;
+using Nop.Plugin.Booking.DB.Domains;
 
-namespace Nop.Plugin.Misc.TDA.Booking.CreateDB.Migrations
+namespace Nop.Plugin.Booking.DB.Migrations
 {
-    [SkipMigrationOnUpdate]
-    [NopMigration("2021/05/18 17:08:01:1234567", "Nop.Plugin.Misc.TDA.Booking.CreateDB schema")]
-    public class SchemaMigration : AutoReversingMigration
+    [NopMigration("2021/05/18 21:30:01:1234567", "Nop.Plugin.Booking.DB schema")]
+    public class SchemaMigration : Migration
     {
         private readonly IMigrationManager _migrationManager;
 
@@ -24,6 +23,11 @@ namespace Nop.Plugin.Misc.TDA.Booking.CreateDB.Migrations
             _migrationManager.BuildTable<LocationCategory>(Create);
             _migrationManager.BuildTable<Location>(Create);
             _migrationManager.BuildTable<Room>(Create);
+        }
+
+        public override void Down()
+        {
+            // Do nothing, we don't want to remove tables
         }
     }
 }

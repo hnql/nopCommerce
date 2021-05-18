@@ -1,6 +1,6 @@
 ﻿{
   "Group": "Misc",
-  "FriendlyName": "TDA.Booking.CreateDB",
+  "FriendlyName": "TDA Booking Create DB",
   "SystemName": "Misc.TDA.Booking.CreateDB",
   "Version": "1.00",
   "SupportedVersions": [ "4.40" ],
