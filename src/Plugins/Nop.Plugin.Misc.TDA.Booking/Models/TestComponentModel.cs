@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nop.Web.Framework.Models;
 
-namespace Nop.Web.Models.Catalog
+namespace Nop.Plugin.Misc.TDA.Booking.Models
 {
     public partial record TestComponentModel: BaseNopModel
     {

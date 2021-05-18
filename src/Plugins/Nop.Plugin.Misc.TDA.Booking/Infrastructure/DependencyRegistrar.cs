@@ -2,6 +2,7 @@
 using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
+using Nop.Plugin.Misc.TDA.Booking.Factories;
 
 namespace Nop.Plugin.Misc.TDA.Booking.Infrastructure
 {
@@ -15,7 +16,7 @@ namespace Nop.Plugin.Misc.TDA.Booking.Infrastructure
         /// <param name="appSettings">App settings</param>
         public void Register(IServiceCollection services, ITypeFinder typeFinder, AppSettings appSettings)
         {
-            //services.AddScoped<CustomModelFactory, ICustomerModelFactory>();
+            services.AddScoped<ITestModelFactory, TestModelFactory>();
         }
 
         public int Order => 1;

@@ -14,11 +14,14 @@ namespace Nop.Plugin.Misc.TDA.Booking.Infrastructure
         {
             if (context.AreaName == "Admin")
             {
-                viewLocations = new[] { $"/Plugins/Nop.Plugin.Misc.TDA.Booking/Areas/Admin/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
+                viewLocations = new[] { $"/Plugins/Misc.TDA.Booking/Areas/Admin/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
             }
             else
             {
-                viewLocations = new[] { $"/Plugins/Nop.Plugin.Misc.TDA.Booking/Views/{context.ControllerName}/{context.ViewName}.cshtml" }.Concat(viewLocations);
+                viewLocations = new[] {
+                    $"/Plugins/Misc.TDA.Booking/Views/{{1}}/{{0}}.cshtml",
+                    $"/Plugins/Misc.TDA.Booking/Views/Shared/{{0}}.cshtml"
+                }.Concat(viewLocations);
             }
 
             return viewLocations;

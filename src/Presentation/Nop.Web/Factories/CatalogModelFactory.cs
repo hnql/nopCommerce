@@ -1990,13 +1990,6 @@ namespace Nop.Web.Factories
             return Task.CompletedTask;
         }
 
-        public virtual Task<TestComponentModel> PrepareFeaturedLocationsProductsAsync()
-        {
-            var model = new TestComponentModel();
-
-            return Task.FromResult(model);
-        }
-
         #endregion
     }
 }

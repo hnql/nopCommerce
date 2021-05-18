@@ -1,7 +1,7 @@
 ﻿{
-  "Group": "",
-  "FriendlyName": "",
-  "SystemName": "",
+  "Group": "Misc",
+  "FriendlyName": "TDA.Booking",
+  "SystemName": "Misc.TDA.Booking",
   "Version": "1.00",
   "SupportedVersions": [ "4.40" ],
   "Author": "Author Name",
