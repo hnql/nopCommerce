@@ -2012,6 +2012,12 @@ namespace Nop.Web.Factories
             return Task.FromResult(model);
         }
 
+        public virtual Task<PromotionModel> PreparePromotionModelAsync()
+        {
+            var model = new PromotionModel();
+            return Task.FromResult(model);
+        }
+
         #endregion
     }
 }

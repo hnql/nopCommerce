@@ -327,6 +327,8 @@ namespace Nop.Web.Factories
 
         Task<PlaceSuggestionModel> PreparePlaceSuggestionModelAsync();
 
+        Task<PromotionModel> PreparePromotionModelAsync();
+
         #endregion
     }
 }

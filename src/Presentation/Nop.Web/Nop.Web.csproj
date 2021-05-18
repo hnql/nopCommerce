@@ -46,9 +46,11 @@
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\promotion.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\searchbox.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\toasted.styles.css" />
-    <Content Remove="Themes\BookingTheme\Content\js\PlaceSuggestion.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\place_suggestion.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\promotion.js" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
