@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Import Sample Data",
+  "SystemName": "Misc.ImportSampleData",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "demo team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.ImportSampleData.dll",
+  "Description": "this plugin is created to create sample data"
+}
