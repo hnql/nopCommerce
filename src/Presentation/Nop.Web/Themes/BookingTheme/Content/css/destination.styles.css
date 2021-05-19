@@ -1,0 +1,35 @@
+﻿.destination-wrap .slick-next,
+.destination-wrap .slick-prev {
+  top: 40%
+}
+
+[data-v-78a0adad] .el-select {
+  max-width: 310px
+}
+
+@media (max-width:640px) {
+  [data-v-78a0adad] .el-select {
+    max-width: 100%
+  }
+}
+
+[data-v-78a0adad] .el-select .el-input__inner {
+  cursor: pointer;
+  padding-right: 35px;
+  padding-left: 80px;
+  font-size: 1.1rem
+}
+
+[data-v-78a0adad] .el-input .el-input__prefix {
+  top: 12px;
+  left: 20px
+}
+
+.is-instant-book {
+  filter: drop-shadow(2px 3px 2px rgba(246, 116, 57, .4))
+}
+
+.room-carousel-wrap .slick-next,
+.room-carousel-wrap .slick-prev {
+  top: 30%
+}

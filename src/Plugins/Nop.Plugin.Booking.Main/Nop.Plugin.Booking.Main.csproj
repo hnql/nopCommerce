@@ -14,7 +14,13 @@
     <None Remove="logo.jpg" />
 	<None Remove="plugin.json" />
     <None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
-    <None Remove="Views\Shared\Components\TestComponent\Default.cshtml" />
+    <None Remove="Views\Shared\Components\Banner\Default.cshtml" />
+    <None Remove="Views\Shared\Components\Destination\Default.cshtml" />
+    <None Remove="Views\Shared\Components\Discovery\Default.cshtml" />
+    <None Remove="Views\Shared\Components\Introduction\Default.cshtml" />
+    <None Remove="Views\Shared\Components\PlaceSuggestion\Default.cshtml" />
+    <None Remove="Views\Shared\Components\Promotion\Default.cshtml" />
+    <None Remove="Views\Shared\Components\UserManual\Default.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
   </ItemGroup>
 
@@ -25,7 +31,25 @@
     <Content Include="plugin.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Shared\Components\TestComponent\Default.cshtml">
+    <Content Include="Views\Shared\Components\Banner\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\Destination\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\Discovery\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\Introduction\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\PlaceSuggestion\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\Promotion\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\UserManual\Default.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\_ViewImports.cshtml" />
@@ -34,6 +58,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj" />
     <ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj" />
+    <ProjectReference Include="..\Nop.Plugin.Booking.DB\Nop.Plugin.Booking.DB.csproj" />
     <ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
   </ItemGroup>
 

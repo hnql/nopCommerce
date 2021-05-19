@@ -76,7 +76,7 @@ body.error .footer, body.error .header-wrap {
 
 @font-face {
   font-family: element-icons;
-  src: url(/_nuxt/fonts/2fad952.woff) format("woff"),url(/_nuxt/fonts/6f0a763.ttf) format("truetype");
+  src: url(../fonts/2fad952.woff) format("woff"),url(../fonts/6f0a763.ttf) format("truetype");
   font-weight: 400;
   font-style: normal
 }
@@ -9416,7 +9416,7 @@ hr {
 @font-face {
   font-family: Luxstay;
   font-display: swap;
-  src: url(/_nuxt/fonts/4177830.woff2) format("woff2"),url(/_nuxt/fonts/16726cd.woff) format("woff"),url(/_nuxt/fonts/e798200.ttf) format("truetype");
+  src: url(../fonts/4177830.woff2) format("woff2"),url(../fonts/16726cd.woff) format("woff"),url(../fonts/e798200.ttf) format("truetype");
   font-weight: 900;
   font-style: normal
 }
@@ -9424,7 +9424,7 @@ hr {
 @font-face {
   font-family: Luxstay;
   font-display: swap;
-  src: url(/_nuxt/fonts/f4b9a70.woff2) format("woff2"),url(/_nuxt/fonts/8fccc39.woff) format("woff"),url(/_nuxt/fonts/01dcf60.ttf) format("truetype");
+  src: url(../fonts/f4b9a70.woff2) format("woff2"),url(../fonts/8fccc39.woff) format("woff"),url(../fonts/01dcf60.ttf) format("truetype");
   font-weight: 700;
   font-style: normal
 }
@@ -9432,7 +9432,7 @@ hr {
 @font-face {
   font-family: Luxstay;
   font-display: swap;
-  src: url(/_nuxt/fonts/e3a0b22.woff2) format("woff2"),url(/_nuxt/fonts/eaeb2b0.woff) format("woff"),url(/_nuxt/fonts/a2b67a6.ttf) format("truetype");
+  src: url(../fonts/e3a0b22.woff2) format("woff2"),url(../fonts/eaeb2b0.woff) format("woff"),url(../fonts/a2b67a6.ttf) format("truetype");
   font-weight: 600;
   font-style: normal
 }
@@ -9440,7 +9440,7 @@ hr {
 @font-face {
   font-family: Luxstay;
   font-display: swap;
-  src: url(/_nuxt/fonts/29eaaf5.woff2) format("woff2"),url(/_nuxt/fonts/b7018de.woff) format("woff"),url(/_nuxt/fonts/fa62c04.ttf) format("truetype");
+  src: url(../fonts/29eaaf5.woff2) format("woff2"),url(../fonts/b7018de.woff) format("woff"),url(../fonts/fa62c04.ttf) format("truetype");
   font-weight: 500;
   font-style: normal
 }
@@ -9448,7 +9448,7 @@ hr {
 @font-face {
   font-family: Luxstay;
   font-display: swap;
-  src: url(/_nuxt/fonts/29eaaf5.woff2) format("woff2"),url(/_nuxt/fonts/b7018de.woff) format("woff"),url(/_nuxt/fonts/fa62c04.ttf) format("truetype");
+  src: url(../fonts/29eaaf5.woff2) format("woff2"),url(../fonts/b7018de.woff) format("woff"),url(../fonts/fa62c04.ttf) format("truetype");
   font-weight: 400;
   font-style: normal
 }
@@ -9456,8 +9456,8 @@ hr {
 @font-face {
   font-family: Luxstay-icon;
   font-display: swap;
-  src: local("Lato-luxstay"),url(/_nuxt/fonts/9030269.eot);
-  src: url(/_nuxt/fonts/9030269.eot?#iefix) format("embedded-opentype"),url(/_nuxt/fonts/e8c5b1c.woff) format("woff"),url(/_nuxt/fonts/fcb5de7.ttf) format("truetype"),url(/_nuxt/img/335a260.svg#slick) format("svg");
+  src: local("Lato-luxstay"),url(../fonts/9030269.eot);
+  src: url(../fonts/9030269.eot?#iefix) format("embedded-opentype"),url(../fonts/e8c5b1c.woff) format("woff"),url(../fonts/fcb5de7.ttf) format("truetype"),url(../img/335a260.svg#slick) format("svg");
   font-weight: 400;
   font-style: normal
 }

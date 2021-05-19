@@ -1989,7 +1989,6 @@ namespace Nop.Web.Factories
 
             return Task.CompletedTask;
         }
-
         #endregion
     }
 }

@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PromotionModel
+<!-- Promotion -->
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="28" readmore="28">
+                <div class="is-flex jbetween align-end">
+                    <div class="title title-w-sub">
+                        <h2 class="extra-bold p--giant">
+                            Ưu đãi độc quyền
+                        </h2>
+                        <p>Chỉ có tại Luxstay, hấp dẫn và hữu hạn, book ngay!</p>
+                    </div>
+                    <a href="https://www.luxstay.com/promotion" class="text-orange semi-bold d-none d-sm-inline">
+                        Xem thêm
+                    </a>
+                </div>
+                <div class="row mt--12 promotion-slider slide-item-has-shadow">
+                    <div class="col-xs-12">
+                        <div>
+                            <div>
+                                @foreach (var promotion in Model.Promotions)
+                                {
+                                <div>
+                                    <a href="https://www.luxstay.com/vi/promotion/@promotion.Id" class="box-image-frame box-image-frame--promotion" tabindex="0" style="width: 100%; display: inline-block;">
+                                        <img class="d-none d-sm-block" data-src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" lazy="loaded"> <img class="d-block d-sm-none" data-src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" lazy="loading">
+                                        <div class="frame-shadow"><img class="d-none d-sm-block" data-src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" lazy="loaded"> <img class="d-block d-sm-none" data-src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" src="https://cdn.luxstay.com/home/event/@promotion.ImagePath" lazy="loading"></div>
+                                    </a>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.luxstay.com/promotion" class="text-orange semi-bold d-block d-sm-none mt--12">
+                    Xem thêm
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
