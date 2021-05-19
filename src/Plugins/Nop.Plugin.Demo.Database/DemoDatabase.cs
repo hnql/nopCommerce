@@ -41,5 +41,13 @@ namespace Nop.Plugin.Demo.Database
         {
             return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.ProductDetailsTop });
         }
+        public override async Task InstallAsync()
+        {
+            await base.InstallAsync();
+        }
+        public override async Task UninstallAsync()
+        {
+            await base.UninstallAsync();
+        }
     }
 }
