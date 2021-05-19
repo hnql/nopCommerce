@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Misc",
+  "FriendlyName": "Database User Related",
+  "SystemName": "Database.UserRelated",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "demo team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Database.UserRelated.dll",
+  "Description": "This plugin is made to create user related tables"
+}
