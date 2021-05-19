@@ -33,29 +33,22 @@
                 </div>
             </div>
             *@
-        <div class="master-wrapper-content">
-            @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_top" })
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
+            <section class="page-home wapper">
+                <div>
+                    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_top" })
+                    <div class="container container--sm section">
                         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
+                            
+                        @*ajax loading window*@
+                        <div class="ajax-loading-block-window" style="display: none">
+                            <div class="loading-image">
+                            </div>
+                        </div>
                     </div>
+                    @RenderBody()
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
                 </div>
-                @*ajax loading window*@
-                <div class="ajax-loading-block-window" style="display: none">
-                    <div class="loading-image">
-                    </div>
-                </div>
-            </div>
-            <div class="master-column-wrapper">
-                <div class="container">
-                    <div class="row">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
-        </div>
+            </section>
             @await Component.InvokeAsync("Footer")
             @* Use this content for back to top page scrolling *@
             <div id="backTop"></div>

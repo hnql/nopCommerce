@@ -85,7 +85,6 @@ input[type=checkbox], input[type=radio] {margin: 4px 0 0 4px;}
 .forum-search-box .search-box-text:focus,.header-lower .search-box .search-nav:focus{border-color:#ea5648;}
 .search-box .btn.search-box-button{font-size: 0;background:url("../images/search-icon.png") no-repeat 10px 0px;border-radius:0px;width:34px;height:34px;transition:all 0.3s ease-in-out 0s;-webkit-transition:all 0.3s ease-in-out 0s;-moz-transition:all 0.3s ease-in-out 0s;-o-transition:all 0.3s ease-in-out 0s;left: -10px;position:absolute;}
 .search-box .btn.search-box-button:hover{background:url("../images/search-icon.png") no-repeat 10px -34px;}
-.header .search-box .form-control,.header .search-box .btn{border-radius:0;}
 
 
 /* FLYOUT CART STYLE */

@@ -18320,6 +18320,11 @@ hr.is-orange:before {
   }
 }
 
+.header__logo {
+    width: 70px;
+    height: 70px;
+}
+
 @media (min-width:768px) {
   .header__logo img {
     width: 200px !important

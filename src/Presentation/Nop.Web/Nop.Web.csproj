@@ -46,16 +46,20 @@
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
     <Content Remove="Themes\BookingTheme\Content\css\banner.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\coccocalo.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\destination.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\promotion.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\searchbox.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\searchfixed.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\toasted.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\fonts\29eaaf5.woff2" />
     <Content Remove="Themes\BookingTheme\Content\fonts\4177830.woff2" />
     <Content Remove="Themes\BookingTheme\Content\fonts\e3a0b22.woff2" />
     <Content Remove="Themes\BookingTheme\Content\fonts\e8c5b1c.woff" />
     <Content Remove="Themes\BookingTheme\Content\fonts\f4b9a70.woff2" />
+    <Content Remove="Themes\BookingTheme\Content\images\close.svg" />
+    <Content Remove="Themes\BookingTheme\Content\images\menu.svg" />
     <Content Remove="Themes\BookingTheme\Content\js\banner.js" />
     <Content Remove="Themes\BookingTheme\Content\js\destination.js" />
     <Content Remove="Themes\BookingTheme\Content\js\discovery.js" />

@@ -51,13 +51,7 @@
     Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js");
     Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation/jquery.validate.min.js");
     // Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery/jquery.min.js");
-
-    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/banner.js");
-    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/place_suggestion.js");
-    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/promotion.js");
-    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/destination.js");
-    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/discovery.js");
-    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/user_manual.js");
+    Html.AppendScriptParts(ResourceLocation.Head, "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js");
 
     //custom tag(s);
     if (!string.IsNullOrEmpty(seoSettings.CustomHeadTags))

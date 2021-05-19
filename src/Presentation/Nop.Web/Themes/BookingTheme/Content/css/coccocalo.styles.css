@@ -1,0 +1,214 @@
+﻿.coccoc-alo-ph-circle[data-v-a9bddabe] {
+  width: 160px;
+  height: 160px;
+  top: 20px;
+  left: 20px;
+  position: absolute;
+  background-color: transparent;
+  border-radius: 100%;
+  border: 2px solid rgba(30,30,30,.4);
+  opacity: .1;
+  -webkit-animation: coccoc-alo-circle-anim-data-v-a9bddabe 1.2s ease-in-out infinite;
+  animation: coccoc-alo-circle-anim-data-v-a9bddabe 1.2s ease-in-out infinite;
+  transition: all .5s
+}
+
+.coccoc-alo-phone[data-v-a9bddabe] {
+  background-color: transparent;
+  width: 110px;
+  height: 110px;
+  cursor: pointer;
+  z-index: 200000 !important;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transition: visibility .5s;
+  left: 0;
+  bottom: 0;
+  position: fixed
+}
+
+.coccoc-alo-phone.coccoc-alo-green .coccoc-alo-ph-circle-fill[data-v-a9bddabe] {
+  background-color: rgba(0,175,242,.5);
+  opacity: .75 !important
+}
+
+.coccoc-alo-ph-circle-fill[data-v-a9bddabe] {
+  width: 100px;
+  height: 100px;
+  bottom: 8px;
+  left: 13px;
+  background-color: #000;
+  opacity: .1;
+  -webkit-animation: coccoc-alo-circle-fill-anim-data-v-a9bddabe 2.3s ease-in-out infinite;
+  animation: coccoc-alo-circle-fill-anim-data-v-a9bddabe 2.3s ease-in-out infinite;
+  transition: all .5s
+}
+
+.coccoc-alo-ph-circle-fill[data-v-a9bddabe], .coccoc-alo-ph-img-circle[data-v-a9bddabe] {
+  position: absolute;
+  border-radius: 100%;
+  border: 2px solid transparent
+}
+
+.coccoc-alo-ph-img-circle[data-v-a9bddabe] {
+  width: 60px;
+  height: 60px;
+  top: 22px;
+  left: 33px;
+  background: rgba(30,30,30,.1) url(https://drive.google.com/uc?id=1V3N2b79QjDWetC_ss9wI3c-xpWDymn9R) no-repeat 50%;
+  background-size: 30px 30px;
+  opacity: .8;
+  -webkit-animation: coccoc-alo-circle-img-anim-data-v-a9bddabe 1s ease-in-out infinite;
+  animation: coccoc-alo-circle-img-anim-data-v-a9bddabe 1s ease-in-out infinite
+}
+
+.coccoc-alo-phone.coccoc-alo-green .coccoc-alo-ph-img-circle[data-v-a9bddabe] {
+  background-color: #0066a6
+}
+
+.coccoc-alo-phone.coccoc-alo-green .coccoc-alo-ph-circle[data-v-a9bddabe] {
+  border-color: #0066a6;
+  opacity: .6
+}
+
+.coccoc-alo-phone.coccoc-alo-green.coccoc-alo-hover .coccoc-alo-ph-circle[data-v-a9bddabe], .coccoc-alo-phone.coccoc-alo-green:hover .coccoc-alo-ph-circle[data-v-a9bddabe] {
+  border-color: #f65e39;
+  opacity: .6
+}
+
+.coccoc-alo-phone.coccoc-alo-green.coccoc-alo-hover .coccoc-alo-ph-circle-fill[data-v-a9bddabe], .coccoc-alo-phone.coccoc-alo-green:hover .coccoc-alo-ph-circle-fill[data-v-a9bddabe] {
+  background-color: #f65e39;
+  opacity: .85 !important
+}
+
+.coccoc-alo-phone.coccoc-alo-green.coccoc-alo-hover .coccoc-alo-ph-img-circle[data-v-a9bddabe], .coccoc-alo-phone.coccoc-alo-green:hover .coccoc-alo-ph-img-circle[data-v-a9bddabe] {
+  background-color: #f65e39
+}
+
+@-webkit-keyframes coccoc-alo-circle-anim-data-v-a9bddabe {
+  0% {
+    transform: rotate(0) scale(.5) skew(1deg);
+    opacity: .1
+  }
+
+  30% {
+    transform: rotate(0) scale(.7) skew(1deg);
+    opacity: .5
+  }
+
+  to {
+    transform: rotate(0) scale(1) skew(1deg);
+    opacity: .1
+  }
+}
+
+@keyframes coccoc-alo-circle-anim-data-v-a9bddabe {
+  0% {
+    transform: rotate(0) scale(.5) skew(1deg);
+    opacity: .1
+  }
+
+  30% {
+    transform: rotate(0) scale(.7) skew(1deg);
+    opacity: .5
+  }
+
+  to {
+    transform: rotate(0) scale(1) skew(1deg);
+    opacity: .1
+  }
+}
+
+@-webkit-keyframes coccoc-alo-circle-fill-anim-data-v-a9bddabe {
+  0% {
+    transform: rotate(0) scale(.7) skew(1deg);
+    opacity: .2
+  }
+
+  50% {
+    transform: rotate(0) scale(1) skew(1deg);
+    opacity: .2
+  }
+
+  to {
+    transform: rotate(0) scale(.7) skew(1deg);
+    opacity: .2
+  }
+}
+
+@keyframes coccoc-alo-circle-fill-anim-data-v-a9bddabe {
+  0% {
+    transform: rotate(0) scale(.7) skew(1deg);
+    opacity: .2
+  }
+
+  50% {
+    transform: rotate(0) scale(1) skew(1deg);
+    opacity: .2
+  }
+
+  to {
+    transform: rotate(0) scale(.7) skew(1deg);
+    opacity: .2
+  }
+}
+
+@-webkit-keyframes coccoc-alo-circle-img-anim-data-v-a9bddabe {
+  0% {
+    transform: rotate(0) scale(1) skew(1deg)
+  }
+
+  10% {
+    transform: rotate(-25deg) scale(1) skew(1deg)
+  }
+
+  20% {
+    transform: rotate(25deg) scale(1) skew(1deg)
+  }
+
+  30% {
+    transform: rotate(-25deg) scale(1) skew(1deg)
+  }
+
+  40% {
+    transform: rotate(25deg) scale(1) skew(1deg)
+  }
+
+  50% {
+    transform: rotate(0) scale(1) skew(1deg)
+  }
+
+  to {
+    transform: rotate(0) scale(1) skew(1deg)
+  }
+}
+
+@keyframes coccoc-alo-circle-img-anim-data-v-a9bddabe {
+  0% {
+    transform: rotate(0) scale(1) skew(1deg)
+  }
+
+  10% {
+    transform: rotate(-25deg) scale(1) skew(1deg)
+  }
+
+  20% {
+    transform: rotate(25deg) scale(1) skew(1deg)
+  }
+
+  30% {
+    transform: rotate(-25deg) scale(1) skew(1deg)
+  }
+
+  40% {
+    transform: rotate(25deg) scale(1) skew(1deg)
+  }
+
+  50% {
+    transform: rotate(0) scale(1) skew(1deg)
+  }
+
+  to {
+    transform: rotate(0) scale(1) skew(1deg)
+  }
+}
