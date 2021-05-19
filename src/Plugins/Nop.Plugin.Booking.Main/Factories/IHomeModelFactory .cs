@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Nop.Plugin.Booking.Main.Models;
 
 namespace Nop.Plugin.Booking.Main.Factories
@@ -7,7 +8,7 @@ namespace Nop.Plugin.Booking.Main.Factories
     {
         Task<BannerModel> PrepareBannerModelAsync();
 
-        Task<PlaceSuggestionModel> PreparePlaceSuggestionModelAsync();
+        Task<IList<PlaceSuggestionModel>> PreparePlaceSuggestionModelAsync();
 
         Task<PromotionModel> PreparePromotionModelAsync();
 

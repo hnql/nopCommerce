@@ -10,5 +10,7 @@ namespace Nop.Plugin.Booking.DB.Services
     public partial interface ILocationService
     {
         void Log(Location record);
+
+        Task<IList<Location>> GetLocationsAsync();
     }
 }

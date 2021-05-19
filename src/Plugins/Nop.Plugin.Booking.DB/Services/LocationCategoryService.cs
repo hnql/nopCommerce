@@ -23,5 +23,14 @@ namespace Nop.Plugin.Booking.DB.Services
                 throw new ArgumentNullException(nameof(record));
             _locationCategoryRepository.InsertAsync(record);
         }
+
+        public virtual async Task<IList<LocationCategory>> GetLocationCategoriesAsync()
+        {
+            var query = from category in _locationCategoryRepository.Table
+                        select category;
+            var locationCategories = await query.ToListAsync();
+
+            return locationCategories;
+        }
     }
 }

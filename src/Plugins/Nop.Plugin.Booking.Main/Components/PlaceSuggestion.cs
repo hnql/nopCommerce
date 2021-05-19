@@ -16,8 +16,8 @@ namespace Nop.Web.Components
         /// <returns>A task that represents the asynchronous operation</returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = await _homeModelFactory.PreparePlaceSuggestionModelAsync();
-            return View(model);
+            var models = await _homeModelFactory.PreparePlaceSuggestionModelAsync();
+            return View(models);
         }
     }
 }
