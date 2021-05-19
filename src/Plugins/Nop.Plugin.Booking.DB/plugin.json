@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Booking",
+  "FriendlyName": "Database For Booking",
+  "SystemName": "Booking.DB",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Booking.DB.dll",
+  "Description": "Create the tables for booking"
+}
