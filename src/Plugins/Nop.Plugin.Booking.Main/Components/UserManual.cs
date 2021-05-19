@@ -1,23 +1,23 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Nop.Web.Factories;
+using Nop.Plugin.Booking.Main.Factories;
 using Nop.Web.Framework.Components;
 
-namespace Nop.Web.Components
+namespace Nop.Plugin.Misc.TDA.Booking.Components
 {
     public class UserManualViewComponent : NopViewComponent
     {
-        private readonly ICatalogModelFactory _catalogModelFactory;
+        private readonly IHomeModelFactory _homeModelFactory;
 
-        public UserManualViewComponent(ICatalogModelFactory catalogModelFactory)
+        public UserManualViewComponent(IHomeModelFactory homeModelFactory)
         {
-            _catalogModelFactory = catalogModelFactory;
+            _homeModelFactory = homeModelFactory;
         }
 
         /// <returns>A task that represents the asynchronous operation</returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = await _catalogModelFactory.PrepareUserManualModelAsync();
+            var model = await _homeModelFactory.PrepareUserManualModelAsync();
             return View(model);
         }
     }

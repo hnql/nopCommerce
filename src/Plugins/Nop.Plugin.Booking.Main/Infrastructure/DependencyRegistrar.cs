@@ -16,7 +16,7 @@ namespace Nop.Plugin.Booking.Main.Infrastructure
         /// <param name="appSettings">App settings</param>
         public void Register(IServiceCollection services, ITypeFinder typeFinder, AppSettings appSettings)
         {
-            services.AddScoped<ITestModelFactory, TestModelFactory>();
+            services.AddScoped<IHomeModelFactory, HomeModelFactory>();
         }
 
         public int Order => 1;

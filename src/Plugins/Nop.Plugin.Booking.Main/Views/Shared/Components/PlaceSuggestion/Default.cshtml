@@ -13,14 +13,14 @@
                 </div>
                 <div>
                     <div class="location-slider">
-                        @foreach (var picture in Model.Pictures)
+                        @foreach (var place in Model.PlaceSuggestions)
                         {
                             <div>
-                                <a href="https://www.luxstay.com/vi/vietnam/@picture.AltAttribute" target="_blank" tabindex="0" style="width: 100%; display: inline-block;">
+                                <a href="https://www.luxstay.com/vi/vietnam/@place.AltAttribute" target="_blank" tabindex="0" style="width: 100%; display: inline-block;">
                                     <div class="product is-relative">
-                                        <div class="product__cover"><img width="336" height="420" class="product__image" data-src="@picture.VirtualPath" src="@picture.VirtualPath" lazy="loaded"></div>
+                                        <div class="product__cover"><img width="336" height="420" class="product__image" data-src="https://cdn.luxstay.com/home/location/@place.ImagePath" src="https://cdn.luxstay.com/home/location/@place.ImagePath" lazy="loaded"></div>
                                         <div class="product__content is-absolute white-deep">
-                                            <div class="product__title extra-bold">@picture.TitleAttribute</div>
+                                            <div class="product__title extra-bold">@place.TitleAttribute</div>
                                             <span class="product__price d-block"><b>2902</b> Chỗ ở</span>
                                         </div>
                                     </div>

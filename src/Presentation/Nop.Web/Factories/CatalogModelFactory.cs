@@ -1989,64 +1989,6 @@ namespace Nop.Web.Factories
 
             return Task.CompletedTask;
         }
-
-        public virtual Task<TestComponentModel> PrepareFeaturedLocationsProductsAsync()
-        {
-            var model = new TestComponentModel();
-
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<PlaceSuggestionModel> PreparePlaceSuggestionModelAsync()
-        {
-            var model = new PlaceSuggestionModel();
-            model.Pictures = new List<Picture>();
-            var pictures = _pictureService.GetPicturesAsync("https:/");
-
-            foreach (var picture in pictures.Result)
-            {
-                model.Pictures.Add(picture);
-            }
-
-
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<PromotionModel> PreparePromotionModelAsync()
-        {
-            var model = new PromotionModel();
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<DestinationModel> PrepareDestinationModelAsync()
-        {
-            var model = new DestinationModel();
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<DiscoveryModel> PrepareDiscoveryModelAsync()
-        {
-            var model = new DiscoveryModel();
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<UserManualModel> PrepareUserManualModelAsync()
-        {
-            var model = new UserManualModel();
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<IntroductionModel> PrepareIntroductionModelAsync()
-        {
-            var model = new IntroductionModel();
-            return Task.FromResult(model);
-        }
-
-        public virtual Task<BannerModel> PrepareBannerModelAsync()
-        {
-            var model = new BannerModel();
-            return Task.FromResult(model);
-        }
         #endregion
     }
 }

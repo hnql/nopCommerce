@@ -1,23 +1,22 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Nop.Web.Factories;
+using Nop.Plugin.Booking.Main.Factories;
 using Nop.Web.Framework.Components;
 
 namespace Nop.Web.Components
 {
     public class PlaceSuggestionViewComponent : NopViewComponent
     {
-        private readonly ICatalogModelFactory _catalogModelFactory;
+        private readonly IHomeModelFactory _homeModelFactory;
 
-        public PlaceSuggestionViewComponent(ICatalogModelFactory catalogModelFactory)
+        public PlaceSuggestionViewComponent(IHomeModelFactory homeModelFactory)
         {
-            _catalogModelFactory = catalogModelFactory;
+            _homeModelFactory = homeModelFactory;
         }
-
         /// <returns>A task that represents the asynchronous operation</returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = await _catalogModelFactory.PreparePlaceSuggestionModelAsync();
+            var model = await _homeModelFactory.PreparePlaceSuggestionModelAsync();
             return View(model);
         }
     }

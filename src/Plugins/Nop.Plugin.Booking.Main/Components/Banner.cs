@@ -1,23 +1,24 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Nop.Web.Factories;
+using Nop.Plugin.Booking.Main.Factories;
 using Nop.Web.Framework.Components;
 
-namespace Nop.Web.Components
+namespace Nop.Plugin.Misc.TDA.Booking.Components
 {
+    [ViewComponent(Name = "Banner")]
     public class BannerViewComponent : NopViewComponent
     {
-        private readonly ICatalogModelFactory _catalogModelFactory;
+        private readonly IHomeModelFactory _homeModelFactory;
 
-        public BannerViewComponent(ICatalogModelFactory catalogModelFactory)
+        public BannerViewComponent(IHomeModelFactory homeModelFactory)
         {
-            _catalogModelFactory = catalogModelFactory;
+            _homeModelFactory = homeModelFactory;
         }
 
         /// <returns>A task that represents the asynchronous operation</returns>
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var model = await _catalogModelFactory.PrepareBannerModelAsync();
+            var model = await _homeModelFactory.PrepareBannerModelAsync();
             return View(model);
         }
     }

@@ -323,22 +323,6 @@ namespace Nop.Web.Factories
         Task PreparePageSizeOptionsAsync(CatalogProductsModel pagingFilteringModel, CatalogProductsCommand command,
             bool allowCustomersToSelectPageSize, string pageSizeOptions, int fixedPageSize);
 
-        Task<TestComponentModel> PrepareFeaturedLocationsProductsAsync();
-
-        Task<PlaceSuggestionModel> PreparePlaceSuggestionModelAsync();
-
-        Task<PromotionModel> PreparePromotionModelAsync();
-
-        Task<DestinationModel> PrepareDestinationModelAsync();
-
-        Task<DiscoveryModel> PrepareDiscoveryModelAsync();
-
-        Task<UserManualModel> PrepareUserManualModelAsync();
-
-        Task<IntroductionModel> PrepareIntroductionModelAsync();
-
-        Task<BannerModel> PrepareBannerModelAsync();
-
         #endregion
     }
 }
