@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="promo__content">
-        <div class="p--small-2">
+        <div class="p--small-2" style="-webkit-box-orient: vertical; display: flex; justify-content: space-between;">
             <div class="w--75 text-ellipsis color" style="color: rgb(118, 118, 118); font-size: 14px;">
                 Chung cư - 1 phòng ngủ
             </div>
@@ -67,7 +67,7 @@
                         <defs><linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="svgicon_instant_book_a"><stop stop-color="#F68A39" offset="0%"></stop><stop stop-color="#F65E39" offset="100%"></stop></linearGradient></defs>
                         <g fill="none" fill-rule="evenodd"><circle pid="0" fill="url(#svgicon_instant_book_a)" cx="10" cy="10" r="10"></circle><path pid="1" d="M10.42 15.158l3.037-6.073A.75.75 0 0012.787 8H10V5.177a.75.75 0 00-1.42-.335l-3.037 6.073A.75.75 0 006.213 12H9v2.823a.75.75 0 001.42.335z" fill="#FFF"></path></g>
                     </svg>
-                    @(@Model.Name.Length>20 ? (@Model.Name.Substring(0, Math.Min(@Model.Name.Length, 20)))+"..." : @Model.Name)
+                    @(@Model.Name.Length>25 ? (@Model.Name.Substring(0, Math.Min(@Model.Name.Length, 25)))+"..." : @Model.Name)
                 </div>
             </a>
             <div class="promo__price mb--6">

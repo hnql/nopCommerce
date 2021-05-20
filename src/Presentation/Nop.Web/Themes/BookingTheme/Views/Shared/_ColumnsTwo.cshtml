@@ -51,7 +51,7 @@
     }
 </div>*@
 @{IgnoreSection("CatalogFilters");}
-<div class="side-content col-md-9">
+<div class="container container--md">
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnBefore })
     @RenderBody()
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnAfter })
