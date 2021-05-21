@@ -60,10 +60,26 @@
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFilters, additionalData = Model })
     @*@await Html.PartialAsync("_CatalogFilters", Model.CatalogProductsModel)*@
 }
+
+<div class="shadow-2">
+    <div>
+        <div class="c-filter--fixtop">
+            <div class="py--12 container--md">
+                <i class="d-none"></i> <div class="search-filter is-flex jbetween">
+                    <div class="is-flex search-filter__fields">
+                        <div data-v-1b774c77="">
+                            <button data-v-1b774c77="" class="btn btn-outline--gray btn-xs hidden-md-and-down search-filter__button text-dark">
+                                Hủy phòng linh hoạt
+                                <!---->
+                            </button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="page category-page">
-    @*<div class="page-title panel-heading">
-        <h1>@Model.Name</h1>
-    </div>*@
     <div class="row">
         <h2 class="extra-bold col-xs-12 col-md-9">@Model.Name</h2>
         <div class="col-xs-12 col-md-3 is-flex jend">
@@ -149,3 +165,27 @@
         </div>
     </div>
 </div>
+
+<div class="el-select-dropdown el-popper" style="min-width: 280px; transform-origin: center top; z-index: 2007; display: none;">
+                                                 min-width: 280px; transform-origin: center top; z-index: 2025; position: absolute; top: 334px; left: 1030px;
+    <div class="el-scrollbar" style="">
+        <div class="el-select-dropdown__wrap el-scrollbar__wrap" style="margin-bottom: -17px; margin-right: -17px;">
+            <ul class="el-scrollbar__view el-select-dropdown__list">
+                <li class="el-select-dropdown__item hover">
+                    <span>Giá tăng dần</span>
+                </li>
+                <li class="el-select-dropdown__item">
+                    <span>Giá giảm dần</span>
+                </li>
+            </ul>
+        </div>
+        <div class="el-scrollbar__bar is-horizontal">
+            <div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div>
+        </div>
+        <div class="el-scrollbar__bar is-vertical">
+            <div class="el-scrollbar__thumb" style="transform: translateY(0%);"></div>
+        </div>
+    </div>
+    <div x-arrow="" class="popper__arrow" style="left: 35px;"></div>
+</div>
+
