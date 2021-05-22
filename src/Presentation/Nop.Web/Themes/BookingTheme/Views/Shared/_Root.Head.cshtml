@@ -52,6 +52,8 @@
     Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery-validation/jquery.validate.min.js");
     // Html.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery/jquery.min.js");
     Html.AppendScriptParts(ResourceLocation.Head, "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/header.custom.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js");
 
     //custom tag(s);
     if (!string.IsNullOrEmpty(seoSettings.CustomHeadTags))
@@ -61,7 +63,7 @@
     var displayMiniProfiler = appSettings.CommonConfig.MiniProfilerEnabled && await permissionService.AuthorizeAsync(StandardPermissionProvider.AccessProfiling);
     //event
     await eventPublisher.PublishAsync(new PageRenderingEvent(this.Html));
-}
+    }
 <!DOCTYPE html>
 <html lang="@languageService.GetTwoLetterIsoLanguageName(await workContext.GetWorkingLanguageAsync())" @(await this.ShouldUseRtlThemeAsync() ? Html.Raw(" dir=\"rtl\"") : null) @Html.NopPageCssClasses()>
 <head>

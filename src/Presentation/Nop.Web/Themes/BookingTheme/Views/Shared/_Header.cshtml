@@ -16,12 +16,7 @@
                     <li class="menu__item">
                         <a href="https://host.luxstay.net/login" rel="nofollow" class="menu__link is-become-host d-inline-block">Host</a>
                     </li> <!---->
-                    <li class="menu__item">
-                        <a href="/vi/auth/sign/up?return_url=%2Fvi%2F" class="menu__link bold" data-action="close-mobile-menu" rel="nofollow">Đăng ký</a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="/vi/auth/sign/in?return_url=%2Fvi%2F" class="menu__link bold" data-action="close-mobile-menu" rel="nofollow">Đăng nhập</a>
-                    </li>
+                    @await Component.InvokeAsync("HeaderLinks")
                     <li class="menu__item is-relative">
                         <div>
                             <span data-v-0550aeae="" data-action="popover" class="menu__link btn--dropdown semi-bold is-flex middle-xs is-relative pointer">
