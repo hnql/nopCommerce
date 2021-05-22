@@ -219,8 +219,13 @@
   }
 
 .search-location {
-  width: 300px;
   flex: 1 1 auto
+}
+
+@media (min-width: 768px) {
+  .search-location {
+      width: 300px;
+  }
 }
 
   .search-location .booking__input-text::-moz-placeholder {

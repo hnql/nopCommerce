@@ -28,4 +28,14 @@
   $('.menu-mobile--close').click(function () {
     $(this).parents('.menu').removeClass('menu--opened');
   });
+
+  // Search by Date
+  $('#trigger-date-range').daterangepicker();
+  $('#trigger-date-range').on('apply.daterangepicker', function (ev, picker) {
+    $(this).text(picker.startDate.format('MMMM D') + ' - ' + picker.endDate.format('MMMM D'));
+  });
+
+  $('#trigger-date-range').on('cancel.daterangepicker', function (ev, picker) {
+    $(this).text('Ngày');
+  });
 });

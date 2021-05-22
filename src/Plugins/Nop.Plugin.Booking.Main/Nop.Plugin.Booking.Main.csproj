@@ -20,6 +20,7 @@
     <None Remove="Views\Shared\Components\Introduction\Default.cshtml" />
     <None Remove="Views\Shared\Components\PlaceSuggestion\Default.cshtml" />
     <None Remove="Views\Shared\Components\Promotion\Default.cshtml" />
+    <None Remove="Views\Shared\Components\SelectedCurrencyLanguage\Default.cshtml" />
     <None Remove="Views\Shared\Components\UserManual\Default.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
   </ItemGroup>
@@ -47,6 +48,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Components\Promotion\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\SelectedCurrencyLanguage\Default.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Components\UserManual\Default.cshtml">

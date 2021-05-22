@@ -23390,3 +23390,17 @@ textarea {
   height: 200px;
   z-index: 99999
 }
+
+@media (max-width: 768px) {
+  .search-date {
+      display: none;
+  }
+
+  #search-guest-button {
+      display: none;
+  }
+
+  #search-btn {
+      display: none;
+  }
+}
