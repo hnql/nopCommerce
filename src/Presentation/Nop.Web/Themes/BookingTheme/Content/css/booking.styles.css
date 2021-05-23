@@ -23391,6 +23391,10 @@ textarea {
   z-index: 99999
 }
 
+.is-logo {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .search-date {
       display: none;
@@ -23403,4 +23407,9 @@ textarea {
   #search-btn {
       display: none;
   }
+
+  .is-logo {
+      display: block;
+  }
 }
+
