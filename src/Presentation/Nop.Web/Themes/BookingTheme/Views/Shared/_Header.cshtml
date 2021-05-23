@@ -12,7 +12,9 @@
                     <img src="~/Themes/BookingTheme/Content/images/menu.svg" width="24" height="24">
                 </a>
                 <ul class="menu is-flex end-xs middle-xs">
-                    <li class="menu__item is-logo"><!----></li>
+                    <li class="menu__item is-logo">
+                        @await Component.InvokeAsync("Logo")
+                    </li>
                     <li class="menu__item">
                         <a href="https://host.luxstay.net/login" rel="nofollow" class="menu__link is-become-host d-inline-block">Host</a>
                     </li> <!---->
