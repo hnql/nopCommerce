@@ -12,22 +12,16 @@
                     <img src="~/Themes/BookingTheme/Content/images/menu.svg" width="24" height="24">
                 </a>
                 <ul class="menu is-flex end-xs middle-xs">
-                    <li class="menu__item is-logo"><!----></li>
+                    <li class="menu__item is-logo">
+                        @await Component.InvokeAsync("Logo")
+                    </li>
                     <li class="menu__item">
                         <a href="https://host.luxstay.net/login" rel="nofollow" class="menu__link is-become-host d-inline-block">Host</a>
                     </li> <!---->
-                    <li class="menu__item">
-                        <a href="/vi/auth/sign/up?return_url=%2Fvi%2F" class="menu__link bold" data-action="close-mobile-menu" rel="nofollow">Đăng ký</a>
-                    </li>
-                    <li class="menu__item">
-                        <a href="/vi/auth/sign/in?return_url=%2Fvi%2F" class="menu__link bold" data-action="close-mobile-menu" rel="nofollow">Đăng nhập</a>
-                    </li>
+                    @await Component.InvokeAsync("HeaderLinks")
                     <li class="menu__item is-relative">
                         <div>
-                            <span data-v-0550aeae="" data-action="popover" class="menu__link btn--dropdown semi-bold is-flex middle-xs is-relative pointer">
-                                <img data-v-0550aeae="" src="https://www.luxstay.com/icons/vi.svg" width="24" height="24">
-                                <span data-v-0550aeae="" class="ml--6">VND</span>
-                            </span>
+                            @await Component.InvokeAsync("SelectedCurrencyLanguage")
                             <div class="popover">
                                 <div data-v-0550aeae="" class="row is-relative currency-box">
                                     @await Component.InvokeAsync("LanguageSelector")

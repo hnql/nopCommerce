@@ -1,0 +1,12 @@
+﻿@model SelectedCurrencyLanguageModel
+<span data-action="popover" class="menu__link btn--dropdown semi-bold is-flex middle-xs is-relative pointer">
+    @if (Model.SelectedLanguageCulture == "vi-VN")
+    {
+        <img src="https://www.luxstay.com/icons/vi.svg" width="24" height="24">
+    }
+    else
+    {
+        <img src="https://www.luxstay.com/icons/en.svg" width="24" height="24">
+    }
+    <span class="ml--6">@Model.SelectedCurrency</span>
+</span>

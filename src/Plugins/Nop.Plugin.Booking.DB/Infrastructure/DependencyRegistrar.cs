@@ -2,6 +2,7 @@
 using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
+using Nop.Plugin.Booking.DB.Factories;
 using Nop.Plugin.Booking.DB.Services;
 
 namespace Nop.Plugin.Booking.DB.Infrastructure
@@ -20,6 +21,7 @@ namespace Nop.Plugin.Booking.DB.Infrastructure
             services.AddScoped<IRoomTypeService, RoomTypeService>();
             services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<ILocationCategoryService, LocationCategoryService>();
+            services.AddScoped<ICustomCommonModelFactory, CustomCommonModelFactory>();
         }
 
         public int Order => 1;

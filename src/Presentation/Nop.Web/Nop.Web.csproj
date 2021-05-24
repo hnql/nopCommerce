@@ -48,6 +48,7 @@
     <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\coccocalo.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\daterangepicker.css" />
     <Content Remove="Themes\BookingTheme\Content\css\destination.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\intlTelInput.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\login.instruction.styles.css" />
@@ -69,8 +70,11 @@
     <Content Remove="Themes\BookingTheme\Content\images\login-bg.png" />
     <Content Remove="Themes\BookingTheme\Content\images\menu.svg" />
     <Content Remove="Themes\BookingTheme\Content\js\banner.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\daterangepicker.js" />
     <Content Remove="Themes\BookingTheme\Content\js\destination.js" />
     <Content Remove="Themes\BookingTheme\Content\js\discovery.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\header.custom.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\moment.min.js" />
     <Content Remove="Themes\BookingTheme\Content\js\place_suggestion.js" />
     <Content Remove="Themes\BookingTheme\Content\js\promotion.js" />
     <Content Remove="Themes\BookingTheme\Content\js\user_manual.js" />
