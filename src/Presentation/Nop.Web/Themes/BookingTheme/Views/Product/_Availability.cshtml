@@ -1,5 +1,5 @@
 ﻿@model ProductDetailsModel
-@if (!string.IsNullOrWhiteSpace(Model.StockAvailability) || Model.DisplayBackInStockSubscription)
+@*@if (!string.IsNullOrWhiteSpace(Model.StockAvailability) || Model.DisplayBackInStockSubscription)
 {
     <div class="availability">
         @if (!string.IsNullOrWhiteSpace(Model.StockAvailability))
@@ -11,4 +11,11 @@
         }
         @await Html.PartialAsync("_BackInStockSubscription", Model)
     </div>
-}
+}*@
+
+<div class="room-availability">
+    <div class="title mt--60 mb--24">
+        <h3 class="mb--6">Availability</h3>
+        <span>Giá có thể tăng vào cuối tuần hoặc ngày lễ</span>
+    </div>
+</div>

@@ -49,7 +49,13 @@
     <Content Remove="Themes\BookingTheme\Content\css\coccocalo.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\destination.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\intlTelInput.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\login.instruction.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\phone.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\product.detail.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\promotion.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\room.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\rules.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\searchbox.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\searchfixed.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\toasted.styles.css" />
@@ -58,7 +64,9 @@
     <Content Remove="Themes\BookingTheme\Content\fonts\e3a0b22.woff2" />
     <Content Remove="Themes\BookingTheme\Content\fonts\e8c5b1c.woff" />
     <Content Remove="Themes\BookingTheme\Content\fonts\f4b9a70.woff2" />
+    <Content Remove="Themes\BookingTheme\Content\images\1538962546_a-49.jpg" />
     <Content Remove="Themes\BookingTheme\Content\images\close.svg" />
+    <Content Remove="Themes\BookingTheme\Content\images\login-bg.png" />
     <Content Remove="Themes\BookingTheme\Content\images\menu.svg" />
     <Content Remove="Themes\BookingTheme\Content\js\banner.js" />
     <Content Remove="Themes\BookingTheme\Content\js\destination.js" />
