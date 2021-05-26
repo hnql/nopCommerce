@@ -82,21 +82,9 @@
 <div class="page category-page">
     <div class="row">
         <h2 class="extra-bold col-xs-12 col-md-9">@Model.Name</h2>
-        <div class="col-xs-12 col-md-3 is-flex jend">
-            <div class="el-select is-square">
-                <div class="el-input el-input--prefix el-input--suffix">
-                    <input type="text" readonly="readonly" autocomplete="off" placeholder="Lựa chọn" class="el-input__inner">
-                    <span class="el-input__prefix">
-                        <span>Sắp xếp:</span>
-                    </span>
-                    <span class="el-input__suffix">
-                        <span class="el-input__suffix-inner">
-                            <i class="el-select__caret el-input__icon el-icon-arrow-up"></i>
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </div>
+    <div class="extra-bold col-xs-12 col-md-3 sort-list">
+        @await Html.PartialAsync("_ProductSort", Model.CatalogProductsModel)
+    </div>
 
     </div>
     <div class="page-body">
@@ -155,6 +143,9 @@
         }
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFeaturedProducts, additionalData = Model })
         @*featured products*@
+        @*@await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)*@
+        @*product grid and list*@
+
         <div class="pager clearfix">
             @{
                 var catalogProductsViewData = new ViewDataDictionary(ViewData);
