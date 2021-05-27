@@ -1,13 +1,20 @@
 ﻿@model ProductSpecificationModel
 
 @using Nop.Core.Domain.Catalog;
-
+@{ 
+    ProductSpecificationAttributeGroupModel amenities = Model.Groups.Where((group) => group.Name == "amenities").FirstOrDefault();
+    ProductSpecificationAttributeModel facilities = amenities.Attributes.Where((attribute) => attribute.Name == "facilities").FirstOrDefault();
+    ProductSpecificationAttributeModel facilitiesKitchen = amenities.Attributes.Where((attribute) => attribute.Name == "facilities.kitchen").FirstOrDefault();
+    ProductSpecificationAttributeModel facilitiesSpecial = amenities.Attributes.Where((attribute) => attribute.Name == "facilities.special").FirstOrDefault();
+}
 <div class="is-flex amenities">
     <div class="d-none d-sm-flex w--100">
         <div class="fl-item-stretch">
             <div item="[object Object]">
                 <h4 class="mt--24 mb--0">Tiện ích </h4>
                 <ul class="list list--3 is-flex">
+                    @if (facilities.Values.Any((value) => value.ValueRaw == "Wifi"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <g fill="#000" fill-rule="nonzero">
@@ -18,24 +25,36 @@
                         </svg>
                         <span>Wifi</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ValueRaw == "TV"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <path pid="0" fill="#000" fill-rule="nonzero" d="M16.293 14H8.707l-1.853 1.854a.5.5 0 01-.708-.708L7.293 14H3.5a.5.5 0 01-.5-.5v-11a.5.5 0 01.5-.5h18a.5.5 0 01.5.5v11a.5.5 0 01-.5.5h-3.793l1.147 1.146a.5.5 0 01-.708.708L16.293 14zM4 3v10h17V3H4zM3 21.5v1a.5.5 0 11-1 0V18a1.5 1.5 0 011.5-1.5h18A1.5 1.5 0 0123 18v4.5a.5.5 0 11-1 0v-1H3zm0-1h19V18a.5.5 0 00-.5-.5h-18a.5.5 0 00-.5.5v2.5zm8.5-1a.5.5 0 110-1h2a.5.5 0 110 1h-2zM5.854 5.854a.5.5 0 11-.708-.708l1-1a.5.5 0 11.708.708l-1 1zm0 3a.5.5 0 11-.708-.708l4-4a.5.5 0 11.708.708l-4 4z"></path>
                         </svg>
                         <span>TV</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFA"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <path pid="0" fill="#000" fill-rule="nonzero" d="M23 8.5h-2.085a1.5 1.5 0 01-2.83 0H1v4a.5.5 0 00.5.5h1v-.5A1.5 1.5 0 014 11h16a1.5 1.5 0 011.5 1.5v.5h1a.5.5 0 00.5-.5v-4zm0-1v-2a.5.5 0 00-.5-.5h-21a.5.5 0 00-.5.5v2h17.085a1.5 1.5 0 012.83 0H23zM20.5 13v-.5a.5.5 0 00-.5-.5H4a.5.5 0 00-.5.5v.5h17zm-19-9h21A1.5 1.5 0 0124 5.5v7a1.5 1.5 0 01-1.5 1.5h-21A1.5 1.5 0 010 12.5v-7A1.5 1.5 0 011.5 4zm5.886 16.182a.5.5 0 01-.772.636c-.817-.993-.817-2.086-.009-3.125.525-.674.525-1.248.009-1.875a.5.5 0 01.772-.636c.817.993.817 2.086.009 3.125-.525.674-.525 1.248-.009 1.875zm5 0a.5.5 0 01-.772.636c-.817-.993-.817-2.086-.009-3.125.525-.674.525-1.248.009-1.875a.5.5 0 01.772-.636c.817.993.817 2.086.009 3.125-.525.674-.525 1.248-.009 1.875zm5 0a.5.5 0 01-.772.636c-.817-.993-.817-2.086-.009-3.125.525-.674.525-1.248.009-1.875a.5.5 0 01.772-.636c.817.993.817 2.086.009 3.125-.525.674-.525 1.248-.009 1.875z"></path>
                         </svg>
-                        <span>Điều hoà</span>
+                        <span>Điều hòa</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFB"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <path pid="0" d="M7.381 0c-1.457 0-2.7 1.065-2.7 1.065a.48.48 0 10.6.75S6.438.96 7.381.96c1.226 0 2.28.855 2.28.855l.12.09V3.84H9.211a.48.48 0 00-.39.48v2.4h-.48a4.336 4.336 0 00-4.32 4.32v2.73a.492.492 0 000 .285V21.6a2.41 2.41 0 002.4 2.4h11.52a2.41 2.41 0 002.4-2.4v-7.59a.488.488 0 000-.195V11.04a4.336 4.336 0 00-4.32-4.32h-.48v-2.4a.48.48 0 00-.48-.48h-.48V1.92h.48a.483.483 0 00.422-.238.485.485 0 000-.484.483.483 0 00-.422-.238h-.855a.45.45 0 00-.15-.015.422.422 0 00-.045.015h-3.645a.45.45 0 00-.15-.015.422.422 0 00-.045.015h-.06C9.894.786 8.87 0 7.381 0zm3.36 1.92h2.88v1.92h-2.88V1.92zm-.96 2.88h4.8v1.92h-4.8V4.8zm-1.44 2.88h7.68c1.85 0 3.36 1.51 3.36 3.36v2.4h-5.805c.026-.154.045-.319.045-.48a2.888 2.888 0 00-2.88-2.88 2.888 2.888 0 00-2.88 2.88c0 .161.019.326.045.48H4.981v-2.4c0-1.85 1.51-3.36 3.36-3.36zm2.4 3.36c1.067 0 1.92.853 1.92 1.92s-.853 1.92-1.92 1.92a1.91 1.91 0 01-1.74-1.11v-.015l-.015-.03-.015-.015c-.002-.004.002-.011 0-.015l-.015-.015a1.944 1.944 0 01-.135-.72c0-1.067.853-1.92 1.92-1.92zm-5.76 3.36h3.27a2.89 2.89 0 002.49 1.44 2.89 2.89 0 002.49-1.44h6.15v7.2a1.44 1.44 0 01-1.44 1.44H6.421a1.44 1.44 0 01-1.44-1.44v-7.2zm10.08 1.44c-1.056 0-1.92.864-1.92 1.92s.864 1.92 1.92 1.92 1.92-.864 1.92-1.92-.864-1.92-1.92-1.92zm0 .96c.536 0 .96.424.96.96s-.424.96-.96.96a.952.952 0 01-.96-.96c0-.536.424-.96.96-.96zm-3.84 2.4c-.79 0-1.44.65-1.44 1.44 0 .79.65 1.44 1.44 1.44.79 0 1.44-.65 1.44-1.44 0-.79-.65-1.44-1.44-1.44zm0 .96c.27 0 .48.21.48.48s-.21.48-.48.48-.48-.21-.48-.48.21-.48.48-.48z" fill="#000" fill-rule="nonzero"></path>
                         </svg>
                         <span>Dầu gội, dầu xả</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFC"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <g fill-rule="evenodd">
@@ -45,12 +64,18 @@
                         </svg>
                         <span>Khăn tắm</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFD"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <path pid="0" d="M19.824 1.261L18.105 2.98l-3.273.399-.123.014-.096.068L2.745 12.99l-.014.014-.013.027-1.155 1.141-.303.317 8.25 8.25.317-.303 1.14-1.155.028-.014.014-.013 9.556-11.825.083-.097.014-.137.357-3.3 1.416-1.402.303-.317-2.915-2.915zm0 1.252L21.5 4.176l-.893.894-1.678-1.664.894-.894zm-1.692 1.36h.014l1.98 1.98v.014l-.234 2.324-4.056-4.056 2.296-.261zm-3.286.523l4.785 4.785-9.281 11.482-.027.04-.798.785-7.013-7.013.784-.797.042-.028 11.508-9.254zM12.11 8.824c-.555 0-1.102.235-1.526.66-.394.393-.518.844-.605 1.168-.047.17-.072.298-.138.413-.063.113-.136.23-.206.344-.345.548-.928 1.464-.206 2.186.178.179.399.3.632.344.045.233.164.45.344.632.22.22.52.344.839.344.488 0 .923-.282 1.347-.55.114-.07.23-.143.344-.206.115-.066.242-.091.412-.138.325-.087.776-.211 1.17-.605.905-.906.872-2.195-.07-3.135a2.62 2.62 0 00-.398-.33 2.62 2.62 0 00-.33-.399c-.47-.469-1.021-.728-1.609-.728zm0 .88c.337 0 .68.158.99.467.138.138.234.286.303.427.14.068.287.163.426.302.603.603.608 1.356.069 1.897-.392.392-.901.32-1.403.605-.455.26-.928.633-1.251.633a.303.303 0 01-.22-.082c-.155-.155-.143-.353.055-.55.273-.274.58-.686.825-1.046.093-.137-.028-.288-.165-.288a.148.148 0 00-.097.027c-.359.244-.773.552-1.044.825-.109.109-.217.165-.317.165a.332.332 0 01-.234-.11c-.287-.287.226-.897.55-1.471.286-.504.214-.999.606-1.389.262-.264.586-.412.907-.412zm-7.92 3.41l-.619.632.317.316.618-.632-.316-.316zm.646.646l-.632.619.316.316.632-.619-.316-.316zm.633.633l-.619.618.316.317.619-.62-.316-.316zm.632.632l-.619.633.317.316.619-.633-.317-.316zm.646.646l-.632.619.316.316.633-.619-.317-.316zm.633.633l-.619.619.316.316.62-.619-.317-.316zm.633.632l-.62.633.317.316.619-.633-.317-.316zm.646.647l-.633.618.316.317.633-.62-.316-.315zm.632.632l-.619.619.317.316.618-.619-.316-.316zm.633.633l-.619.632.316.316.619-.632-.316-.316zm.646.646l-.633.619.317.316.632-.619-.316-.316z" fill="#000" fill-rule="nonzero"></path>
                         </svg>
                         <span>Kem đánh răng</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFE"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <g fill-rule="evenodd">
@@ -62,6 +87,9 @@
                         </svg>
                         <span>Xà phòng tắm</span>
                     </li>
+                    }
+                    @if (facilities.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFF"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <g fill="none" fill-rule="evenodd">
@@ -73,11 +101,14 @@
                         </svg>
                         <span>Máy sấy</span>
                     </li>
+                    }
                 </ul>
             </div>
             <div item="[object Object]">
                 <h4 class="mt--24 mb--0">Tiện ích bếp</h4>
                 <ul class="list list--3 is-flex">
+                    @if (facilitiesKitchen.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFA"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <g fill-rule="evenodd" transform="translate(1)">
@@ -90,23 +121,32 @@
                         </svg>
                         <span>Bếp điện</span>
                     </li>
+                    }
+                    @if (facilitiesKitchen.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFB"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <path pid="0" fill="#000" fill-rule="nonzero" d="M16 10V8.5a.5.5 0 00-.5-.5h-11a.5.5 0 00-.5.5v8a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V15h-.5a1.5 1.5 0 01-1.5-1.5v-2a1.5 1.5 0 011.5-1.5h.5zm0 1h-.5a.5.5 0 00-.5.5v2a.5.5 0 00.5.5h.5v-3zM1.5 4h21A1.5 1.5 0 0124 5.5v14a1.5 1.5 0 01-1.5 1.5h-21A1.5 1.5 0 010 19.5v-14A1.5 1.5 0 011.5 4zm0 1a.5.5 0 00-.5.5v14a.5.5 0 00.5.5h21a.5.5 0 00.5-.5v-14a.5.5 0 00-.5-.5h-21zm3 2h11A1.5 1.5 0 0117 8.5v8a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 013 16.5v-8A1.5 1.5 0 014.5 7zm1.354 3.853a.5.5 0 01-.708-.707l1-1a.5.5 0 01.708.707l-1 1zm0 3a.5.5 0 01-.708-.707l4-4a.5.5 0 01.708.707l-4 4zM20 9a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2z"></path>
                         </svg>
                         <span>Lò vi sóng</span>
                     </li>
+                    }
+                    @if (facilitiesKitchen.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFC"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <path pid="0" fill="#000" fill-rule="nonzero" d="M17.5 0A1.5 1.5 0 0119 1.5v21a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 015 22.5v-21A1.5 1.5 0 016.5 0h11zM6 13h12V1.5a.5.5 0 00-.5-.5h-11a.5.5 0 00-.5.5V13zm0 1v8.5a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V14H6zm1-6.5a.5.5 0 011 0v4a.5.5 0 11-1 0v-4zm0 8a.5.5 0 111 0v4a.5.5 0 11-1 0v-4zm8.854 6.354a.5.5 0 01-.708-.708l1-1a.5.5 0 01.708.708l-1 1zm-3 0a.5.5 0 01-.708-.708l4-4a.5.5 0 01.708.708l-4 4z"></path>
                         </svg>
                         <span>Tủ lạnh</span>
                     </li>
+                    }
                 </ul>
             </div>
             <div item="[object Object]">
                 <h4 class="mt--24 mb--0">Tiện ích nổi bật</h4>
                 <ul class="list list--3 is-flex">
+                    @if (facilitiesSpecial.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFA"))
+                    {
                     <li class="mt--12">
                         <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" alt="" style="width: 24px; height: 24px;">
                             <g fill-rule="evenodd">
@@ -117,6 +157,7 @@
                         </svg>
                         <span>Smart tivi</span>
                     </li>
+                    }
                 </ul>
             </div>
             <a class="btn color-i mt--30" role="button">
