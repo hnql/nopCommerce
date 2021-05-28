@@ -11,11 +11,11 @@
     @*sorting*@
     @if (Model.AllowProductSorting)
     {
-        <div class="row">
-            <div class="col-sm-5 col-md-4 product-span">
-                <label>@T("Catalog.OrderBy")</label>
+        <div class="row" style="position: relative;">
+            <div class="col-sm-4 col-md-3 product-span">
+                <label>@T("Catalog.OrderBy"):</label>
             </div>
-            <div class="col-sm-7 col-md-8 remove_left_padding">
+            <div class="col-sm-8 col-md-9 remove_left_padding" style="position:absolute; right: 0; left: 0; margin-left: 6rem;">
                 <div class="select-custom"></div>
                 @Html.DropDownList("products-orderby", Model.AvailableSortOptions, new { aria_label = T("Catalog.OrderBy.Label"), @class = "form-control dropdown-filter" })
             </div>
