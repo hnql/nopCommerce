@@ -18,6 +18,7 @@
     <None Remove="Views\Shared\Components\Destination\Default.cshtml" />
     <None Remove="Views\Shared\Components\Discovery\Default.cshtml" />
     <None Remove="Views\Shared\Components\Introduction\Default.cshtml" />
+    <None Remove="Views\Shared\Components\OtherProducts\Default.cshtml" />
     <None Remove="Views\Shared\Components\PlaceSuggestion\Default.cshtml" />
     <None Remove="Views\Shared\Components\Promotion\Default.cshtml" />
     <None Remove="Views\Shared\Components\SelectedCurrencyLanguage\Default.cshtml" />
@@ -42,6 +43,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Components\Introduction\Default.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Shared\Components\OtherProducts\Default.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Components\PlaceSuggestion\Default.cshtml">

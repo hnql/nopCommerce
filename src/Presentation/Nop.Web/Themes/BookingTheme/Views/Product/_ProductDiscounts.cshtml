@@ -1,0 +1,85 @@
+﻿@model ProductDetailsModel.ProductPriceModel
+@using Nop.Core.Domain.Discounts
+@inject Nop.Services.Catalog.IProductService productService
+@inject Nop.Services.Discounts.IDiscountService discountService
+@{
+    DiscountProductMapping dpm = (await productService.GetAllDiscountsAppliedToProductAsync(Model.ProductId)).FirstOrDefault();
+    Discount discount = await discountService.GetDiscountByIdAsync(dpm.DiscountId);
+}
+<div id="productDiscounts">
+    <div>
+        <div class="fadeIn" style="width: 100%; display: inline-block;">
+            <div class="discount start-xs">
+                <div class="discount__title is-flex jbetween">
+                    <p class="mb--0 bold">
+                        @discount.Name
+                    </p>
+                    <p id="expired"></p>
+                    <div class="countdown bold">
+                        <span class="dd"></span>
+                        ngày
+                        <span class="hh"></span>:
+                        <span class="mm"></span>:
+                        <span class="ss"></span>
+                    </div>
+                </div>
+                <div class="discount__content">
+                    <div class="discount__description">
+                        <div class="discount__detail pr--6">Giảm giá <strong><font color="#FF0037">@discount.DiscountAmount đ</font></strong> - Mã: <strong style="color: #FF0037;"><font color="#FF0037">@discount.CouponCode</font></strong><br>Ngày check-in: <strong>@(discount.DiscountLimitation == DiscountLimitationType.Unlimited ? "Không giới hạn" : @discount.LimitationTimes)</strong></div>
+                        <div class="copy-txt mt--6">
+                            <svg version="1.1" viewBox="-66 0 569 569.286" class="cursor svg-icon svg-fill" style="width: 24px; height: 24px;">
+                                <path pid="0" d="M.11 66.383v493.133A9.484 9.484 0 009.593 569H369.96c5.234 0 9.48-4.246 9.48-9.484V161.219c0-.211-.101-.39-.12-.598a8.942 8.942 0 00-.485-2.437c-.106-.305-.18-.598-.313-.895a9.387 9.387 0 00-1.898-2.777L281.793 59.68a9.198 9.198 0 00-2.79-1.899 8.56 8.56 0 00-.87-.312 9.399 9.399 0 00-2.457-.492c-.16.027-.348-.075-.547-.075H9.594c-5.239 0-9.485 4.243-9.485 9.48zm346.956 85.351H284.61V89.277zM19.074 75.867h246.57v85.352c0 5.234 4.247 9.48 9.481 9.48h85.352v379.336H19.074zm0 0"></path>
+                                <path pid="1" d="M398.41 493.133v18.965h28.45c5.238 0 9.484-4.243 9.484-9.48V9.483A9.484 9.484 0 00426.859 0H66.492a9.484 9.484 0 00-9.484 9.484v28.45h18.969v-18.97h341.398v474.169zm0 0"></path>
+                                <path pid="2" d="M75.977 189.668h227.597v18.965H75.977zm0 0M75.977 132.766h75.867v18.968H75.977zm0 0M75.977 246.566H227.71v18.97H75.977zm0 0M246.676 246.566h56.898v18.97h-56.898zm0 0M75.977 303.465h227.597v18.969H75.977zm0 0M75.977 417.266h227.597v18.968H75.977zm0 0M161.324 360.367h142.25v18.965h-142.25zm0 0M75.977 360.367h66.382v18.965H75.977zm0 0M75.977 474.168h37.933v18.965H75.977zm0 0M132.875 474.168h170.7v18.965h-170.7zm0 0"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $("#productDiscounts").slick({
+            arrows: false,
+            infinite: false,
+            slidesToShow: 2,
+        });
+
+        countDown();
+    });
+
+    function countDown() {
+        var countDownDate = new Date("@discount.EndDateUtc").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            $(".dd").text(days);
+            $(".hh").text(hours);
+            $(".mm").text(minutes);
+            $(".ss").text(seconds);
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                $("$expired").text("EXPIRED");
+            }
+        }, 1000);
+    }
+</script>
