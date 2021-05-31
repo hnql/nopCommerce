@@ -1,0 +1,38 @@
+﻿.custom-date-picker {
+  width: 100% !important
+}
+
+  .custom-date-picker input {
+    padding-left: 50px !important;
+    font-size: 14px;
+    color: #000
+  }
+
+    .custom-date-picker input::-moz-placeholder {
+      color: #7d7d7d
+    }
+
+    .custom-date-picker input:-ms-input-placeholder {
+      color: #7d7d7d
+    }
+
+    .custom-date-picker input::placeholder {
+      color: #7d7d7d
+    }
+
+  .custom-date-picker .el-input__prefix {
+    padding-left: 6px;
+    top: 0;
+    width: 40px
+  }
+
+
+.btn-apply-date-picker {
+  color: rgb(246, 94, 57);
+  font-weight: bold;
+}
+
+.btn-cancel-date-picker {
+  color: black;
+  font-weight: bold;
+}

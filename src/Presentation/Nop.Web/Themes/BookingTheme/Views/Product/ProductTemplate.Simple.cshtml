@@ -1,7 +1,13 @@
 ﻿@model ProductDetailsModel
 @using Nop.Core.Domain.Seo;
+@using Nop.Core.Domain.Vendors;
+@using Nop.Core.Domain.Common;
+@using Nop.Core.Domain.Directory;
 @inject Nop.Core.IWebHelper webHelper
 @inject SeoSettings seoSettings
+@inject Nop.Services.Vendors.IVendorService vendorService
+@inject Nop.Services.Common.IAddressService addressService
+@inject Nop.Services.Directory.ICountryService countryService
 @{
     Layout = "_ColumnsOne";
 
@@ -42,152 +48,347 @@
         Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
         Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
     }
+
+    Html.AddCssFileParts("~/Themes/BookingTheme/Content/css/room.styles.css");
+    Html.AddCssFileParts("~/Themes/BookingTheme/Content/css/rules.styles.css");
+    Html.AddCssFileParts("~/Themes/BookingTheme/Content/css/login.instruction.styles.css");
+    Html.AddCssFileParts("~/Themes/BookingTheme/Content/css/phone.styles.css");
+    Html.AddCssFileParts("~/Themes/BookingTheme/Content/css/intlTelInput.styles.css");
+    Html.AddCssFileParts("~/Themes/BookingTheme/Content/css/custom.datepicker.css");
+    Html.AppendCssFileParts("https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.css");
+    Html.AppendCssFileParts("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
+    Html.AppendCssFileParts("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css");
+    Html.AppendCssFileParts("~/Themes/BookingTheme/Content/css/datepicker.styles.css");
+    Html.AddScriptParts(ResourceLocation.Head, "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js");
+
+    Html.AddScriptParts(ResourceLocation.Footer, "https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.js");
+    Html.AddScriptParts(ResourceLocation.Footer, "https://cdn.jsdelivr.net/npm/vue/dist/vue.js");
+    Html.AddScriptParts(ResourceLocation.Footer, "https://unpkg.com/vue-airbnb-style-datepicker@latest/dist/vue-airbnb-style-datepicker.min.js");
+
+    Html.AddCssFileParts("https://js.api.here.com/v3/3.1/mapsjs-ui.css");
+    Html.AddScriptParts(ResourceLocation.Head, "https://js.api.here.com/v3/3.1/mapsjs-core.js");
+    Html.AddScriptParts(ResourceLocation.Head, "https://js.api.here.com/v3/3.1/mapsjs-service.js");
+    Html.AddScriptParts(ResourceLocation.Head, "https://js.api.here.com/v3/3.1/mapsjs-mapevents.js");
+    Html.AddScriptParts(ResourceLocation.Head, "https://js.api.here.com/v3/3.1/mapsjs-ui.js");
+
+
+    // Get Vendor Information
+    Vendor vendor = await vendorService.GetVendorByProductIdAsync(Model.ProductPrice.ProductId);
+    Address address = await addressService.GetAddressByIdAsync(vendor.AddressId);
+    Country country = await countryService.GetCountryByIdAsync(address.CountryId.Value);
 }
-<!--product breadcrumb-->
-<div class="breadcrumb-wrapper">
-    @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
-</div>
-@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
-<div class="page product-details-page">
-    <div class="page-body">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model })
-        <form asp-route="Product" asp-route-sename="@Model.SeName" method="post" id="product-details-form">
-            @if (seoSettings.MicrodataEnabled)
-            {
-                @await Html.PartialAsync("_Microdata", Model)
-            }
-            <div data-productid="@Model.Id">
-                <div class="product-essential">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialTop, additionalData = Model })
-                            <!--product pictures-->
-                            @await Html.PartialAsync("_ProductDetailsPictures", Model)
-                        </div>
-                        <div class="col-md-8">
-                            @await Html.PartialAsync("_Discontinued", Model)
-                            <div class="overview">
-                                <div class="product-name panel-heading">
-                                    <h1>
-                                        @Model.Name
-                                    </h1>
-                                </div>
-                                <!--short description-->
-                                @if (!string.IsNullOrEmpty(Model.ShortDescription))
-                                {
-                                <div class="short-description">
-                                    @Html.Raw(Model.ShortDescription)
-                                </div>
-                                }
-                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsOverviewTop, additionalData = Model })
-                                <!--product reviews-->
-                                @await Html.PartialAsync("_ProductReviewOverview", Model.ProductReviewOverview)
-                                <!--availability-->
-                                @await Html.PartialAsync("_Availability", Model)
-                                <!--product manufacturers-->
-                                @await Html.PartialAsync("_ProductManufacturers", Model.ProductManufacturers)
-                                <!--SKU, MAN, GTIN, vendor-->
-                                @await Html.PartialAsync("_SKU_Man_GTIN_Ven", Model)
-                                <!--delivery-->
-                                @await Html.PartialAsync("_DeliveryInfo", Model)
-                                <!--sample download-->
-                                @await Html.PartialAsync("_DownloadSample", Model)
-                                <!--rental info-->
-                                @{
-                                    var dataDictRental = new ViewDataDictionary(ViewData);
-                                    dataDictRental.TemplateInfo.HtmlFieldPrefix = $"rental_{Model.Id}";
-                                    @await Html.PartialAsync("_RentalInfo", Model, dataDictRental)
-                                }
-                                <!--product price-->
-                                @{
-                                    var dataDictPrice = new ViewDataDictionary(ViewData);
-                                    dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
-                                    @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
-                                }
-                                <!--product attributes-->
-                                @{
-                                    var dataDictAttributes = new ViewDataDictionary(ViewData);
-                                    dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.Id}";
-                                    @await Html.PartialAsync("_ProductAttributes", Model, dataDictAttributes)
-                                }
-                                <!--gift card-->
-                                @{
-                                    var dataDictGiftCard = new ViewDataDictionary(ViewData);
-                                    dataDictGiftCard.TemplateInfo.HtmlFieldPrefix = $"giftcard_{Model.Id}";
-                                    @await Html.PartialAsync("_GiftCardInfo", Model.GiftCard, dataDictGiftCard)
-                                }
-                                <!--addtocart & estimate shipping -->
-                                @{
-                                    var dataDictAddToCart = new ViewDataDictionary(ViewData);
-                                    dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
-                                    @await Html.PartialAsync("_AddToCart", Model.AddToCart, dataDictAddToCart)
-                                    @await Html.PartialAsync("_ProductEstimateShipping", Model.ProductEstimateShipping)
-                                }
-                                <div class="overview-buttons">
-                                    <!--wishlist, compare, email a friend-->
-                                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsBefore, additionalData = Model })
-                                    @{
-                                        var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
-                                        dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
-                                        @await Html.PartialAsync("_AddToWishlist", Model.AddToCart, dataDictAddToWishlist)
-                                    }
-                                    @await Html.PartialAsync("_CompareProductsButton", Model)
-                                    @await Html.PartialAsync("_ProductEmailAFriendButton", Model)
-                                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsAfter, additionalData = Model })
-                                </div>
-                                @await Html.PartialAsync("_ShareButton", Model)
-                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsOverviewBottom, additionalData = Model })
-                            </div>
-                        </div>
-                        <div class="col-md-12 product-details-tabs">
-                            <ul class="nav nav-tabs">
-                                @if (!string.IsNullOrEmpty(Model.FullDescription))
-                                {
-                                    <li class="active"><a href="#description" data-toggle="tab">@T("account.vendorinfo.description")</a></li>
-                                }
-                                @if (!string.IsNullOrEmpty(@Html.PartialAsync("_ProductSpecifications", Model).ToString()))
-                                {
-                                    <li><a href="#specification" data-toggle="tab">@T("Products.Specs")</a></li>
-                                }
-                                @if (Model.ProductTags.Count > 0)
-                                {
-                                    <li><a href="#tags" data-toggle="tab">@T("Products.Tags")</a></li>
-                                }
-                                @if (Model.TierPrices.Count > 0)
-                                {
-                                    <li><a href="#tierprices" data-toggle="tab">@T("admin.catalog.products.tierprices")</a></li>
-                                }
-                            </ul>
-                            <div class="tab-content">
-                                @if (!string.IsNullOrEmpty(Model.FullDescription))
-                                {
-                                    <div class="full-description tab-pane fade in active" id="description">
-                                        @Html.Raw(Model.FullDescription)
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialTop, additionalData = Model })
+<!--product pictures-->
+@await Html.PartialAsync("_ProductDetailsPictures", Model)
+<div class="detail">
+    <div class="container container--room">
+        <div class="section">
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <div class="detail-left">
+                        <div id="general"></div>
+                        <div class="section">
+                            <!--product breadcrumb-->
+                            @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
+                            <div class="pt--30 pt--sm--0"></div>
+                            <section>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div>
+                                            <div class="title">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-10">
+                                                        <h1 class="mb--12 break-word">@Model.Name</h1>
+                                                    </div>
+                                                    <div class="d-none d-sm-block col-lg-2 text-right room-id">
+                                                        <div class="host-intro__wrap">
+                                                            <a href="https://www.luxstay.com/vi/hosts/15133" class="">
+                                                                <div class="image-box image-box--circle"><img src="./Themes/BookingTheme/Content/images/1538962546_a-49.jpg"></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="detail__location is-flex middle-xs between-xs start-md mt--18">
+                                                <div>
+                                                    <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" style="width: 24px; height: 24px;">
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <circle pid="0" cx="12" cy="12" r="12" fill="#000" fill-opacity=".2" fill-rule="nonzero"></circle>
+                                                            <path pid="1" fill="#FFF" d="M11.92 6c2.87 0 5.218 2.335 5.218 5.205a5.112 5.112 0 01-1.055 3.137c-.97 1.252-3.77 3.461-3.882 3.56a.43.43 0 01-.282.098.43.43 0 01-.281-.098c-.113-.099-2.912-2.308-3.883-3.546a5.182 5.182 0 01-1.055-3.15C6.7 8.335 9.05 6 11.92 6zm0 7.203a2.104 2.104 0 000-4.207 2.104 2.104 0 000 4.206z"></path>
+                                                        </g>
+                                                    </svg>
+                                                    <span class="ml--6 bold">@address.County, @address.City, @country.Name</span> <a href="https://www.luxstay.com/vi/rooms/12972#map" class="ml--12 c-green">Xem bản đồ</a>
+                                                </div>
+                                            </div>
+                                            <div class="mt--12">
+                                                <svg version="1.1" viewBox="0 0 24 24" class="svg-icon svg-fill" style="width: 24px; height: 24px;">
+                                                    <g fill="none" fill-rule="evenodd">
+                                                        <circle pid="0" cx="12" cy="12" r="12" fill="#000" fill-opacity=".2"></circle>
+                                                        <path pid="1" fill="#FFF" d="M7 17V8a1 1 0 011-1h8a1 1 0 011 1v9M8 7V6a1 1 0 011-1h6a1 1 0 011 1v1m-6 1a1 1 0 110 2 1 1 0 110-2zm4 0a1 1 0 110 2 1 1 0 110-2zm-4 3a1 1 0 110 2 1 1 0 110-2zm4 0a1 1 0 110 2 1 1 0 110-2zm-4 3a1 1 0 010 2 1 1 0 110-2zm4 0a1 1 0 110 2 1 1 0 010-2zm-7 3h10a1 1 0 011 1v1H6v-1a1 1 0 011-1z"></path>
+                                                    </g>
+                                                </svg>
+                                                <span class="ml--6 bold">Căn hộ chung cư</span> <span class="span"> · 40 m<sup>2</sup></span>
+                                            </div>
+                                            <!--short description-->
+                                            @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                                            {
+                                                <div class="detail__type is-short-intro is-flex" room="[object Object]">
+                                                    <div>
+                                                        @Html.Raw(Model.ShortDescription)
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="mt--18 slide-default-left slide-item-has-shadow">
+                                            @await Html.PartialAsync("_ProductDiscounts", Model.ProductPrice)
+                                        </div>
+                                        <div class="row d-md-none">
+                                            <div class="col-sm-6 col-xs-12 mt--30">
+                                                <div class="is-flex align-center bg-gray-f2 rounded">
+                                                    <div class="room-sidebar__host py--24 px--12 px--lg--24 w--100">
+                                                        <a href="https://www.luxstay.com/vi/hosts/15133" class="host-intro is-flex align-center">
+                                                            <div class="image-box image-box--large image-box--circle"><img src="./Themes/BookingTheme/Content/images/1538962546_a-49.jpg"></div>
+                                                            <div class="host-intro__name mx--12 mx--md--18">
+                                                                <p class="mb--6 extra-bold">Alatecollection </p>
+                                                                <p class="p--small-2 semi-bold c-gray-6 mb--0">Tham gia 06/2018</p>
+                                                            </div>
+                                                            <!---->
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <div class="d-none d-sm-flex w--100 amenities mt--36">
+                                            <div class="detail__intro">
+                                                <!---->
+                                                <div class="is-relative">
+                                                    <div id="short_intro" class="room-des dot" style="-webkit-box-orient: vertical;">
+                                                        @Html.Raw(Model.FullDescription)
+                                                    </div>
+                                                    <div id="show_intro" class="room-des show">
+                                                        @Html.Raw(Model.FullDescription)
+                                                    </div>
+                                                    <a class="btn color-i pointer mt--6">Thu gọn </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-block d-sm-none fl-item-stretch mt--12">
+                                            <div class="c-gray-5 p--small ml--6">
+                                                <!---->
+                                                <div class="is-relative">
+                                                    <div class="room-des dot" style="-webkit-box-orient: vertical;">
+                                                        @Html.Raw(Model.FullDescription)
+                                                    </div>
+                                                    <div class="room-des show">
+                                                        @Html.Raw(Model.FullDescription)
+                                                    </div>
+                                                    <a class="btn c-primary pointer mt--6">Thu gọn </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                }
-                                <div class="product-specification tab-pane fade" id="specification">
-                                    @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
                                 </div>
-                                <div class="product-tags tab-pane fade" id="tags">
-                                    @await Html.PartialAsync("_ProductTags", Model.ProductTags)
-                                </div>
-                                <div class="product-tierprices tab-pane fade" id="tierprices">
-                                    @await Html.PartialAsync("_ProductTierPrices", Model.TierPrices)
-                                </div>
-                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialBottom, additionalData = Model })
-                            </div>
+                            </section>
                         </div>
+                        <div id="amenities"></div>
+                        <div class="title mt--60">
+                            <h3 class="mb--6">Tiện nghi chỗ ở </h3>
+                            <span>Giới thiệu về các tiện nghi và dịch vụ tại nơi lưu trú</span>
+                        </div>
+                        @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
+                        <div id="price"></div>
+                        @await Html.PartialAsync("_ProductPrice", Model)
+                        <div id="availability"></div>
+                        @await Html.PartialAsync("_Availability", Model)
+                        <div id="reviews"></div>
+                        @await Html.PartialAsync("ProductReviews", Model.ProductReview)
+                        <div id="policy"></div>
+                        @await Html.PartialAsync("_ProductPolicy")
+                        <div id="utilities"></div>
+                        @await Html.PartialAsync("_ProductUtilities")
+                        @await Html.PartialAsync("_ProductMap")
+                        <p id="map_desc" class="mb--0 pt--24">
+                            Bạn sẽ nhận được địa chỉ chính xác của chỗ ở sau khi hoàn tất đơn đặt phòng.
+                        </p>
+                        @await Html.PartialAsync("_ProductLogin")
                     </div>
                 </div>
-                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBeforeCollateral, additionalData = Model })
-                <div class="product-collateral">
-                    <div class="row">
-                        @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })
-                        @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
+                <div class="col-md-4 col-xs-12 d-none d-md-block">
+                    <div class="text-right room-action">
+                        @await Html.PartialAsync("_ShareButton", Model)
+                    </div>
+                    <div id="booking-top-hook"></div>
+                    <div class="room-sidebar">
+                        <div class="room-sidebar">
+                            <div class="room-sidebar__content mb--18">
+                                @await Html.PartialAsync("_AddToCart", Model)
+                            </div>
+                            <div class="room-sidebar__content">
+                                @await Html.PartialAsync("_ProductSupport")
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </form>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
+        </div>
+        <div id="room-similar"></div>
+        @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="title mt--66">
+                    <h3>Chỗ ở khác của @Model.VendorModel.Name</h3>
+                </div>
+                @await Component.InvokeAsync("OtherProducts", new { productId = Model.Id })
+            </div>
+        </div>
     </div>
 </div>
+
+@*
+    <div class="page product-details-page">
+        <div class="page-body">
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model })
+            <form asp-route="Product" asp-route-sename="@Model.SeName" method="post" id="product-details-form">
+                @if (seoSettings.MicrodataEnabled)
+                {
+                    @await Html.PartialAsync("_Microdata", Model)
+                }
+                <div data-productid="@Model.Id">
+                    <div class="product-essential">
+                        <div class="row">
+                            <div class="col-md-4">
+                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialTop, additionalData = Model })
+                                <!--product pictures-->
+                                @await Html.PartialAsync("_ProductDetailsPictures", Model)
+                            </div>
+                            <div class="col-md-8">
+                                @await Html.PartialAsync("_Discontinued", Model)
+                                <div class="overview">
+                                    <div class="product-name panel-heading">
+                                        <h1>
+                                            @Model.Name
+                                        </h1>
+                                    </div>
+                                    <!--short description-->
+                                    @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                                    {
+                                        <div class="short-description">
+                                            @Html.Raw(Model.ShortDescription)
+                                        </div>
+                                    }
+                                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsOverviewTop, additionalData = Model })
+                                    <!--product reviews-->
+                                    @await Html.PartialAsync("_ProductReviewOverview", Model.ProductReviewOverview)
+                                    <!--availability-->
+                                    @await Html.PartialAsync("_Availability", Model)
+                                    <!--product manufacturers-->
+                                    @await Html.PartialAsync("_ProductManufacturers", Model.ProductManufacturers)
+                                    <!--SKU, MAN, GTIN, vendor-->
+                                    @await Html.PartialAsync("_SKU_Man_GTIN_Ven", Model)
+                                    <!--delivery-->
+                                    @await Html.PartialAsync("_DeliveryInfo", Model)
+                                    <!--sample download-->
+                                    @await Html.PartialAsync("_DownloadSample", Model)
+                                    <!--rental info-->
+                                    @{
+                                        var dataDictRental = new ViewDataDictionary(ViewData);
+                                        dataDictRental.TemplateInfo.HtmlFieldPrefix = $"rental_{Model.Id}";
+                                        @await Html.PartialAsync("_RentalInfo", Model, dataDictRental)
+                                    }
+                                    <!--product price-->
+                                    @{
+                                        var dataDictPrice = new ViewDataDictionary(ViewData);
+                                        dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
+                                        @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
+                                    }
+                                    <!--product attributes-->
+                                    @{
+                                        var dataDictAttributes = new ViewDataDictionary(ViewData);
+                                        dataDictAttributes.TemplateInfo.HtmlFieldPrefix = $"attributes_{Model.Id}";
+                                        @await Html.PartialAsync("_ProductAttributes", Model, dataDictAttributes)
+                                    }
+                                    <!--gift card-->
+                                    @{
+                                        var dataDictGiftCard = new ViewDataDictionary(ViewData);
+                                        dataDictGiftCard.TemplateInfo.HtmlFieldPrefix = $"giftcard_{Model.Id}";
+                                        @await Html.PartialAsync("_GiftCardInfo", Model.GiftCard, dataDictGiftCard)
+                                    }
+                                    <!--addtocart & estimate shipping -->
+                                    @{
+                                        var dataDictAddToCart = new ViewDataDictionary(ViewData);
+                                        dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                                        @await Html.PartialAsync("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                                        @await Html.PartialAsync("_ProductEstimateShipping", Model.ProductEstimateShipping)
+                                    }
+                                    <div class="overview-buttons">
+                                        <!--wishlist, compare, email a friend-->
+                                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsBefore, additionalData = Model })
+                                        @{
+                                            var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
+                                            dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                                            @await Html.PartialAsync("_AddToWishlist", Model.AddToCart, dataDictAddToWishlist)
+                                        }
+                                        @await Html.PartialAsync("_CompareProductsButton", Model)
+                                        @await Html.PartialAsync("_ProductEmailAFriendButton", Model)
+                                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsInsideOverviewButtonsAfter, additionalData = Model })
+                                    </div>
+                                    @await Html.PartialAsync("_ShareButton", Model)
+                                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsOverviewBottom, additionalData = Model })
+                                </div>
+                            </div>
+                            <div class="col-md-12 product-details-tabs">
+                                <ul class="nav nav-tabs">
+                                    @if (!string.IsNullOrEmpty(Model.FullDescription))
+                                    {
+                                        <li class="active"><a href="#description" data-toggle="tab">@T("account.vendorinfo.description")</a></li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(@Html.PartialAsync("_ProductSpecifications", Model).ToString()))
+                                    {
+                                        <li><a href="#specification" data-toggle="tab">@T("Products.Specs")</a></li>
+                                    }
+                                    @if (Model.ProductTags.Count > 0)
+                                    {
+                                        <li><a href="#tags" data-toggle="tab">@T("Products.Tags")</a></li>
+                                    }
+                                    @if (Model.TierPrices.Count > 0)
+                                    {
+                                        <li><a href="#tierprices" data-toggle="tab">@T("admin.catalog.products.tierprices")</a></li>
+                                    }
+                                </ul>
+                                <div class="tab-content">
+                                    @if (!string.IsNullOrEmpty(Model.FullDescription))
+                                    {
+                                        <div class="full-description tab-pane fade in active" id="description">
+                                            @Html.Raw(Model.FullDescription)
+                                        </div>
+                                    }
+                                    <div class="product-specification tab-pane fade" id="specification">
+                                        @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
+                                    </div>
+                                    <div class="product-tags tab-pane fade" id="tags">
+                                        @await Html.PartialAsync("_ProductTags", Model.ProductTags)
+                                    </div>
+                                    <div class="product-tierprices tab-pane fade" id="tierprices">
+                                        @await Html.PartialAsync("_ProductTierPrices", Model.TierPrices)
+                                    </div>
+                                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialBottom, additionalData = Model })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBeforeCollateral, additionalData = Model })
+                    <div class="product-collateral">
+                        <div class="row">
+                            @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })
+                            @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsBottom, additionalData = Model })
+        </div>
+    </div>
+*@

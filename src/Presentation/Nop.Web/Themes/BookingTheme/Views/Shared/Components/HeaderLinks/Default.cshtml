@@ -1,64 +1,111 @@
 ﻿@model HeaderLinksModel
 @using Nop.Core.Domain.Customers
 @inject Nop.Core.IWebHelper webHelper
-<div class="header-links header-top-right">
-    <ul>
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
-        @await Component.InvokeAsync("AdminHeaderLinks")
-        @if (Model.IsAuthenticated)
-        {
-            <li class="my-account"><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@T("Account.MyAccount")@*@Model.CustomerName*@</a></li>
-        }
-        else
-        {
-            var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
-                ? url.ToString()
-                : webHelper.GetRawUrl(Context.Request);
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
+@await Component.InvokeAsync("AdminHeaderLinks")
+@if (Model.IsAuthenticated)
+{
+    <li class="menu__item is-relative mb--12 mb--md--0">
+        <a data-action="popover" class="menu__link menu__link--user btn--dropdown">
+            <div class="user-avatar">
+                <img src="https://cdn.luxstay.com/users_avatar_default/default-avatar.png">
+            </div>
+            <span class="px--6">@Model.CustomerName</span>
+        </a>
+        <div class="popover popover--user-menu">
+            <ul class="user-menu is-relative">
+                <li>
+                    <a href="/vi/me/bookings" class="user-menu__link" data-action="close-mobile-menu">
+                        <svg version="1.1" viewBox="0 0 24 24" class="icon--24 svg-icon svg-fill">
+                            <path pid="0" d="M1 10.04h22V5a1 1 0 00-1-1h-3v1a2 2 0 11-4 0V4H9v1a2 2 0 11-4 0V4H2a1 1 0 00-1 1v5.04zm0 1V21a1 1 0 001 1h20a1 1 0 001-1v-9.96H1zM19 3h3a2 2 0 012 2v16a2 2 0 01-2 2H2a2 2 0 01-2-2V5a2 2 0 012-2h3a2 2 0 114 0h6a2 2 0 114 0zM7 2a1 1 0 00-1 1v2a1 1 0 102 0V3a1 1 0 00-1-1zm10 0a1 1 0 00-1 1v2a1 1 0 002 0V3a1 1 0 00-1-1z" fill="#000" fill-rule="nonzero"></path>
+                        </svg>
+                        <span class="user-menu__title ml--12">Đặt chỗ của tôi</span>
+                    </a>
+                </li>
+                @if (Model.AllowPrivateMessages)
+                {
+                    <li>
+                        <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="user-menu__link" data-action="close-mobile-menu">
+                            <svg version="1.1" viewBox="0 0 24 24" class="icon--24 svg-icon svg-fill">
+                                <g fill="#222" fill-rule="nonzero">
+                                    <path pid="0" d="M21.04 3.037H2.93A2.933 2.933 0 000 5.967v12.378c0 1.616 1.314 2.688 2.93 2.688h18.105c1.616 0 2.93-1.072 2.93-2.688V5.973a2.93 2.93 0 00-2.925-2.936zm0 16.963H2.93c-.877 0-1.888-.778-1.888-1.655V5.973C1.042 5.095 2.052 4 2.93 4h18.104c.877 0 1.963 1.095 1.963 1.973v12.372c.005.877-1.08 1.655-1.958 1.655z"></path>
+                                    <path pid="1" d="M20.42 5.415a.5.5 0 01.67.744l-8.909 8.01a.5.5 0 01-.671-.002L2.747 6.156a.5.5 0 11.674-.738l8.429 7.705 8.57-7.708z"></path>
+                                    <path pid="2" d="M3.443 18.843a.5.5 0 11-.707-.707L9.27 11.6a.5.5 0 11.707.707l-6.535 6.535zM21.36 18.195a.5.5 0 01-.707.707l-6.689-6.874a.5.5 0 01.707-.707l6.689 6.874z"></path>
+                                </g>
+                            </svg>
+                            <span class="user-menu__title ml--12">@T("PrivateMessages.Inbox")</span>
+                            <!---->
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a href="@Url.RouteUrl("CustomerInfo")" class="user-menu__link" data-action="close-mobile-menu">
+                        <svg version="1.1" viewBox="0 0 24 24" class="icon--24 svg-icon svg-fill">
+                            <g fill-rule="nonzero" fill="#000">
+                                <path pid="0" d="M11.782 5.673a6.116 6.116 0 00-6.11 6.109c0 3.369 2.741 6.109 6.11 6.109s6.109-2.74 6.109-6.11c0-3.368-2.74-6.108-6.11-6.108zm0 11.345a5.242 5.242 0 01-5.237-5.236 5.242 5.242 0 015.237-5.237 5.242 5.242 0 015.236 5.237 5.242 5.242 0 01-5.236 5.236z"></path>
+                                <path pid="1" d="M22.35 9.164h-.88a9.945 9.945 0 00-.986-2.382l.622-.622c.23-.229.355-.534.355-.858 0-.324-.126-.629-.355-.858l-1.987-1.987c-.458-.458-1.257-.458-1.716 0l-.622.622a9.974 9.974 0 00-2.381-.985v-.88C14.4.543 13.856 0 13.187 0h-2.81c-.67 0-1.213.544-1.213 1.213v.88a9.968 9.968 0 00-2.382.987l-.622-.622c-.458-.46-1.258-.459-1.716 0L2.457 4.444c-.229.23-.355.534-.355.859 0 .323.126.628.355.858l.622.622a9.934 9.934 0 00-.985 2.38h-.88C.543 9.164 0 9.709 0 10.378v2.81c0 .669.544 1.213 1.213 1.213h.88c.225.834.556 1.632.987 2.381l-.622.622c-.23.23-.356.535-.356.858 0 .325.127.63.356.859l1.986 1.986c.459.46 1.258.46 1.717 0l.622-.622c.75.43 1.547.762 2.381.986v.881c0 .669.544 1.213 1.213 1.213h2.81c.669 0 1.213-.544 1.213-1.213v-.88a9.968 9.968 0 002.381-.987l.622.622c.46.46 1.258.459 1.717 0l1.986-1.986c.23-.23.356-.534.356-.859 0-.323-.126-.628-.356-.858l-.622-.622c.43-.749.762-1.547.986-2.381h.881c.669 0 1.213-.544 1.213-1.213v-2.81c0-.67-.545-1.213-1.213-1.213zm.278 4.023a.34.34 0 01-.34.34h-1.505l-.078.338c-.228.976-.658 1.902-1.188 2.753l-.183.295 1.108 1.047a.34.34 0 010 .481l-1.94 1.932a.34.34 0 01-.481 0l-1.108-1.114-.295.184c-.85.53-1.777.968-2.753 1.195l-.338.079v1.634a.34.34 0 01-.34.34h-2.81a.34.34 0 01-.34-.34v-1.634l-.338-.079a9.114 9.114 0 01-2.754-1.14l-.294-.183-1.108 1.174a.34.34 0 01-.482 0l-1.986-1.987a.34.34 0 010-.481l1.108-1.108-.184-.295a9.093 9.093 0 01-1.14-2.753l-.078-.338H1.337a.34.34 0 01-.34-.34v-2.81a.34.34 0 01.34-.34h1.444l.078-.338A9.104 9.104 0 014 6.945l.184-.294-1.108-1.108a.34.34 0 010-.482L5.06 3.075a.34.34 0 01.482 0l1.108 1.108.294-.184A9.093 9.093 0 019.7 2.86l.337-.078V1.346a.34.34 0 01.34-.34h2.81a.34.34 0 01.341.34v1.435l.338.078c.976.227 1.902.61 2.753 1.14l.295.184 1.029-1.108a.34.34 0 01.481 0L20.41 5.06a.34.34 0 010 .482l-1.029 1.108.183.294c.53.85.914 1.777 1.14 2.754l.08.337h1.503a.34.34 0 01.34.34v2.81z"></path>
+                            </g>
+                        </svg>
+                        <span class="user-menu__title ml--12">@T("Account.MyAccount")</span>
+                    </a>
+                </li>
+                @if (Model.WishlistEnabled)
+                {
+                    <li>
+                        <a href="@Url.RouteUrl("Wishlist")" class="user-menu__link" data-action="close-mobile-menu">
+                            <svg version="1.1" viewBox="0 0 24 24" class="icon--24 svg-icon svg-fill">
+                                <path pid="0" d="M12 22.05l.045.13-.045.045-.045-.045.045-.13zm.237-.675L12 22.05l-.237-.675a.717.717 0 01.474 0zm-.024-.593l.074-.072.03-.026c4.563-4.054 6.474-5.875 8.077-7.834C22.2 10.644 23 8.842 23 7.03 23 4.167 20.842 2 18 2c-1.568 0-3.186.76-4.216 1.982L12 6.099l-1.784-2.117C9.186 2.76 7.568 2 6 2 3.158 2 1 4.166 1 7.03c0 1.812.8 3.614 2.606 5.82 1.603 1.96 3.514 3.78 8.077 7.833l.075.07.03.03.212.213.213-.214zm-.867-17.01l.111.131.543.645.543-.645.11-.131.367-.434C14.238 1.892 16.134 1 18 1c3.392 0 6 2.611 6 6.03 0 2.11-.928 4.127-2.832 6.453-1.92 2.345-4.698 4.849-8.187 7.948l-.03.027-.03.03-.827.83a.285.285 0 01-.094.015.285.285 0 01-.094-.014l-.828-.832-.029-.029-.03-.027c-3.49-3.099-6.268-5.603-8.187-7.948C.928 11.157 0 9.14 0 7.031 0 3.61 2.608 1 6 1c1.866 0 3.762.892 4.98 2.338l.366.434z" fill="#222" fill-rule="nonzero"></path>
+                            </svg>
+                            <span class="user-menu__title ml--12">@T("Wishlist")</span>
+                        </a>
+                    </li>
+                }
+                <li>
+                    <a data-action="close-mobile-menu" href="https://biz.luxstay.com" target="_blank" class="user-menu__link">
+                        <svg version="1.1" viewBox="0 0 24 24" class="icon--24 svg-icon svg-fill">
+                            <path pid="0" d="M21.957 5.025h-4.99v-.998c0-1.1-.895-1.996-1.996-1.996H8.982c-1.1 0-1.996.895-1.996 1.996v.998h-4.99C.896 5.025 0 5.921 0 7.021v12.975c0 1.1.895 1.996 1.996 1.996h19.961c1.101 0 1.996-.895 1.996-1.996V7.021c0-1.1-.895-1.996-1.996-1.996zM7.984 4.027a1 1 0 01.998-.998h5.989a1 1 0 01.998.998v.998H7.984v-.998zm14.971 15.97a1 1 0 01-.998.997H1.997a1 1 0 01-.999-.998v-7.264c.295.172.633.278.998.278h7.985v1.497c0 .276.223.499.499.499h2.994a.499.499 0 00.499-.5V13.01h7.984c.365 0 .703-.106.998-.278v7.264zm-11.976-5.99v-1.995h1.996v1.996h-1.996zm11.976-2.993a1 1 0 01-.998.998h-7.984v-.5a.499.499 0 00-.5-.498H10.48a.499.499 0 00-.5.499v.499H1.996a1 1 0 01-.998-.998V7.02a1 1 0 01.998-.998h19.961a1 1 0 01.998.998v3.993z" fill="#222" fill-rule="nonzero"></path>
+                        </svg>
+                        <span class="user-menu__title ml--12">Luxstay for Business</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.RouteUrl("Logout")" class="user-menu__link">
+                        <svg version="1.1" viewBox="0 0 24 24" class="icon--24 svg-icon svg-fill">
+                            <g fill="none" fill-rule="evenodd">
+                                <path pid="0" d="M16.92 1.617c-.28.344-.116.824.251 1.036 3.115 1.802 5.794 5.462 5.794 9.31 0 5.741-5.258 11.08-11 11.08-5.74 0-10.942-5.339-10.942-11.08 0-3.851 2.42-7.245 5.524-9.06.39-.23.647-.669.435-1.035-.212-.367-.623-.464-.99-.251A11.944 11.944 0 00.02 11.963c0 6.603 5.343 11.946 11.946 11.946 6.602 0 11.946-5.343 11.946-11.946 0-4.406-2.392-8.275-5.973-10.347-.366-.212-.739-.344-1.018 0z" fill="#000"></path>
+                                <path pid="1" d="M11.441.715a.5.5 0 111 0v9.769a.5.5 0 01-1 0V.714z" fill="#222" fill-rule="nonzero"></path>
+                            </g>
+                        </svg>
+                        <span class="user-menu__title ml--12">@T("Account.Logout")</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+}
+else
+{
+    var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
+            ? url.ToString()
+            : webHelper.GetRawUrl(Context.Request);
 
-            @if (Model.RegistrationType != UserRegistrationType.Disabled)
-            {
-                <li class="register"><a href="@Url.RouteUrl("Register", new { returnUrl })" class="ico-register"><span>@T("Account.Register")</span></a></li>
-            }
-        }
-        @if (Model.WishlistEnabled)
-        {
-            <li class="my-wishlist">
-                <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
-                    <span class="wishlist-label">@T("Wishlist")</span>
-                    <span class="wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
-                </a>
-            </li>
-        }
-        @if (Model.AllowPrivateMessages)
-        {
-            <li>
-                <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">
-                    <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
-                    <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
-                </a>
-            </li>
-        }
-        @if (Model.IsAuthenticated)
-        {
-            <li class="logout"><a href="@Url.RouteUrl("Logout")" class="ico-logout"><span>@T("Account.Logout")</span></a></li>
-        }
-        else
-        {
-            var returnUrl = Context.Request.Query.TryGetValue("returnUrl", out var url) && !StringValues.IsNullOrEmpty(url)
-                ? url.ToString()
-                : webHelper.GetRawUrl(Context.Request);
-
-            <li class="login"><a href="@Url.RouteUrl("Login", new { returnUrl })" class="ico-login"><span>@T("Account.Login")</span></a></li>
-        }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksAfter })
-    </ul>
-    @if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+    @if (Model.RegistrationType != UserRegistrationType.Disabled)
     {
-        //new private message notification
-        <script asp-location="Footer">
+        <li class="menu__item">
+            <a href="@Url.RouteUrl("Register", new { returnUrl })" class="menu__link bold" data-action="close-mobile-menu" rel="nofollow">@T("Account.Register")</a>
+        </li>
+        <li class="menu__item">
+            <a href="@Url.RouteUrl("Login", new { returnUrl })" class="menu__link bold" data-action="close-mobile-menu" rel="nofollow">@T("Account.Login")</a>
+        </li>
+    }
+}
+
+@if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+{
+    //new private message notification
+    <script asp-location="Footer">
             $(document).ready(function () {
                 displayPopupNotification('@Html.Raw(JavaScriptEncoder.Default.Encode(Model.AlertMessage))', 'success', false);
             });
-        </script>
-    }
-</div>
+    </script>
+}

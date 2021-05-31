@@ -1,231 +1,351 @@
 ﻿@model ProductReviewsModel
 @using Nop.Core
 @{
-    Layout = "_ColumnsTwo";
+    //Layout = "_ColumnsTwo";
 
     //title
-    Html.AddTitleParts(Model.ProductName);
-    Html.AddTitleParts(T("PageTitle.ProductReviews").Text);
+    //Html.AddTitleParts(Model.ProductName);
+    //Html.AddTitleParts(T("PageTitle.ProductReviews").Text);
     //page class
-    Html.AppendPageCssClassParts("html-product-reviews-page");
+    //Html.AppendPageCssClassParts("html-product-reviews-page");
 }
-<div class="page product-reviews-page">
-    <div class="page-title panel-heading">
-        <h1>@T("Reviews.ProductReviewsFor") <a href="@Url.RouteUrl("Product", new { SeName = Model.ProductSeName })">@Model.ProductName</a></h1>
-    </div>
-    <div class="page-body">
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductReviewsPageTop, additionalData = Model })
-        @if (Model.AddProductReview.SuccessfullyAdded)
-        {
-            <div class="result alert alert-success">
-                @Model.AddProductReview.Result
-            </div>
-        }
-        else if (!Model.AddProductReview.CanAddNewReview)
-        {
-            <div class="result review-already-added">
-                @T("Reviews.AlreadyAddedProductReviews")
-            </div>
-        }
-        else
-        {
-            <div class="write-review" id="review-form">
-                <div class="title">
-                    <strong>@T("Reviews.Write")</strong>
+@*<div class="page product-reviews-page">
+        <div class="page-title panel-heading">
+            <h1>@T("Reviews.ProductReviewsFor") <a href="@Url.RouteUrl("Product", new { SeName = Model.ProductSeName })">@Model.ProductName</a></h1>
+        </div>
+        <div class="page-body">
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductReviewsPageTop, additionalData = Model })
+            @if (Model.AddProductReview.SuccessfullyAdded)
+            {
+                <div class="result alert alert-success">
+                    @Model.AddProductReview.Result
                 </div>
-                <form asp-route="ProductReviews" method="post">
-                    <div asp-validation-summary="ModelOnly" class="message-error"></div>
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-2 col-md-2" asp-for="AddProductReview.Title" asp-postfix=":"></label>
-                            <div class="col-sm-5 col-md-5">
-                                <input asp-for="AddProductReview.Title" class="review-title form-control" asp-disabled="@(!Model.AddProductReview.CanCurrentCustomerLeaveReview)" />
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <nop-required />
-                                <span asp-validation-for="AddProductReview.Title"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-md-2" asp-for="AddProductReview.ReviewText" asp-postfix=":"></label>
-                            <div class="col-sm-5 col-md-5">
-                                <textarea asp-for="AddProductReview.ReviewText" class="review-text form-control" asp-disabled="@(!Model.AddProductReview.CanCurrentCustomerLeaveReview)"></textarea>
-                            </div>
-                            <div class="col-sm-3 col-md-3">
-                                <nop-required />
-                                <span asp-validation-for="AddProductReview.ReviewText"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="review-rating">
-                                <div class="name-description">
-                                    <label class="col-xs-2 col-sm-2 col-md-2" asp-for="AddProductReview.Rating" asp-postfix=":"></label>
+            }
+            else if (!Model.AddProductReview.CanAddNewReview)
+            {
+                <div class="result review-already-added">
+                    @T("Reviews.AlreadyAddedProductReviews")
+                </div>
+            }
+            else
+            {
+                <div class="write-review" id="review-form">
+                    <div class="title">
+                        <strong>@T("Reviews.Write")</strong>
+                    </div>
+                    <form asp-route="ProductReviews" method="post">
+                        <div asp-validation-summary="ModelOnly" class="message-error"></div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 col-md-2" asp-for="AddProductReview.Title" asp-postfix=":"></label>
+                                <div class="col-sm-5 col-md-5">
+                                    <input asp-for="AddProductReview.Title" class="review-title form-control" asp-disabled="@(!Model.AddProductReview.CanCurrentCustomerLeaveReview)" />
                                 </div>
-                                <div class="col-xs-10 col-sm-5 col-md-5 rating-text rating-wrapper">
-                                    <div class="first">@T("Reviews.Fields.Rating.Bad")</div>
-                                    <div class="rb">
-                                        <ul>
-                                            <li>
-                                                <input asp-for="AddProductReview.Rating" value="1" type="radio" id="addproductrating_1" aria-label="@T("Reviews.Fields.Rating.Bad")" />
-                                                <input asp-for="AddProductReview.Rating" value="2" type="radio" id="addproductrating_2" aria-label="@T("Reviews.Fields.Rating.NotGood")" />
-                                                <input asp-for="AddProductReview.Rating" value="3" type="radio" id="addproductrating_3" aria-label="@T("Reviews.Fields.Rating.NotBadNotExcellent")" />
-                                                <input asp-for="AddProductReview.Rating" value="4" type="radio" id="addproductrating_4" aria-label="@T("Reviews.Fields.Rating.Good")" />
-                                                <input asp-for="AddProductReview.Rating" value="5" type="radio" id="addproductrating_5" aria-label="@T("Reviews.Fields.Rating.Excellent")" />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="last">@T("Reviews.Fields.Rating.Excellent")</div>
+                                <div class="col-sm-3 col-md-3">
+                                    <nop-required />
+                                    <span asp-validation-for="AddProductReview.Title"></span>
                                 </div>
                             </div>
-                        </div>
-                        @if (Model.ReviewTypeList.Count > 0)
-                        {
-                            foreach (var additionalReview in Model.AddAdditionalProductReviewList.OrderBy(ob => ob.DisplayOrder).ToList())
-                            {
-                                var curAdditionalReview = Model.AddAdditionalProductReviewList.IndexOf(additionalReview);
-                                <div class="form-group">
-                                    <div class="review-rating">
+                            <div class="form-group">
+                                <label class="col-sm-2 col-md-2" asp-for="AddProductReview.ReviewText" asp-postfix=":"></label>
+                                <div class="col-sm-5 col-md-5">
+                                    <textarea asp-for="AddProductReview.ReviewText" class="review-text form-control" asp-disabled="@(!Model.AddProductReview.CanCurrentCustomerLeaveReview)"></textarea>
+                                </div>
+                                <div class="col-sm-3 col-md-3">
+                                    <nop-required />
+                                    <span asp-validation-for="AddProductReview.ReviewText"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="review-rating">
                                     <div class="name-description">
-                                        <label class="col-xs-2 col-sm-2 col-md-2">@Html.Raw(additionalReview.Name):</label>
-                                        <span class="tooltiptext">@Html.Raw(additionalReview.Description)</span>
+                                        <label class="col-xs-2 col-sm-2 col-md-2" asp-for="AddProductReview.Rating" asp-postfix=":"></label>
                                     </div>
                                     <div class="col-xs-10 col-sm-5 col-md-5 rating-text rating-wrapper">
                                         <div class="first">@T("Reviews.Fields.Rating.Bad")</div>
-                                        <div class="rb rating-options">
+                                        <div class="rb">
                                             <ul>
                                                 <li>
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].ReviewTypeId" value="@(additionalReview.ReviewTypeId)" type="hidden" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Name" value="@(additionalReview.Name)" type="hidden" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Description" value="@(additionalReview.Description)" type="hidden" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].DisplayOrder" value="@(additionalReview.DisplayOrder)" type="hidden" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].IsRequired" value="@(additionalReview.IsRequired)" type="hidden" />
-
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="0" type="radio" id="addproductratingext_0_@(additionalReview.ReviewTypeId)" style="display: none;" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="1" type="radio" id="addproductratingext_1_@(additionalReview.ReviewTypeId)" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="2" type="radio" id="addproductratingext_2_@(additionalReview.ReviewTypeId)" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="3" type="radio" id="addproductratingext_3_@(additionalReview.ReviewTypeId)" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="4" type="radio" id="addproductratingext_4_@(additionalReview.ReviewTypeId)" />
-                                                    <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="5" type="radio" id="addproductratingext_5_@(additionalReview.ReviewTypeId)" />
+                                                    <input asp-for="AddProductReview.Rating" value="1" type="radio" id="addproductrating_1" aria-label="@T("Reviews.Fields.Rating.Bad")" />
+                                                    <input asp-for="AddProductReview.Rating" value="2" type="radio" id="addproductrating_2" aria-label="@T("Reviews.Fields.Rating.NotGood")" />
+                                                    <input asp-for="AddProductReview.Rating" value="3" type="radio" id="addproductrating_3" aria-label="@T("Reviews.Fields.Rating.NotBadNotExcellent")" />
+                                                    <input asp-for="AddProductReview.Rating" value="4" type="radio" id="addproductrating_4" aria-label="@T("Reviews.Fields.Rating.Good")" />
+                                                    <input asp-for="AddProductReview.Rating" value="5" type="radio" id="addproductrating_5" aria-label="@T("Reviews.Fields.Rating.Excellent")" />
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="last">@T("Reviews.Fields.Rating.Excellent")</div>
                                     </div>
                                 </div>
-                                </div>
-                            }
-                        }
-                        @if (Model.AddProductReview.DisplayCaptcha)
-                        {
-                            <div class="form-group">
-                                <div class="captcha-box col-sm-offset-2 col-md-offset-2 col-md-4">
-                                    <nop-captcha />
-                                </div>
                             </div>
-                        }
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-md-offset-2 col-md-2">
-                                <button type="submit" name="add-review" class="btn btn-primary write-product-review-button">@T("Reviews.SubmitButton")</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        }
-        @if (Model.Items.Count > 0)
-        {
-            <div class="product-review-list">
-                <div class="title">
-                    <strong>@T("Reviews.ExistingReviews")</strong>
-                </div>
-                @foreach (var review in Model.Items)
-                {
-                    var ratingPercent = review.Rating * 20;
-                    <div class="product-review-item">
-                        <div class="review-item-head">
-                            <div class="review-title">
-                                <strong>@review.Title</strong>
-                            </div>
-                            <div class="product-review-box">
-                                <div class="rating">
-                                    <div style="width: @(ratingPercent)%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="review-content">
-                            <div class="review-text">
-                                @if (!string.IsNullOrEmpty(review.CustomerAvatarUrl))
-                                {
-                                    <div class="avatar">
-                                        @if (review.AllowViewingProfiles)
-                                        {
-                                            <a href="@Url.RouteUrl("CustomerProfile", new { id = review.CustomerId })" class="avatar-img-link">
-                                                <img src="@(review.CustomerAvatarUrl)" class="avatar-img" alt="Avatar" />
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <img src="@(review.CustomerAvatarUrl)" class="avatar-img" alt="Avatar" />
-                                        }
-                                    </div>
-                                }
-                                <div class="text-body">
-                                    @Html.Raw(Nop.Core.Html.HtmlHelper.FormatText(review.ReviewText, false, true, false, false, false, false))
-                                </div>
-                            </div>
-                            @foreach (var reviewType in review.AdditionalProductReviewList.Where(x => x.Rating > 0 && x.VisibleToAllCustomers))
+                            @if (Model.ReviewTypeList.Count > 0)
                             {
-                                var ratingExtPercent = reviewType.Rating * 20;
-                                <div class="review-type-rating-ext">
-                                    <div class="review-title">
-                                        <i>@reviewType.Name</i>
-                                    </div>
-                                    <div class="product-review-box">
-                                        <div class="rating">
-                                            <div style="width: @(ratingExtPercent)%">
+                                foreach (var additionalReview in Model.AddAdditionalProductReviewList.OrderBy(ob => ob.DisplayOrder).ToList())
+                                {
+                                    var curAdditionalReview = Model.AddAdditionalProductReviewList.IndexOf(additionalReview);
+                                    <div class="form-group">
+                                        <div class="review-rating">
+                                            <div class="name-description">
+                                                <label class="col-xs-2 col-sm-2 col-md-2">@Html.Raw(additionalReview.Name):</label>
+                                                <span class="tooltiptext">@Html.Raw(additionalReview.Description)</span>
+                                            </div>
+                                            <div class="col-xs-10 col-sm-5 col-md-5 rating-text rating-wrapper">
+                                                <div class="first">@T("Reviews.Fields.Rating.Bad")</div>
+                                                <div class="rb rating-options">
+                                                    <ul>
+                                                        <li>
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].ReviewTypeId" value="@(additionalReview.ReviewTypeId)" type="hidden" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Name" value="@(additionalReview.Name)" type="hidden" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Description" value="@(additionalReview.Description)" type="hidden" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].DisplayOrder" value="@(additionalReview.DisplayOrder)" type="hidden" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].IsRequired" value="@(additionalReview.IsRequired)" type="hidden" />
+
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="0" type="radio" id="addproductratingext_0_@(additionalReview.ReviewTypeId)" style="display: none;" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="1" type="radio" id="addproductratingext_1_@(additionalReview.ReviewTypeId)" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="2" type="radio" id="addproductratingext_2_@(additionalReview.ReviewTypeId)" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="3" type="radio" id="addproductratingext_3_@(additionalReview.ReviewTypeId)" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="4" type="radio" id="addproductratingext_4_@(additionalReview.ReviewTypeId)" />
+                                                            <input asp-for="@Model.AddAdditionalProductReviewList[curAdditionalReview].Rating" value="5" type="radio" id="addproductratingext_5_@(additionalReview.ReviewTypeId)" />
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="last">@T("Reviews.Fields.Rating.Excellent")</div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             }
-                            <div class="review-info">
-                                <span class="user">
-                                    <strong>@T("Reviews.From"):</strong>
-                                    @if (review.AllowViewingProfiles)
-                                    {
-                                        <a href="@Url.RouteUrl("CustomerProfile", new { id = review.CustomerId })">@(review.CustomerName)</a>
-                                    }
-                                    else
-                                    {
-                                        <span>@review.CustomerName</span>
-                                    }
-                                </span>
-                                <span class="separator">|</span>
-                                <span class="date">
-                                    <strong>@T("Reviews.Date"):</strong>
-                                    @review.WrittenOnStr
-                                </span>
-                            </div>
-                            @await Html.PartialAsync("_ProductReviewHelpfulness", review.Helpfulness)
-                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductReviewsPageInsideReview, additionalData = review })
-                            @if (!string.IsNullOrEmpty(review.ReplyText))
+                            @if (Model.AddProductReview.DisplayCaptcha)
                             {
-                                <div class="reply">
-                                    <div class="reply-header">
-                                        @T("Reviews.Reply")
-                                    </div>
-                                    <div class="reply-text">
-                                        @Html.Raw(Nop.Core.Html.HtmlHelper.FormatText(review.ReplyText, false, true, false, false, false, false))
+                                <div class="form-group">
+                                    <div class="captcha-box col-sm-offset-2 col-md-offset-2 col-md-4">
+                                        <nop-captcha />
                                     </div>
                                 </div>
                             }
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-md-offset-2 col-md-2">
+                                    <button type="submit" name="add-review" class="btn btn-primary write-product-review-button">@T("Reviews.SubmitButton")</button>
+                                </div>
+                            </div>
                         </div>
+
+                    </form>
+                </div>
+            }
+            @if (Model.Items.Count > 0)
+            {
+                <div class="product-review-list">
+                    <div class="title">
+                        <strong>@T("Reviews.ExistingReviews")</strong>
                     </div>
-                }
+                    @foreach (var review in Model.Items)
+                    {
+                        var ratingPercent = review.Rating * 20;
+                        <div class="product-review-item">
+                            <div class="review-item-head">
+                                <div class="review-title">
+                                    <strong>@review.Title</strong>
+                                </div>
+                                <div class="product-review-box">
+                                    <div class="rating">
+                                        <div style="width: @(ratingPercent)%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-text">
+                                    @if (!string.IsNullOrEmpty(review.CustomerAvatarUrl))
+                                    {
+                                        <div class="avatar">
+                                            @if (review.AllowViewingProfiles)
+                                            {
+                                                <a href="@Url.RouteUrl("CustomerProfile", new { id = review.CustomerId })" class="avatar-img-link">
+                                                    <img src="@(review.CustomerAvatarUrl)" class="avatar-img" alt="Avatar" />
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <img src="@(review.CustomerAvatarUrl)" class="avatar-img" alt="Avatar" />
+                                            }
+                                        </div>
+                                    }
+                                    <div class="text-body">
+                                        @Html.Raw(Nop.Core.Html.HtmlHelper.FormatText(review.ReviewText, false, true, false, false, false, false))
+                                    </div>
+                                </div>
+                                @foreach (var reviewType in review.AdditionalProductReviewList.Where(x => x.Rating > 0 && x.VisibleToAllCustomers))
+                                {
+                                    var ratingExtPercent = reviewType.Rating * 20;
+                                    <div class="review-type-rating-ext">
+                                        <div class="review-title">
+                                            <i>@reviewType.Name</i>
+                                        </div>
+                                        <div class="product-review-box">
+                                            <div class="rating">
+                                                <div style="width: @(ratingExtPercent)%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="review-info">
+                                    <span class="user">
+                                        <strong>@T("Reviews.From"):</strong>
+                                        @if (review.AllowViewingProfiles)
+                                        {
+                                            <a href="@Url.RouteUrl("CustomerProfile", new { id = review.CustomerId })">@(review.CustomerName)</a>
+                                        }
+                                        else
+                                        {
+                                            <span>@review.CustomerName</span>
+                                        }
+                                    </span>
+                                    <span class="separator">|</span>
+                                    <span class="date">
+                                        <strong>@T("Reviews.Date"):</strong>
+                                        @review.WrittenOnStr
+                                    </span>
+                                </div>
+                                @await Html.PartialAsync("_ProductReviewHelpfulness", review.Helpfulness)
+                                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductReviewsPageInsideReview, additionalData = review })
+                                @if (!string.IsNullOrEmpty(review.ReplyText))
+                                {
+                                    <div class="reply">
+                                        <div class="reply-header">
+                                            @T("Reviews.Reply")
+                                        </div>
+                                        <div class="reply-text">
+                                            @Html.Raw(Nop.Core.Html.HtmlHelper.FormatText(review.ReplyText, false, true, false, false, false, false))
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductReviewsPageBottom, additionalData = Model })
+        </div>
+    </div>*@
+
+
+<div host-name="Alatecollection " room-name="Indochine Style Studio@Experience Locals Lifestyle" id="room-review">
+    <div class="title mt--60">
+        <h3>Đánh giá</h3>
+    </div>
+    <div class="mt--24">
+        <div data-v-730e0d8f="" class="review" numchars="250">
+            <div data-v-730e0d8f="" class="is-flex jbetween align-center">
+                <div data-v-730e0d8f="" class="is-flex middle-xs">
+                    <img data-v-730e0d8f="" src="https://lh3.googleusercontent.com/a-/AOh14GirKrXyKJLPsZR4_LxGxJc6JaWhl992bdj3TcsfbQ" width="48" height="48" class="review__avatar">
+                    <div data-v-730e0d8f="" class="review__author grow pl--6">
+                        <h5 data-v-730e0d8f="" class="m--0">
+                            Thanh Thảo Hồ T. ·
+                            <div data-v-730e0d8f="" class="d-inline-block pl--6">
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#e6e6e6" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </h5>
+                        <span data-v-730e0d8f="" class="caption">about 1 year</span>
+                    </div>
+                </div>
             </div>
-        }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductReviewsPageBottom, additionalData = Model })
+            <div data-v-730e0d8f="" class="review__content">
+                <p data-v-730e0d8f="" class="mb--0 c-gray-5">Trải nghiệm lưu trú ở Bare rất tốt. Các lưu ý tuy có hơi nhiều nhưng được trình bày rõ ràng và đầy đủ. Điểm mình thích nhất có lẽ là nội thất và không gian. Mình cảm thấy giá rất phù hợp và phải chăng. Cảm ơn Bare và mong các bạn sẽ phát huy!</p>
+            </div>
+            <!---->
+        </div>
+        <div data-v-730e0d8f="" class="review" numchars="250">
+            <div data-v-730e0d8f="" class="is-flex jbetween align-center">
+                <div data-v-730e0d8f="" class="is-flex middle-xs">
+                    <img data-v-730e0d8f="" src="https://cdn.luxstay.com/users/18920/avatar_da39f435-51c4-40d4-9e95-ecb87bd29b6c.jpg" width="48" height="48" class="review__avatar">
+                    <div data-v-730e0d8f="" class="review__author grow pl--6">
+                        <h5 data-v-730e0d8f="" class="m--0">
+                            Minhphu Nguyen ·
+                            <div data-v-730e0d8f="" class="d-inline-block pl--6">
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </h5>
+                        <span data-v-730e0d8f="" class="caption">over 1 year</span>
+                    </div>
+                </div>
+            </div>
+            <div data-v-730e0d8f="" class="review__content">
+                <p data-v-730e0d8f="" class="mb--0 c-gray-5">Chị chủ nhà hỗ trợ hết mình. Dễ thương.</p>
+            </div>
+            <!---->
+        </div>
+        <div data-v-730e0d8f="" class="review" numchars="250">
+            <div data-v-730e0d8f="" class="is-flex jbetween align-center">
+                <div data-v-730e0d8f="" class="is-flex middle-xs">
+                    <img data-v-730e0d8f="" src="https://cdn.luxstay.com/users_avatar_default/default-avatar.png" width="48" height="48" class="review__avatar">
+                    <div data-v-730e0d8f="" class="review__author grow pl--6">
+                        <h5 data-v-730e0d8f="" class="m--0">
+                            Nguyen Thi Lan Phuong ·
+                            <div data-v-730e0d8f="" class="d-inline-block pl--6">
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                                <svg data-v-730e0d8f="" version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 16px; height: 16px;">
+                                    <path fill="#e6e6e6" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </h5>
+                        <span data-v-730e0d8f="" class="caption">over 1 year</span>
+                    </div>
+                </div>
+            </div>
+            <div data-v-730e0d8f="" class="review__content">
+                <p data-v-730e0d8f="" class="mb--0 c-gray-5">
+                    Cons:
+                    1. Although the guidebook gave pretty detailed explanation on how to reach out, it was not easy to find, specially, if you arrived at night. Neighborhood, back alley was very dark hardly could see any if you are not a local. It would have been better if there's any words written along the way.
+                    2. No complimentary water provided.
+                    3. Although they were expecting me there was nothing indicating my name or my arrival. Personalized touch.
+                    4. Mattress was thin.. not so comfortable.
+                    5. Not much communication between host and the guest. No asking when checking in, only an email before checking out asking to turn off all electricities. Basically, only when he/she feels like a need. I think host should pay more attention to welcome the guest.
+                    I would not recommend this place to my friend!
+                </p>
+            </div>
+            <!---->
+        </div>
+        <!----> <!---->
     </div>
 </div>
