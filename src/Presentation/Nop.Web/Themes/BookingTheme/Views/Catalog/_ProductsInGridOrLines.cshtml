@@ -10,11 +10,12 @@
 @if (Model.Products.Count > 0)
 {
     <div class="@(Model.ViewMode == "list" ? "product-list" : "product-grid")">
-        <div class="row item-grid">
+        <div class="row">
             @foreach (var product in Model.Products)
             {
-                <div class="item-box @(Model.ViewMode == "list" ? "product-list col-xs-12 col-sm-12 col-md-12" : "product-grid col-xs-12 col-sm-4 col-md-4")  product-align">
-                    <div class="thumbnail">
+                @*<div class="item-box @(Model.ViewMode == "list" ? "product-list col-xs-12 col-sm-12 col-md-12" : "product-grid col-xs-12 col-sm-4 col-md-4")  product-align">*@
+                <div class="col-xs-6 col-md-3 col-lg-20 product-align">
+                    <div class="promo is-relative">
                         @await Html.PartialAsync("_ProductBox", product)
                     </div>
                 </div>
@@ -29,10 +30,11 @@
         .BooleanParameterName("isc")
         .BooleanParameterName("sid")
         .RenderEmptyParameters(true);
+    <div class="py--30"></div>
 
     @if (!await pager.IsEmpty())
     {
-        <div class="pager">
+        <div class="pagination-nav">
             @pager
         </div>
     }

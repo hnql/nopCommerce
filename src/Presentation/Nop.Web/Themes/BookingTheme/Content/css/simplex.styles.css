@@ -487,19 +487,58 @@ input[type=checkbox], input[type=radio] {margin: 4px 4px 0 0;}
 
 
 /* PAGINATION STYLE */
-.pager li{margin-right:10px;display:inline-block;}
+/*.pager li{margin-right:10px;display:inline-block;}
 .pager li.current-page > span,.pager li.individual-page > a{background:#f5f5f5;border:1px solid #ddd;color:#ea5648;border-radius:100%;padding:10px 15px;font-weight:700;}
 .pager li.current-page > span{background:#ea5648;border-color:#ea5648;color:#fff;}
-.pager li.individual-page > a:hover{background:#ea5648;color:#fff;border-color:#ea5648;}
-.pager li.previous-page a,.pager li.next-page a,.pager .last-page a,.pager .first-page a{color:#fff;padding:10px 20px;border-radius:100%;background:#333;border-color:#333;font-weight:700;}
-.pager li.previous-page a{background:url(../images/pagination-previous-arrow.png) no-repeat 15px 15px #333;text-indent:-9999px;border-color:#333;}
-.pager li.next-page a{background:url(../images/pagination-next-arrow.png) no-repeat 15px 15px #333;text-indent:-9999px;border-color:#333;}
-.pager li.previous-page a:hover{background:url(../images/pagination-previous-arrow.png) no-repeat 15px 15px #ea5648;border-color:#ea5648;}
-.pager li.next-page a:hover{background:url(../images/pagination-next-arrow.png) no-repeat 15px 15px #ea5648;border-color:#ea5648;}
-.pager li.first-page a{background:url(../images/pagination-previous-last-arrow.png) no-repeat 14px 15px #333;text-indent:-9999px;border-color:#333;}
-.pager li.last-page a{background:url(../images/pagination-next-last-arrow.png) no-repeat 14px 15px #333;text-indent:-9999px;border-color:#333;}
-.pager li.first-page a:hover{background:url(../images/pagination-previous-last-arrow.png) no-repeat 14px 15px #ea5648;border-color:#ea5648;}
-.pager li.last-page a:hover{background:url(../images/pagination-next-last-arrow.png) no-repeat 14px 15px #ea5648;border-color:#ea5648;}
+.pager li.individual-page > a:hover{background:#ea5648;color:#fff;border-color:#ea5648;}*/
+.pager li.previous-page a, .pager li.next-page a, .pager .last-page a, .pager .first-page a {
+  color: #000000;
+  padding: 0.5rem 1rem;
+  border-radius: 100%;
+/*  background: #333;*/
+  border-color: #333;
+  font-weight: 700;
+}
+.pager li.previous-page a {
+  background-image: url(../images/left-chevron.svg);
+  background-repeat:no-repeat;
+  text-indent: -9999px;
+}
+.pager li.next-page a {
+  background-image: url(../images/right-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.pager li.previous-page a:hover {
+  background-image: url(../images/left-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.pager li.next-page a:hover {
+  background-image: url(../images/right-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.pager li.first-page a {
+  background-image: url(../images/two-left-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.pager li.last-page a {
+  background-image: url(../images/two-right-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.pager li.first-page a:hover {
+  background-image: url(../images/two-right-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
+.pager li.last-page a:hover {
+  background-image: url(../images/two-right-chevron.svg);
+  background-repeat: no-repeat;
+  text-indent: -9999px;
+}
 
 
 /* MISC. CLASSES */

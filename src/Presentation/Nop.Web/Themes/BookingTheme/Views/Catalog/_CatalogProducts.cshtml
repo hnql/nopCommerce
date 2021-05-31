@@ -4,8 +4,9 @@
     Html.AddScriptParts(ResourceLocation.Footer, "~/js/public.catalogproducts.js");
 }
 
-<div class="products-container">
+<div class="section mt--30">
     <div class="ajax-products-busy"></div>
+    
     <div class="products-wrapper">
         @await Html.PartialAsync("_ProductsInGridOrLines", Model)
     </div>

@@ -5,7 +5,7 @@
 @using Nop.Core.Domain.Tax
 @inject CatalogSettings catalogSettings
 @inject IWorkContext workContext
-@*@{
+@{
     //prepare "Add to cart" AJAX link
     var addtocartlink = "";
     var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
@@ -21,154 +21,66 @@
 
     var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist, quantity = quantity });
     var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
-}*@
+}
+<div class="product-item clearfix" data-productid="@Model.Id">
+    <div class="promo__image">
+        <div class="promo__image-wrap">
+            <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.DefaultPictureModel.Title">
+                <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
+            </a>
+        </div>
+        <!--<div class="is-absolute promo__label-wrap">
+            <span class="promo__label is-promotion">-->
+                @*not linked to attribute*@
+                <!---25% Hôm nay
+            </span>
+        </div>-->
+    </div>
+    <div class="promo__wishlist is-absolute pointer">
+        <i class="icon-heart"></i>
+    </div>
+    <div class="promo__content">
+        <div class="p--small-2" style="-webkit-box-orient: vertical; display: flex; justify-content: space-between;">
+            <div class="w--75 text-ellipsis color" style="color: rgb(118, 118, 118); font-size: 14px;">
+                @(@Model.ShortDescription.Length>30 ? (@Model.ShortDescription.Substring(0, Math.Min(@Model.ShortDescription.Length, 30)))+"..." : @Model.ShortDescription)
+                
+            </div>
 
-<div>
-    <div class="promo is-relative">
-        <a href="https://www.luxstay.com/vi/rooms/14807" class="" target="_blank" data-value="14807">
-            <div class="promo__image">
-                <div class="promo__image-wrap">
-                    <img width="270" height="192" elementtiming="product" class="w--100" data-src="@Model.DefaultPictureModel.ImageUrl" src="@Model.DefaultPictureModel.ImageUrl" lazy="loaded"> <!---->
+            @if (Model.ReviewOverviewModel.AllowCustomerReviews && Model.ReviewOverviewModel.TotalReviews != 0)
+                {
+                    var rating = 0;
+                    rating = Model.ReviewOverviewModel.RatingSum / Model.ReviewOverviewModel.TotalReviews;
+                    var totalReviews = Model.ReviewOverviewModel.TotalReviews;
+
+                    <div class="w--25 text-nowrap text--right">
+                    <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
+                        <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd">
+                        </path>
+                    </svg>
+                    @rating
+                <span style="color: rgb(118, 118, 118);">(@totalReviews)</span>
                 </div>
-                <div class="is-absolute promo__label-wrap">
-                    <!----> <!---->
-                </div>
+            }
+
             </div>
-        </a>
-        <!---->
-        <div class="promo__content">
-            <div class="promo__type bold" style="-webkit-box-orient: vertical;">
-                Căn hộ chung cư
-                <!---->
-            </div>
-            <div class="is-relative">
-                <a href="https://www.luxstay.com/vi/rooms/14807" class="" target="_blank" id="room-item" data-value="14807">
-                    <div class="promo__title extra-bold" style="-webkit-box-orient: vertical;">
-                        <!---->
-                        @Model.Name
-                    </div>
-                </a>
-                <div class="promo__description my--6 text-lowercase">@Model.ShortDescription</div>
-                <div class="promo__price mb--6">
-                    <!----> <span class="extra-bold"><span>@Model.ProductPrice.Price</span>/đêm</span> <!---->
+        <div class="is-relative">
+            <a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">
+                <div class="promo__title" style="-webkit-box-orient: vertical; color: rgb(72, 72, 72);">
+                    <svg data-v-ebd93bc0="" version="1.1" viewBox="0 0 20 20" class="is-instant-book mr--6 svg-icon svg-fill" style="width: 20px; height: 20px;">
+                        <title>Đặt phòng ngay, không cần đợi chủ nhà phê duyệt</title>
+                        <defs><linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="svgicon_instant_book_a"><stop stop-color="#F68A39" offset="0%"></stop><stop stop-color="#F65E39" offset="100%"></stop></linearGradient></defs>
+                        <g fill="none" fill-rule="evenodd"><circle pid="0" fill="url(#svgicon_instant_book_a)" cx="10" cy="10" r="10"></circle><path pid="1" d="M10.42 15.158l3.037-6.073A.75.75 0 0012.787 8H10V5.177a.75.75 0 00-1.42-.335l-3.037 6.073A.75.75 0 006.213 12H9v2.823a.75.75 0 001.42.335z" fill="#FFF"></path></g>
+                    </svg>
+                    @(@Model.Name.Length>25 ? (@Model.Name.Substring(0, Math.Min(@Model.Name.Length, 25)))+"..." : @Model.Name)
                 </div>
-                <div class="promo__add mb--6 promo__add mb--6">Quận 1, Hồ Chí Minh</div>
-                <div class="promo__review">
-                    <div class="star-rating d-inline-block">
-                        <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
-                            <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
-                        </svg>
-                        <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
-                            <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
-                        </svg>
-                        <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
-                            <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
-                        </svg>
-                        <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
-                            <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd"></path>
-                        </svg>
-                        <svg version="1.1" viewBox="0 0 12 12" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
-                            <g fill="none" fill-rule="evenodd">
-                                <path pid="0" d="M12 4.65c0 .111-.062.232-.188.363L9.195 7.69l.62 3.78c.005.036.007.086.007.152a.46.46 0 01-.076.268.25.25 0 01-.22.11.564.564 0 01-.288-.09L6 10.124l-3.238 1.784a.592.592 0 01-.288.091c-.101 0-.177-.037-.228-.11a.46.46 0 01-.075-.268c0-.03.004-.08.014-.151l.62-3.781L.18 5.013C.06 4.877 0 4.756 0 4.65c0-.186.135-.302.404-.348l3.62-.552L5.647.31C5.738.103 5.856 0 6 0s.262.103.353.31l1.623 3.44 3.62.552c.27.046.404.162.404.348z" fill="#E6E6E6"></path>
-                                <path pid="1" d="M6 10.125l-3.238 1.784a.592.592 0 01-.288.091c-.101 0-.177-.037-.228-.11a.46.46 0 01-.075-.268c0-.03.004-.08.014-.151l.62-3.781L.18 5.013C.06 4.877 0 4.756 0 4.65c0-.186.135-.302.404-.348l3.62-.552L5.647.31C5.738.103 5.856 0 6 0c.028 0 0 .36 0 .977v9.148z" fill="#FFB025"></path>
-                            </g>
-                        </svg>
-                    </div>
-                    <span class="promo__review-count p--small">10</span>
-                </div>
+            </a>
+            <div class="promo__price mb--6">
+                <span class="bold">
+                    <span>@Model.ProductPrice.Price</span>
+                    <span class="font-weight: bold">/đêm</span>
+                </span>
             </div>
         </div>
     </div>
 </div>
-
-@*<div class="product-item clearfix" data-productid="@Model.Id">
-    <div class="picture">
-        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.DefaultPictureModel.Title">
-            <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
-        </a>
-        <div class="wishlist-compare-wrapper">
-            @if (!Model.ProductPrice.DisableWishlistButton)
-            {
-                <button type="button" class="button-2 add-to-wishlist-button" title="@T("ShoppingCart.AddToWishlist")" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</button>
-            }
-            @if (!Model.ProductPrice.DisableAddToCompareListButton)
-            {
-                <button type="button" class="button-2 add-to-compare-list-button" title="@T("ShoppingCart.AddToCompareList")" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">@T("ShoppingCart.AddToCompareList")</button>
-            }
-        </div>
-    </div>
-    <div class="caption">
-        <div class="details">
-            <h3 class="product-title">
-                <a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">@Model.Name</a>
-            </h3>
-            @if (catalogSettings.ShowSkuOnCatalogPages && !string.IsNullOrEmpty(Model.Sku))
-            {
-                <div class="sku">
-                    @Model.Sku
-                </div>
-            }
-            <div class="prices">
-                @if (!string.IsNullOrEmpty(Model.ProductPrice.OldPrice))
-                {
-                    <span class="price old-price">@Model.ProductPrice.OldPrice</span>
-                }
-                <span class="price actual-price">@Model.ProductPrice.Price</span>
-                @if (Model.ProductPrice.DisplayTaxShippingInfo)
-                {
-                    var inclTax = await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
-                    //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
-                    //of course, you can modify appropriate locales to include VAT info there
-                    <span class="tax-shipping-info">
-                        @T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
-                    </span>
-                }
-                @if (!string.IsNullOrEmpty(Model.ProductPrice.BasePricePAngV))
-                {
-                    <div class="base-price-pangv">
-                        @Model.ProductPrice.BasePricePAngV
-                    </div>
-                }
-            </div>
-            @if (Model.ReviewOverviewModel.AllowCustomerReviews)
-            {
-                int ratingPercent = 0;
-                if (Model.ReviewOverviewModel.TotalReviews != 0)
-                {
-                    ratingPercent = ((Model.ReviewOverviewModel.RatingSum*100)/Model.ReviewOverviewModel.TotalReviews)/5;
-                }
-                <div class="product-rating-box" title="@string.Format(T("Reviews.TotalReviews").Text, Model.ReviewOverviewModel.TotalReviews)">
-                    <div class="rating">
-                        <div style="width: @(ratingPercent)%">
-                        </div>
-                    </div>
-                </div>
-            }
-            <p class="description">
-                @Html.Raw(Model.ShortDescription)
-            </p>
-            <div class="add-info">
-                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBoxAddinfoBefore, additionalData = Model })
-                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBoxAddinfoMiddle, additionalData = Model })
-                <div class="buttons">*@
-                    @*<button type="button" class="btn btn-primary product-box-detail-button" onclick="setLocation('@Url.RouteUrl("Product", new { SeName = Model.SeName })')">@T("Products.Details")</button>*@
-                    @*@if (!Model.ProductPrice.DisableBuyButton)
-                    {
-                        var addToCartText = T("ShoppingCart.AddToCart").Text;
-                        if (Model.ProductPrice.IsRental)
-                        {
-                            addToCartText = T("ShoppingCart.Rent").Text;
-                        }
-                        if (Model.ProductPrice.AvailableForPreOrder)
-                        {
-                            addToCartText = T("ShoppingCart.PreOrder").Text;
-                        }
-                        <button type="button" class="btn btn-primary product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink');return false;">@(addToCartText)</button>
-                    }
-                </div>
-                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBoxAddinfoAfter, additionalData = Model })
-            </div>
-        </div>
-    </div>
-</div>*@
 

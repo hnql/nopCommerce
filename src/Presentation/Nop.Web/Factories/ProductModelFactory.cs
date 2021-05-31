@@ -1011,6 +1011,74 @@ namespace Nop.Web.Factories
         }
 
         /// <summary>
+        /// Prepare the product attribute models for product overview
+        /// </summary>
+        /// <param name="product">Product</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation
+        /// The task result contains the list of product attribute model
+        /// </returns>
+        protected virtual async Task<IList<ProductOverviewModel.ProductAttributeModel>> PrepareProductAttributeModelsForProductOverviewAsync(Product product)
+        {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product));
+
+            var model = new List<ProductOverviewModel.ProductAttributeModel>();
+
+            var productAttributeMapping = await _productAttributeService.GetProductAttributeMappingsByProductIdAsync(product.Id);
+            foreach (var attribute in productAttributeMapping)
+            {
+                var productAttrubute = await _productAttributeService.GetProductAttributeByIdAsync(attribute.ProductAttributeId);
+
+                var attributeModel = new ProductOverviewModel.ProductAttributeModel
+                {
+                    Id = attribute.Id,
+                    ProductId = product.Id,
+                    ProductAttributeId = attribute.ProductAttributeId,
+                    Name = await _localizationService.GetLocalizedAsync(productAttrubute, x => x.Name),
+                    Description = await _localizationService.GetLocalizedAsync(productAttrubute, x => x.Description),
+                    TextPrompt = await _localizationService.GetLocalizedAsync(attribute, x => x.TextPrompt),
+                    IsRequired = attribute.IsRequired,
+                    AttributeControlType = attribute.AttributeControlType,
+                    //DefaultValue = updatecartitem != null ? null : await _localizationService.GetLocalizedAsync(attribute, x => x.DefaultValue),
+                    HasCondition = !string.IsNullOrEmpty(attribute.ConditionAttributeXml)
+                };
+                if (!string.IsNullOrEmpty(attribute.ValidationFileAllowedExtensions))
+                {
+                    attributeModel.AllowedFileExtensions = attribute.ValidationFileAllowedExtensions
+                        .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                        .ToList();
+                }
+
+                if (attribute.ShouldHaveValues())
+                {
+                    //values
+                    var attributeValues = await _productAttributeService.GetProductAttributeValuesAsync(attribute.Id);
+                    foreach (var attributeValue in attributeValues)
+                    {
+                        var valueModel = new ProductOverviewModel.ProductAttributeValueModel
+                        {
+                            Id = attributeValue.Id,
+                            Name = await _localizationService.GetLocalizedAsync(attributeValue, x => x.Name),
+                            ColorSquaresRgb = attributeValue.ColorSquaresRgb, //used with "Color squares" attribute type
+                            IsPreSelected = attributeValue.IsPreSelected,
+                            CustomerEntersQty = attributeValue.CustomerEntersQty,
+                            Quantity = attributeValue.Quantity
+                        };
+                        attributeModel.Values.Add(valueModel);
+
+                        //picture of a product attribute value
+                        valueModel.PictureId = attributeValue.PictureId;
+                    }
+                }
+
+                model.Add(attributeModel);
+            }
+
+            return model;
+        }
+
+        /// <summary>
         /// Prepare the product tier price models
         /// </summary>
         /// <param name="product">Product</param>
@@ -1241,8 +1309,11 @@ namespace Nop.Web.Factories
 
                 //reviews
                 model.ReviewOverviewModel = await PrepareProductReviewOverviewModelAsync(product);
-
+                //product attributes
+                model.ProductAttributes = await PrepareProductAttributeModelsForProductOverviewAsync(product);
                 models.Add(model);
+                //product attributes
+                //model.ProductAttributes = await PrepareProductAttributeModelsForProductOverviewAsync(product);
             }
 
             return models;

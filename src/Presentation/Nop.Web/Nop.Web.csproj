@@ -47,6 +47,7 @@
     <Content Remove="Themes\BookingTheme\Content\css\banner.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\coccocalo.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\customForList.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\custom.datepicker.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\daterangepicker.css" />
@@ -65,6 +66,8 @@
     <Content Remove="Themes\BookingTheme\Content\fonts\4177830.woff2" />
     <Content Remove="Themes\BookingTheme\Content\fonts\e3a0b22.woff2" />
     <Content Remove="Themes\BookingTheme\Content\fonts\e8c5b1c.woff" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\element-icons.ttf" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\element-icons.woff" />
     <Content Remove="Themes\BookingTheme\Content\fonts\f4b9a70.woff2" />
     <Content Remove="Themes\BookingTheme\Content\images\1538962546_a-49.jpg" />
     <Content Remove="Themes\BookingTheme\Content\images\close.svg" />

@@ -76,7 +76,8 @@ body.error .footer, body.error .header-wrap {
 
 @font-face {
   font-family: element-icons;
-  src: url(../fonts/2fad952.woff) format("woff"),url(../fonts/6f0a763.ttf) format("truetype");
+/*  src: url(../fonts/2fad952.woff) format("woff"),url(../fonts/6f0a763.ttf) format("truetype");*/
+  src: url(../fonts/element-icons.ttf) format("woff"),url(../fonts/element-icons.ttf) format("truetype");
   font-weight: 400;
   font-style: normal
 }
@@ -133,7 +134,7 @@ body.error .footer, body.error .header-wrap {
 }
 
 .el-icon-arrow-up:before {
-  content: "\e605"
+  content: "\e6e1"
 }
 
 .el-icon-caret-left:before {
@@ -3040,7 +3041,8 @@ body.error .footer, body.error .header-wrap {
 
   .el-select .el-input__inner {
     cursor: pointer;
-    padding-right: 35px
+    padding-right: 35px;
+    padding-left:100px;
   }
 
     .el-select .el-input__inner:focus {
@@ -18490,7 +18492,7 @@ hr.is-orange:before {
 }
 
 .footer-nonmargin .footer {
-  margin-top: 0
+  margin-top: 5rem;
 }
 
 html {

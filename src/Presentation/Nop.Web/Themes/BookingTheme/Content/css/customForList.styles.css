@@ -1,0 +1,125 @@
+﻿.is-flex.jend {
+  justify-content: flex-end;
+}
+.el-select {
+  max-width: 280px;
+}
+.el-input {
+  position: relative;
+  font-size: 16px;
+  display: inline-block;
+  width: 100%;
+  color: red;
+}
+.el-select > .el-input {
+  display: block;
+}
+.el-input__inner {
+  padding-left: 100px !important;
+}
+.el-input .el-input__prefix {
+  top: 12px;
+  left: 20px;
+}
+.el-input__suffix {
+  position: absolute;
+  height: 100%;
+  right: 5px;
+  top: 0;
+  text-align: center;
+  color: #555;
+  transition: all .3s;
+  pointer-events: none;
+}
+.el-select-dropdown {
+  position: absolute;
+  z-index: 1001;
+  border: 1px solid #e4e7ed;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+.el-select .el-input__inner {
+  cursor: pointer;
+  padding-right: 35px;
+  padding-left: 100px;
+}
+.search-filter__button {
+  padding: .5em .8em;
+  font-size: .875rem;
+  font-weight: 600;
+  margin-right: .75rem;
+  border-radius: 5px;
+  height: 36px;
+}
+/*sort select box*/
+#products-orderby {
+  cursor: pointer;
+/*  padding-right: 35px;*/
+  padding-left: 6rem;
+  border-radius: 5px;
+}
+#products-orderby:hover{
+    border-color:black;
+}
+.sort-list {
+    justify-content: flex-end;
+}
+#products-orderby > popup {
+  background: transparent;
+  border: none;
+  width: 253px;
+  padding: 0;
+  margin-top: 2px;
+}
+  #products-orderby > popup > div {
+    margin: 0 22px 22px 0;
+    border-radius: 0.2em;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+    overflow: hidden;
+  }
+
+  #products-orderby > caption, #products-orderby option {
+    vertical-align: middle;
+    flow: horizontal;
+  }
+  #products-orderby option:selected {
+    background-color: #e7e8ea;
+  }
+/*pagination*/
+.pagination-nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pagination-nav li {
+  margin-right: 10px;
+  display: inline-block;
+  /**/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /**/
+  width: 30px;
+  height: 30px;
+  line-height: 1;
+}
+.pagination-nav .current-page {
+  background-color: #f65e39;
+  color: #fff;
+  border-radius: 50px
+}
+.product-span {
+  z-index: 5;
+  margin-top: 10px !important;
+  margin-left: 7rem !important;
+}
+.sort-select-box {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin-left: 6rem;
+}
