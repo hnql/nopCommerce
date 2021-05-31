@@ -23,42 +23,46 @@
     var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
 }
 <div class="product-item clearfix" data-productid="@Model.Id">
-    @*<div class="picture">
-        <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.DefaultPictureModel.Title">
-            <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
-        </a>
-        <div class="wishlist-compare-wrapper">
-            @if (!Model.ProductPrice.DisableWishlistButton)
-            {
-                <button type="button" class="button-2 add-to-wishlist-button" title="@T("ShoppingCart.AddToWishlist")" onclick="AjaxCart.addproducttocart_catalog('@addtowishlistlink');return false;">@T("ShoppingCart.AddToWishlist")</button>
-            }
-            @if (!Model.ProductPrice.DisableAddToCompareListButton)
-            {
-                <button type="button" class="button-2 add-to-compare-list-button" title="@T("ShoppingCart.AddToCompareList")" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">@T("ShoppingCart.AddToCompareList")</button>
-            }
-        </div>
-    </div>*@
     <div class="promo__image">
         <div class="promo__image-wrap">
             <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.DefaultPictureModel.Title">
                 <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" />
             </a>
         </div>
+        <!--<div class="is-absolute promo__label-wrap">
+            <span class="promo__label is-promotion">-->
+                @*not linked to attribute*@
+                <!---25% Hôm nay
+            </span>
+        </div>-->
+    </div>
+    <div class="promo__wishlist is-absolute pointer">
+        <i class="icon-heart"></i>
     </div>
     <div class="promo__content">
         <div class="p--small-2" style="-webkit-box-orient: vertical; display: flex; justify-content: space-between;">
             <div class="w--75 text-ellipsis color" style="color: rgb(118, 118, 118); font-size: 14px;">
-                Chung cư - 1 phòng ngủ
+                @(@Model.ShortDescription.Length>30 ? (@Model.ShortDescription.Substring(0, Math.Min(@Model.ShortDescription.Length, 30)))+"..." : @Model.ShortDescription)
+                
             </div>
-            <div class="w--25 text-nowrap text--right">
-                <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
-                    <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd">
-                    </path>
-                </svg>
-                4.5
-                <span style="color: rgb(118, 118, 118);">(2)</span>
+
+            @if (Model.ReviewOverviewModel.AllowCustomerReviews && Model.ReviewOverviewModel.TotalReviews != 0)
+                {
+                    var rating = 0;
+                    rating = Model.ReviewOverviewModel.RatingSum / Model.ReviewOverviewModel.TotalReviews;
+                    var totalReviews = Model.ReviewOverviewModel.TotalReviews;
+
+                    <div class="w--25 text-nowrap text--right">
+                    <svg version="1.1" viewBox="0 0 14 14" class="mr--3 svg-icon svg-fill" style="width: 14px; height: 14px;">
+                        <path fill="#ffb025" stroke="none" pid="0" d="M14 5.425c0 .13-.073.27-.219.424l-3.054 3.123.724 4.41c.005.042.008.1.008.177 0 .123-.03.228-.088.313a.292.292 0 01-.257.128.658.658 0 01-.336-.106L7 11.812l-3.778 2.082a.69.69 0 01-.336.106c-.118 0-.206-.043-.265-.128a.538.538 0 01-.089-.313 1.5 1.5 0 01.017-.177l.724-4.41L.21 5.849C.07 5.69 0 5.549 0 5.425c0-.217.157-.353.471-.405l4.224-.644L6.588.362C6.694.12 6.832 0 7 0c.168 0 .306.12.412.362l1.893 4.014 4.224.644c.314.052.471.188.471.405z" fill-rule="evenodd">
+                        </path>
+                    </svg>
+                    @rating
+                <span style="color: rgb(118, 118, 118);">(@totalReviews)</span>
+                </div>
+            }
+
             </div>
-        </div>
         <div class="is-relative">
             <a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">
                 <div class="promo__title" style="-webkit-box-orient: vertical; color: rgb(72, 72, 72);">
