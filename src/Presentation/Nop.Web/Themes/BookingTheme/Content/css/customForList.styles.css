@@ -114,6 +114,12 @@
 }
 .product-span {
   z-index: 5;
-  margin-top: 6px;
-  margin-left: 7rem;
+  margin-top: 10px !important;
+  margin-left: 7rem !important;
+}
+.sort-select-box {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin-left: 6rem;
 }

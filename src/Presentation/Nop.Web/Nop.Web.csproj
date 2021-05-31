@@ -47,7 +47,7 @@
     <Content Remove="Themes\BookingTheme\Content\css\banner.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\coccocalo.styles.css" />
-    <Content Remove="Themes\BookingTheme\Content\css\dang.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\customForList.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\custom.datepicker.css" />
     <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
     <Content Remove="Themes\BookingTheme\Content\css\daterangepicker.css" />
