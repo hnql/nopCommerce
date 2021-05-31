@@ -123,3 +123,10 @@
   left: 0;
   margin-left: 6rem;
 }
+.c-filter--fixtop {
+  position: fixed;
+  top: 80px;
+  z-index: 2;
+  background: #fff;
+  width: 100%;
+}

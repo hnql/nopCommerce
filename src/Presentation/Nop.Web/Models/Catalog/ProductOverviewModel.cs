@@ -40,6 +40,8 @@ namespace Nop.Web.Models.Catalog
 
         public IList<ProductAttributeModel> ProductAttributes { get; set; }
 
+        public ProductBreadcrumbModel Breadcrumb { get; set; }
+
         #region Nested Classes
 
         public partial record ProductPriceModel : BaseNopModel
@@ -151,6 +153,19 @@ namespace Nop.Web.Models.Catalog
             public int Quantity { get; set; }
         }
 
+        public partial record ProductBreadcrumbModel : BaseNopModel
+        {
+            public ProductBreadcrumbModel()
+            {
+                CategoryBreadcrumb = new List<CategorySimpleModel>();
+            }
+
+            public bool Enabled { get; set; }
+            public int ProductId { get; set; }
+            public string ProductName { get; set; }
+            public string ProductSeName { get; set; }
+            public IList<CategorySimpleModel> CategoryBreadcrumb { get; set; }
+        }
         #endregion
     }
 }
