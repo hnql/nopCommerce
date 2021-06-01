@@ -2,10 +2,17 @@
 
 @using Nop.Core.Domain.Catalog;
 @{ 
+    ProductSpecificationAttributeModel facilities = null;
+    ProductSpecificationAttributeModel facilitiesKitchen = null;
+    ProductSpecificationAttributeModel facilitiesSpecial = null;
+
     ProductSpecificationAttributeGroupModel amenities = Model.Groups.Where((group) => group.Name == "amenities").FirstOrDefault();
-    ProductSpecificationAttributeModel facilities = amenities.Attributes.Where((attribute) => attribute.Name == "facilities").FirstOrDefault();
-    ProductSpecificationAttributeModel facilitiesKitchen = amenities.Attributes.Where((attribute) => attribute.Name == "facilities.kitchen").FirstOrDefault();
-    ProductSpecificationAttributeModel facilitiesSpecial = amenities.Attributes.Where((attribute) => attribute.Name == "facilities.special").FirstOrDefault();
+
+    if (amenities != null) {
+        facilities = amenities.Attributes.Where((attribute) => attribute.Name == "facilities").FirstOrDefault();
+        facilitiesKitchen = amenities.Attributes.Where((attribute) => attribute.Name == "facilities.kitchen").FirstOrDefault();
+        facilitiesSpecial = amenities.Attributes.Where((attribute) => attribute.Name == "facilities.special").FirstOrDefault();
+    }
 }
 <div class="is-flex amenities">
     <div class="d-none d-sm-flex w--100">
