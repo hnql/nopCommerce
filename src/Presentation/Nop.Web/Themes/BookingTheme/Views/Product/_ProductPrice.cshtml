@@ -19,10 +19,10 @@
         </div>
         <div class="room-price__wrap">
             <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Thứ hai - Thứ năm</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@productPrice.PriceValue ₫</span></div>
-            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Thứ sáu - Chủ nhật</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productPrice.PriceValue + productAttributeValues.Where(value => value.Name == "Weekend").FirstOrDefault().PriceAdjustmentValue) ₫</span></div>
-            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Phí khách tăng thêm</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productAttributeValues.Where(value => value.Name == "PeopleIncrease").FirstOrDefault().PriceAdjustmentValue) ₫ (sau 2 khách)</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Thứ sáu - Chủ nhật</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productPrice.PriceValue + productAttributeValues.Where(value => value.Name == "prices.weekend").FirstOrDefault().PriceAdjustmentValue) ₫</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Phí khách tăng thêm</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productAttributeValues.Where(value => value.Name == "prices.peopleincrease").FirstOrDefault().PriceAdjustmentValue) ₫ (sau 2 khách)</span></div>
             <!----> <!---->
-            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50 ">Thuê theo tháng</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productAttributeValues.Where(value => value.Name == "Monthly").FirstOrDefault().PriceAdjustment)</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50 ">Thuê theo tháng</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productAttributeValues.Where(value => value.Name == "prices.monthly").FirstOrDefault().PriceAdjustment)</span></div>
             <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Số đêm tối thiểu</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@product.OrderMinimumQuantity đêm</span></div>
             <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Số đêm tối đa</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@product.OrderMaximumQuantity đêm</span></div>
         </div>
