@@ -71,19 +71,12 @@
     Html.AddScriptParts(ResourceLocation.Head, "https://js.api.here.com/v3/3.1/mapsjs-mapevents.js");
     Html.AddScriptParts(ResourceLocation.Head, "https://js.api.here.com/v3/3.1/mapsjs-ui.js");
 
-    Address address = null;
-    Country country = null;
-
     // Get Vendor Information
     Vendor vendor = await vendorService.GetVendorByProductIdAsync(Model.ProductPrice.ProductId);
-
-    if (vendor != null) {
-        address = await addressService.GetAddressByIdAsync(vendor.AddressId);
-
-        if (address != null) {
-            country = await countryService.GetCountryByIdAsync(address.CountryId.Value);
-        }
-    }
+    var hasVendor = vendor != null;
+    Address address = hasVendor ? await addressService.GetAddressByIdAsync(vendor.AddressId) : null;
+    var hasAddress = address != null;
+    Country country = hasAddress ? await countryService.GetCountryByIdAsync(address.CountryId.Value) : null;
 }
 
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsEssentialTop, additionalData = Model })
