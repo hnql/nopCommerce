@@ -35,6 +35,7 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddLanguage
                         UniqueSeoCode = "vi",
                         FlagImageFileName = "vn.png",
                         Rtl = false,
+                        LimitedToStores = 0,
                         DefaultCurrencyId = 0,
                         Published = true,
                         DisplayOrder = 2
