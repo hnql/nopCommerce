@@ -12,6 +12,7 @@
         <div class="fl-item-stretch">
             <div item="[object Object]">
                 <h4 class="mt--24 mb--0">Tiện ích </h4>
+                @if (facilities != null) {
                 <ul class="list list--3 is-flex">
                     @if (facilities.Values.Any((value) => value.ValueRaw == "Wifi"))
                     {
@@ -103,9 +104,12 @@
                     </li>
                     }
                 </ul>
+                }
             </div>
             <div item="[object Object]">
                 <h4 class="mt--24 mb--0">Tiện ích bếp</h4>
+                @if (facilitiesKitchen != null)
+                {
                 <ul class="list list--3 is-flex">
                     @if (facilitiesKitchen.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFA"))
                     {
@@ -141,9 +145,11 @@
                     </li>
                     }
                 </ul>
+                }
             </div>
             <div item="[object Object]">
                 <h4 class="mt--24 mb--0">Tiện ích nổi bật</h4>
+                @if (facilitiesSpecial != null) {
                 <ul class="list list--3 is-flex">
                     @if (facilitiesSpecial.Values.Any((value) => value.ColorSquaresRgb == "#FFFFFA"))
                     {
@@ -159,6 +165,7 @@
                     </li>
                     }
                 </ul>
+                }
             </div>
             <a class="btn color-i mt--30" role="button">
                 Xem thêm

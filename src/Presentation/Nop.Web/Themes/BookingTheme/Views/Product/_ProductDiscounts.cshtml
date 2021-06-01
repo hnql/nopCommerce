@@ -3,9 +3,14 @@
 @inject Nop.Services.Catalog.IProductService productService
 @inject Nop.Services.Discounts.IDiscountService discountService
 @{
+    Discount discount = null;
     DiscountProductMapping dpm = (await productService.GetAllDiscountsAppliedToProductAsync(Model.ProductId)).FirstOrDefault();
-    Discount discount = await discountService.GetDiscountByIdAsync(dpm.DiscountId);
+
+    if (dpm != null) {
+        discount = await discountService.GetDiscountByIdAsync(dpm.DiscountId);
+    }
 }
+@if (discount != null) {
 <div id="productDiscounts">
     <div>
         <div class="fadeIn" style="width: 100%; display: inline-block;">
@@ -83,3 +88,4 @@
         }, 1000);
     }
 </script>
+}
