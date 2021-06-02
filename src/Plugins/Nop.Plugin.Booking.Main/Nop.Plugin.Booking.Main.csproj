@@ -87,7 +87,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Services\" />
   </ItemGroup>
  
   <!-- This target execute after "Build" target -->

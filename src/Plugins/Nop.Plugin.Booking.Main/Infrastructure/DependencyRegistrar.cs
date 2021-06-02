@@ -3,6 +3,7 @@ using Nop.Core.Configuration;
 using Nop.Core.Infrastructure;
 using Nop.Core.Infrastructure.DependencyManagement;
 using Nop.Plugin.Booking.Main.Factories;
+using Nop.Plugin.Booking.Main.Services;
 
 namespace Nop.Plugin.Booking.Main.Infrastructure
 {
@@ -17,6 +18,7 @@ namespace Nop.Plugin.Booking.Main.Infrastructure
         public void Register(IServiceCollection services, ITypeFinder typeFinder, AppSettings appSettings)
         {
             services.AddScoped<IHomeModelFactory, HomeModelFactory>();
+            services.AddScoped<IPlaceSuggestionService, PlaceSuggestionService>();
         }
 
         public int Order => 1;
