@@ -6,6 +6,7 @@
 <div id="__nuxt">
     <div id="__layout">
         <div class="position-relative h-100 message-mobile layout-default fixed-header has-search">
+            <i class="d-none"></i>
             @await Html.PartialAsync("_JavaScriptDisabledWarning")
             @await Html.PartialAsync("_OldInternetExplorerWarning")
             <div class="admin-header-link">
@@ -15,6 +16,7 @@
             </div>
             <div class="header-wrap">
                 @await Html.PartialAsync("_Header")
+                <div class="header-after"></div>
             </div>
             <script asp-location="Footer">
                 var localized_data = {
@@ -23,26 +25,22 @@
                 AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
             </script>
             @*
-            <div class="header-menu">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @await Component.InvokeAsync("TopMenu")
-                        </div>
+        <div class="header-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @await Component.InvokeAsync("TopMenu")
                     </div>
                 </div>
             </div>
+        </div>
             *@
             <section class="page-home wapper">
                 <div>
-                    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_top" })
-                    <div class="container container--sm section">
-                        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
-                            
-                        @*ajax loading window*@
-                        <div class="ajax-loading-block-window" style="display: none">
-                            <div class="loading-image">
-                            </div>
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
+                    @*ajax loading window*@
+                    <div class="ajax-loading-block-window" style="display: none">
+                        <div class="loading-image">
                         </div>
                     </div>
                     @RenderBody()
