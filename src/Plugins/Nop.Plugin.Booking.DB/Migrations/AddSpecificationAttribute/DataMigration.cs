@@ -23,7 +23,7 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
         public override void Up()
         {
             var specificationAttributeGroupTable = _dataProvider.GetTable<SpecificationAttributeGroup>();
-            if (!specificationAttributeGroupTable.Any(pat => string.Compare(pat.Name, "amenities", true) == 0))
+            if (!specificationAttributeGroupTable.Any(sag => string.Compare(sag.Name, "amenities", true) == 0))
             {
                 #region Insert data to SpecificationAttributeGroup table
 
@@ -40,7 +40,7 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                 #region Insert data to SpecificationAttribute table
 
                 var specificationAttribute = _dataProvider.GetTable<SpecificationAttribute>();
-                if (!specificationAttribute.Any(ppavt => string.Compare(ppavt.Name, "facilities") == 0))
+                if (!specificationAttribute.Any(sat => string.Compare(sat.Name, "facilities") == 0))
                 {
                     var attributeEntity = _dataProvider.InsertEntity(
                         new SpecificationAttribute
@@ -53,7 +53,7 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
 
                     #region Insert data to SpecificationAttributeOption table
                     var specificationAttributeOption = _dataProvider.GetTable<SpecificationAttributeOption>();
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Wifi") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Wifi") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
@@ -66,91 +66,91 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "TV") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "TV") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "TV",
-                                DisplayOrder = 0,
+                                DisplayOrder = 1,
                                 ColorSquaresRgb = "#FFFFBF",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Điều hòa") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Điều hòa") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Điều hòa",
-                                DisplayOrder = 0,
+                                DisplayOrder = 2,
                                 ColorSquaresRgb = "#FFFFFA",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Dầu gội, dầu xả") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Dầu gội, dầu xả") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Dầu gội, dầu xả",
-                                DisplayOrder = 0,
+                                DisplayOrder = 3,
                                 ColorSquaresRgb = "#FFFFFB",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Khăn tắm") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Khăn tắm") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Khăn tắm",
-                                DisplayOrder = 0,
+                                DisplayOrder = 4,
                                 ColorSquaresRgb = "#FFFFFC",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Kem đánh răng") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Kem đánh răng") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Kem đánh răng",
-                                DisplayOrder = 0,
+                                DisplayOrder = 5,
                                 ColorSquaresRgb = "#FFFFFD",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Xà phòng tắm") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Xà phòng tắm") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Xà phòng tắm",
-                                DisplayOrder = 0,
+                                DisplayOrder = 6,
                                 ColorSquaresRgb = "#FFFFFE",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Máy sấy") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Máy sấy") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Máy sấy",
-                                DisplayOrder = 0,
+                                DisplayOrder = 7,
                                 ColorSquaresRgb = "#FFFFFF",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
@@ -160,20 +160,20 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                     #endregion
                 }
 
-                if (!specificationAttribute.Any(ppavt => string.Compare(ppavt.Name, "facilities.kitchen") == 0))
+                if (!specificationAttribute.Any(sat => string.Compare(sat.Name, "facilities.kitchen") == 0))
                 {
                     var attributeEntity = _dataProvider.InsertEntity(
                         new SpecificationAttribute
                         {
                             Name = "facilities.kitchen",
-                            DisplayOrder = 0,
+                            DisplayOrder = 1,
                             SpecificationAttributeGroupId = groupEntity.Id
                         }
                     );
 
                     #region Insert data to SpecificationAttributeOption table
                     var specificationAttributeOption = _dataProvider.GetTable<SpecificationAttributeOption>();
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Bếp điện") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Bếp điện") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
@@ -186,26 +186,26 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Lò vi sóng") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Lò vi sóng") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Lò vi sóng",
-                                DisplayOrder = 0,
+                                DisplayOrder = 1,
                                 ColorSquaresRgb = "#FFFFFB",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Tủ lạnh") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Tủ lạnh") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Tủ lạnh",
-                                DisplayOrder = 0,
+                                DisplayOrder = 2,
                                 ColorSquaresRgb = "#FFFFFC",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
@@ -215,20 +215,20 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                     #endregion
                 }
 
-                if (!specificationAttribute.Any(ppavt => string.Compare(ppavt.Name, "facilities.special") == 0))
+                if (!specificationAttribute.Any(sat => string.Compare(sat.Name, "facilities.special") == 0))
                 {
                     var attributeEntity = _dataProvider.InsertEntity(
                         new SpecificationAttribute
                         {
                             Name = "facilities.special",
-                            DisplayOrder = 0,
+                            DisplayOrder = 2,
                             SpecificationAttributeGroupId = groupEntity.Id
                         }
                     );
 
                     #region Insert data to SpecificationAttributeOption table
                     var specificationAttributeOption = _dataProvider.GetTable<SpecificationAttributeOption>();
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Smart TV") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Smart TV") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
@@ -244,20 +244,20 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                     #endregion
                 }
 
-                if (!specificationAttribute.Any(ppavt => string.Compare(ppavt.Name, "families") == 0))
+                if (!specificationAttribute.Any(sat => string.Compare(sat.Name, "families") == 0))
                 {
                     var attributeEntity = _dataProvider.InsertEntity(
                         new SpecificationAttribute
                         {
                             Name = "families",
-                            DisplayOrder = 0,
+                            DisplayOrder = 3,
                             SpecificationAttributeGroupId = groupEntity.Id
                         }
                     );
 
                     #region Insert data to SpecificationAttributeOption table
                     var specificationAttributeOption = _dataProvider.GetTable<SpecificationAttributeOption>();
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Phù hợp với trẻ nhỏ") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Phù hợp với trẻ nhỏ") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
@@ -270,13 +270,13 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
                         );
                     }
 
-                    if (!specificationAttributeOption.Any(ppavt => string.Compare(ppavt.Name, "Đệm bổ sung") == 0))
+                    if (!specificationAttributeOption.Any(sao => string.Compare(sao.Name, "Đệm bổ sung") == 0))
                     {
                         _dataProvider.InsertEntity(
                             new SpecificationAttributeOption
                             {
                                 Name = "Đệm bổ sung",
-                                DisplayOrder = 0,
+                                DisplayOrder = 1,
                                 ColorSquaresRgb = "#FFFFFA",
                                 SpecificationAttributeId = attributeEntity.Id
                             }
