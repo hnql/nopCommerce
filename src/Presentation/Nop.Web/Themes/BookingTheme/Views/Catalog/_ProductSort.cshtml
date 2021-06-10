@@ -1,0 +1,36 @@
+﻿@model CatalogProductsModel
+
+@if (Model.Products.Count <= 0 &&
+   !Model.PriceRangeFilter.Enabled &&
+   !Model.SpecificationFilter.Enabled &&
+   !Model.ManufacturerFilter.Enabled)
+{
+    return;
+}
+<div class="product-selectors clearfix">
+    @*sorting*@
+    @if (Model.AllowProductSorting)
+    {
+        <div class="row" style="position: relative;">
+            <div class="col-sm-4 col-md-3 product-span">
+                <label>@T("Catalog.OrderBy"):</label>
+            </div>
+            <div class="col-sm-8 col-md-9 remove_left_padding sort-select-box">
+                @Html.DropDownList("products-orderby", Model.AvailableSortOptions, new { aria_label = T("Catalog.OrderBy.Label"), @class = "form-control dropdown-filter" })
+            </div>
+        </div>
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                var $orderByEl = $('#products-orderby');
+                $orderByEl.on('change', function () {
+                    CatalogProducts.getProducts();
+                });
+
+                $(CatalogProducts).on('before', function (e) {
+                    e.payload.urlBuilder
+                        .addParameter('orderby', $orderByEl.val());
+                });
+            });
+        </script>
+    }
+</div>

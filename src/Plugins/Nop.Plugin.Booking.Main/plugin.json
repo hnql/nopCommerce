@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Booking",
+  "FriendlyName": "Main Booking",
+  "SystemName": "Booking.Main",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 2,
+  "FileName": "Nop.Plugin.Booking.Main.dll",
+  "Description": "The booking features"
+}

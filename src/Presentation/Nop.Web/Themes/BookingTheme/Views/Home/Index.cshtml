@@ -18,20 +18,34 @@
 
     //page class
     Html.AppendPageCssClassParts("html-home-page");
+
+    Html.AppendCssFileParts("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
+    Html.AppendCssFileParts("https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css");
+    Html.AppendCssFileParts("~/Themes/BookingTheme/Content/css/datepicker.styles.css");
+    Html.AddScriptParts(ResourceLocation.Head, "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/banner.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/place_suggestion.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/promotion.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/destination.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/discovery.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/user_manual.js");
 }
-<div class="page home-page">
-    <div class="page-body">
-        @await Component.InvokeAsync("TopicBlock", new { systemName = "HomepageText" })
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
-        @await Component.InvokeAsync("HomepageCategories")
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeProducts })
-        @await Component.InvokeAsync("HomepageProducts")
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
-        @await Component.InvokeAsync("HomepageBestSellers")
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeNews })
-        @await Component.InvokeAsync("HomepageNews")
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
-        @await Component.InvokeAsync("HomepagePolls")
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBottom })
-    </div>
-</div>
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageTop })
+@await Component.InvokeAsync("PlaceSuggestion")
+@await Component.InvokeAsync("Promotion")
+@await Component.InvokeAsync("Destination")
+@await Component.InvokeAsync("Discovery")
+@await Component.InvokeAsync("UserManual")
+@await Component.InvokeAsync("Introduction")
+@*@await Component.InvokeAsync("TopicBlock", new { systemName = "HomepageText" })
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })
+@await Component.InvokeAsync("HomepageCategories")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeProducts })
+@await Component.InvokeAsync("HomepageProducts")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeBestSellers })
+@await Component.InvokeAsync("HomepageBestSellers")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeNews })
+@await Component.InvokeAsync("HomepageNews")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
+@await Component.InvokeAsync("HomepagePolls")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBottom })*@

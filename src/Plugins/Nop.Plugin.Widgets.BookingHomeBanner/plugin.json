@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Booking Home Banner",
+  "SystemName": "Widgets.BookingHomeBanner",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.BookingHomeBanner.dll",
+  "Description": "The booking banner in home page"
+}

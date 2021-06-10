@@ -1,14 +1,42 @@
-﻿@model ProductDetailsModel.ProductPriceModel
+﻿@model ProductDetailsModel
 @using Nop.Core
 @using Nop.Core.Domain.Tax
+@using Nop.Web.Models.Catalog
 @inject IWorkContext workContext
+@inject Nop.Services.Catalog.IProductService productService 
+@{
+    var productPrice = Model.ProductPrice;
+    var productAtrribute = Model.ProductAttributes.ToList().FirstOrDefault();
+    var product = await productService.GetProductByIdAsync(Model.AddToCart.ProductId);
+}
+@if (productAtrribute != null) {
+    var productAttributeValues = productAtrribute.Values;
+    if (productAttributeValues.Count > 0) {
+    <div>
+        <div class="title mt--60 mb--24">
+            <h3 class="mb--6">Giá phòng</h3>
+            <span>Giá có thể tăng vào cuối tuần hoặc ngày lễ</span>
+        </div>
+        <div class="room-price__wrap">
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Thứ hai - Thứ năm</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@productPrice.PriceValue ₫</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Thứ sáu - Chủ nhật</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productPrice.PriceValue + productAttributeValues.Where(value => value.Name == "prices.weekend").FirstOrDefault().PriceAdjustmentValue) ₫</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Phí khách tăng thêm</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productAttributeValues.Where(value => value.Name == "prices.peopleincrease").FirstOrDefault().PriceAdjustmentValue) ₫ (sau 2 khách)</span></div>
+            <!----> <!---->
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50 ">Thuê theo tháng</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@(productAttributeValues.Where(value => value.Name == "prices.monthly").FirstOrDefault().PriceAdjustment)</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Số đêm tối thiểu</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@product.OrderMinimumQuantity đêm</span></div>
+            <div class="is-flex jbetween align-center py--12 px--18"><span class="c-gray-3 fl-item-50">Số đêm tối đa</span> <span class="c-gray-3 fl-item-50 pl--12 bold text-right">@product.OrderMaximumQuantity đêm</span></div>
+        </div>
+    </div>
+    }
+}
+@*
 @if (!Model.CustomerEntersPrice)
 {
     <div class="prices">
         @if (Model.CallForPrice)
         {
             @*call for price*@
-            <div class="product-price call-for-price">
+            @*<div class="product-price call-for-price">
                 <span>@T("Products.CallForPrice")</span>
             </div>
         }
@@ -22,9 +50,9 @@
                 </div>
             }
             if (!string.IsNullOrWhiteSpace(Model.OldPrice))
-            {
+            {*@
                 @*old price*@
-                <div class="old-product-price">
+                @*<div class="old-product-price">
                     <span>@T("Products.Price.OldPrice"):</span>
                     <span>@Model.OldPrice</span>
                 </div>
@@ -35,20 +63,20 @@
                         {<text>non-discounted-price</text>}">
 
                 @if (!string.IsNullOrWhiteSpace(Model.OldPrice) || !string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
-                {
+                {*@
                     @*display "Price:" label if we have old price or discounted one*@
-                    <label for="price-value-@(Model.ProductId)">@T("Products.Price"):</label>
-                }
-            
+                    @*<label for="price-value-@(Model.ProductId)">@T("Products.Price"):</label>
+                }*@
+
                 @*render price*@
-                <span @if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount)) { <text> id="price-value-@(Model.ProductId)" class="price-value-@(Model.ProductId)" </text> }>
+                @*<span @if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount)) { <text> id="price-value-@(Model.ProductId)" class="price-value-@(Model.ProductId)" </text> }>
                     @Html.Raw(Model.Price)
                 </span>
             </div>
             if (!string.IsNullOrWhiteSpace(Model.PriceWithDiscount))
-            {
+            {*@
                 @*discounted price*@
-                <div class="product-price discounted-price">
+                @*<div class="product-price discounted-price">
                     <span>@T("Products.Price.WithDiscount"):</span>
                     <span class="price-value-@(Model.ProductId)">
                         @Html.Raw(Model.PriceWithDiscount)
@@ -69,7 +97,8 @@
                 <div class="tax-shipping-info">
                     @T(inclTax ? "Products.Price.TaxShipping.InclTax" : "Products.Price.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName = await Html.GetTopicSeNameAsync("shippinginfo") }))
                 </div>
-             }
+            }
         }
     </div>
 }
+*@

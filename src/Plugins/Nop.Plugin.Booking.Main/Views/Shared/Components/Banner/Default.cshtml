@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@inject IThemeContext ThemeContext
+@{
+    var currentThemeName = await ThemeContext.GetWorkingThemeNameAsync();
+    var imagesPath = "~/Themes/" + currentThemeName + "/Content/images/";
+
+}
+@model BannerModel
+<div class="container container--sm section">
+    <div class="mt--42"></div>
+    <div>
+        <div data-v-5b8436ed="" class="big-banner d-none d-sm-block">
+            <div data-v-5b8436ed="" id="bannerSliderPC">
+                @foreach (var imagePath in Model.ImagePaths)
+                {
+                    <div style="width: 100%; display: inline-block;"><a href="https://www.luxstay.com/vi/s"><img src="@Url.Content(imagesPath + @imagePath)" alt=""></a></div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

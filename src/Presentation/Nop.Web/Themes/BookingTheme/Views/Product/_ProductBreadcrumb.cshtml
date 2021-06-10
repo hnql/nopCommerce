@@ -4,7 +4,7 @@
 @{
     var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
 }
-@if (Model.Enabled)
+@*@if (Model.Enabled)
 {
 <div class="breadcrumb-wrapper">
     <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
@@ -16,7 +16,7 @@
                 </a>
             </span>
             @*<span class="divider">@breadcrumbDelimiter</span>*@
-        </li>
+        @*</li>
         @{ int position = 1; }
         @foreach (var category in Model.CategoryBreadcrumb)
         {
@@ -25,7 +25,7 @@
                     <span itemprop="name">@category.Name</span>
                 </a>
                 @*<span class="divider">@breadcrumbDelimiter</span>*@
-                <meta itemprop="position" content="@position" />
+                @*<meta itemprop="position" content="@position" />
             </li>
             position++;
         }
@@ -36,8 +36,35 @@
             </span>
             <meta itemprop="position" content="@position" />
             @*<strong class="current-item"><a href="@Url.RouteUrl("Product", new { SeName = Model.ProductSeName })">@Model.ProductName</a></strong>*@
-            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBreadcrumbAfter, additionalData = Model })
+            @*@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductBreadcrumbAfter, additionalData = Model })
         </li>
     </ol>
 </div>
-} 
+}
+*@
+
+<div class="breadcrumbs middle-xs d-none d-sm-flex">
+    <a href="https://www.luxstay.com/vi/" class="nuxt-link-active">Luxstay</a>
+    <i class="icon-arrow-right"></i>
+    <span class="is-flex middle-xs">
+        <a href="https://www.luxstay.com/vi/vietnam" class="">
+            Vietnam
+        </a>
+        <i class="icon-arrow-right"></i>
+    </span><span class="is-flex middle-xs">
+        <a href="https://www.luxstay.com/vi/vietnam/ho-chi-minh" class="">
+            Ho Chi Minh
+        </a>
+        <i class="icon-arrow-right"></i>
+    </span><span class="is-flex middle-xs">
+        <a href="https://www.luxstay.com/vi/vietnam/ho-chi-minh/quan-1" class="">
+            Quan 1
+        </a>
+        <i class="icon-arrow-right"></i>
+    </span>
+    <span class="is-flex middle-xs">
+        <a href="https://www.luxstay.com/vi/vietnam/ho-chi-minh/quan-1/ben-nghe" class="">
+            Ben Nghe
+        </a>
+    </span>
+</div>

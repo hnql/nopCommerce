@@ -1,0 +1,51 @@
+﻿body {
+}
+.search-fixed .search-box {
+  z-index: 9;
+  background-color: #fff;
+  border-bottom: 1px solid #eee
+}
+
+  .search-fixed .search-box .booking__input-prefix {
+    display: none !important
+  }
+
+  .search-fixed .search-box button {
+    line-height: inherit !important
+  }
+
+  .search-fixed .search-box .booking__field {
+    box-shadow: none
+  }
+
+@media (max-width:768px) {
+  .search-fixed .search-box .booking__field {
+    padding: 8px 10px 6px 16px
+  }
+}
+
+.scroll-over-search .search__content {
+  position: fixed;
+  top: -50px
+}
+
+.scroll-over-search.is-scrolling-top .search__content {
+  z-index: 6;
+  top: 0
+}
+
+@media (max-width:900px) {
+  .scroll-over-search .search-box button, .scroll-over-search .search-date, .scroll-over-search .search-guest {
+    display: none
+  }
+}
+
+.fixedFilter .search-filter {
+  padding-top: 10px
+}
+
+.layout-default .header__logo {
+  padding: 10px;
+  background: rgba(0,0,0,.04);
+  border-radius: 50%
+}

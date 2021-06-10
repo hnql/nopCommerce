@@ -44,6 +44,47 @@
 
     <!-- We copy the \Logs directory -->
     <Content Include="Logs\**" CopyToPublishDirectory="PreserveNewest" />
+    <Content Remove="Themes\BookingTheme\Content\css\banner.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\booking.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\coccocalo.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\customForList.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\custom.datepicker.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\datepicker.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\daterangepicker.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\destination.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\intlTelInput.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\login.instruction.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\phone.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\product.detail.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\promotion.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\room.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\rules.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\searchbox.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\searchfixed.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\css\toasted.styles.css" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\29eaaf5.woff2" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\4177830.woff2" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\e3a0b22.woff2" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\e8c5b1c.woff" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\element-icons.ttf" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\element-icons.woff" />
+    <Content Remove="Themes\BookingTheme\Content\fonts\f4b9a70.woff2" />
+    <Content Remove="Themes\BookingTheme\Content\images\1538962546_a-49.jpg" />
+    <Content Remove="Themes\BookingTheme\Content\images\close.svg" />
+    <Content Remove="Themes\BookingTheme\Content\images\login-bg.png" />
+    <Content Remove="Themes\BookingTheme\Content\images\menu.svg" />
+    <Content Remove="Themes\BookingTheme\Content\js\banner.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\daterangepicker.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\destination.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\discovery.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\header.custom.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\moment.min.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\place_suggestion.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\promotion.js" />
+    <Content Remove="Themes\BookingTheme\Content\js\user_manual.js" />
+    <None Remove="Themes\BookingTheme\Content\images\banner_slide_1.png" />
+    <None Remove="Themes\BookingTheme\Content\images\banner_slide_2.png" />
+    <None Remove="Themes\BookingTheme\Content\images\banner_slide_3.png" />
 
     <None Update="Areas\Admin\sitemap.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

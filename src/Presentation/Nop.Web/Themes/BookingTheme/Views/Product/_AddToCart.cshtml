@@ -1,130 +1,253 @@
-﻿@model ProductDetailsModel.AddToCartModel
-@using Nop.Core.Domain.Orders
-@if (Model.UpdatedShoppingCartItemId > 0)
-{
-    <input asp-for="UpdatedShoppingCartItemId" type="hidden" />
-}
-@if (!Model.DisableBuyButton || Model.CustomerEntersPrice)
-{
-    <div class="add-to-cart">
-        @if (Model.CustomerEntersPrice)
-        {
-            <div class="customer-entered-price clearfix">
-                <div class="price-input">
-                    <label asp-for="CustomerEnteredPrice" asp-postfix=":" class="enter-price-label"></label>
-                    @*round price*@
-                    <input asp-for="CustomerEnteredPrice" value="@Convert.ToInt32(Math.Ceiling(Model.CustomerEnteredPrice))" class="enter-price-input form-control" />
-                </div>
-                <div class="price-range alert alert-info">
-                    @Model.CustomerEnteredPriceRange
-                </div>
+﻿@model ProductDetailsModel
+@using System.Globalization
+@using Nop.Core.Domain.Catalog
+@using Nop.Services.Helpers
+@inject CatalogSettings catalogSettings
+@inject IUserAgentHelper userAgentHelper
+<div class="room-sidebar__wrap pt--24 px--12 px--lg--24">
+    <div class="room-sidebar__pricing">
+        <p class="fadeIn"><span class="extra-bold">693,000₫</span> <span class="p--small">/đêm</span> <span class="c-gray-9 ml--6 p--small strike bold"> 990,000₫ </span></p>
+    </div>
+    <div>
+        <div class="">
+            <div class="room-discount">
+                <span class="label label--cool-red">Giảm 30% từ chủ nhà</span>
+                <p class="mb--0 mt--6 p--small-2">Giảm <strong>30%</strong> cho đặt phòng có checkin từ <strong>01/04</strong> đến <strong>31/05</strong></p>
             </div>
-        }
-        @if (!string.IsNullOrEmpty(Model.MinimumQuantityNotification))
-        {
-            <div class="min-qty-notification">@Model.MinimumQuantityNotification</div>
-        }
-        @if (!Model.DisableBuyButton)
-        {
-            <div class="add-to-cart-panel">
-                <div class="quantity-box">
-                    <label asp-for="EnteredQuantity" asp-postfix=":" class="qty-label"></label>
-                    @if (Model.AllowedQuantities.Count > 0)
-                    {
-                        <select asp-for="EnteredQuantity" asp-items="Model.AllowedQuantities" id="product_enteredQuantity_@Model.ProductId" class="qty-dropdown form-control" aria-label=@T("Products.Qty.AriaLabel")></select>
-                        <script asp-location="Footer">
-                            $(document).ready(function () {
-                                $("#product_enteredQuantity_@Model.ProductId").on("change", function () {
-                                    var data = {
-                                        productId: @Model.ProductId,
-                                        quantity: $('#product_enteredQuantity_@Model.ProductId').find(":selected").text()
-                                    };
-                                    $(document).trigger({ type: "product_quantity_changed", changedData: data });
-                                });
-                            });
-                        </script>
-                    }
-                    else
-                    {
-                        <div class="addtocart-quantity-box">
-                            <input asp-for="EnteredQuantity" class="qty-input form-control" type="text" />
-                            <span class="increase-quantity" onclick="IncreaseQuantity('@Html.IdFor(model => model.EnteredQuantity)');"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                            <span class="decrease-quantity" onclick="DecreaseQuantity('@Html.IdFor(model => model.EnteredQuantity)');"><i class="fa fa-minus" aria-hidden="true"></i></span>
+        </div>
+    </div>
+    <div class="is-relative mt--18">
+        <div class="modal-booking-time is-relative is-flex middle-xs">
+            <span id="checkinSidebar" class="cursor">dd/mm/yyyy</span>
+            <span>đến</span>
+            <span id="checkoutSidebar" class="cursor">dd/mm/yyyy</span>
+        </div>
+    </div>
+    <div class="input-group mt--6">
+        <div data-v-0ae22c83="">
+            <span data-v-0ae22c83="">
+                <div role="tooltip" id="el-popover-7434" aria-hidden="true" class="el-popover el-popper" tabindex="0" style="width: 320px; display: none;">
+                    <!---->
+                    <div data-v-0ae22c83="" class="select-number">
+                        <div data-v-0ae22c83="" class="select-number__title">
+                            <p data-v-0ae22c83="" class="mb--0 semi-bold">Người lớn</p>
                         </div>
-                        //when a customer clicks 'Enter' button we submit the "add to cart" button (if visible)
-                        <script asp-location="Footer">
-                            $(document).ready(function () {
-                                $("#@Html.IdFor(model => model.EnteredQuantity)").on("keydown", function(event) {
-                                    if (event.keyCode == 13) {
-                                        $("#add-to-cart-button-@Model.ProductId").trigger("click");
-                                        return false;
-                                    }
-                                });
-                                $("#product_enteredQuantity_@Model.ProductId").on("input propertychange paste", function () {
-                                    var data = {
-                                        productId: @Model.ProductId,
-                                        quantity: $('#product_enteredQuantity_@Model.ProductId').val()
-                                    };
-                                    $(document).trigger({ type: "product_quantity_changed", changedData: data });
-                                });
-                            });
-                        </script>
-                    }
-                </div>
-                @{
-                    var addToCartText = "";
-                    if (Model.UpdatedShoppingCartItemId > 0 && Model.UpdateShoppingCartItemType.HasValue && Model.UpdateShoppingCartItemType.Value == ShoppingCartType.ShoppingCart)
-                    {
-                        addToCartText = T("ShoppingCart.AddToCart.Update").Text;
-                    }
-                    else
-                    {
-                        addToCartText = T("ShoppingCart.AddToCart").Text;
-                        if (Model.IsRental)
-                        {
-                            addToCartText = T("ShoppingCart.Rent").Text;
-                        }
-                        if (Model.AvailableForPreOrder)
-                        {
-                            addToCartText = T("ShoppingCart.PreOrder").Text;
-                        }
-                    }
-                    <div class="product-add-button">
-                        <button id="add-to-cart-button-@Model.ProductId" type="button" class=" btn btn-primary add-to-cart-button" data-productid="@Model.ProductId" onclick="AjaxCart.addproducttocart_details('@Url.RouteUrl("AddProductToCart-Details", new { productId = Model.ProductId, shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart })', '#product-details-form');return false;">@(Model.AvailableForPreOrder ? T("ShoppingCart.PreOrder") : T("ShoppingCart.AddToCart"))</button>
+                        <div data-v-0ae22c83="" class="el-input-number">
+                            <span role="button" class="el-input-number__decrease is-disabled"><i class="el-icon-minus"></i></span><span role="button" class="el-input-number__increase"><i class="el-icon-plus"></i></span>
+                            <div class="el-input">
+                                <!----><input type="text" autocomplete="off" max="3" min="1" class="el-input__inner" role="spinbutton" aria-valuemax="3" aria-valuemin="1" aria-valuenow="1" aria-disabled="undefined"><!----><!----><!---->
+                            </div>
+                        </div>
                     </div>
-                }
-            </div>
-            if (!string.IsNullOrEmpty(Model.PreOrderAvailabilityStartDateTimeUserTime))
+                    <div data-v-0ae22c83="" class="select-number mt--18">
+                        <div data-v-0ae22c83="" class="select-number__title">
+                            <p data-v-0ae22c83="" class="mb--0 semi-bold">Trẻ em</p>
+                            <p data-v-0ae22c83="" class="mb--0 p--small-2 c-gray-5">Tuổi từ 2–12</p>
+                        </div>
+                        <div data-v-0ae22c83="" class="el-input-number">
+                            <span role="button" class="el-input-number__decrease is-disabled"><i class="el-icon-minus"></i></span><span role="button" class="el-input-number__increase"><i class="el-icon-plus"></i></span>
+                            <div class="el-input">
+                                <!----><input type="text" autocomplete="off" max="2" min="0" class="el-input__inner" role="spinbutton" aria-valuemax="2" aria-valuemin="0" aria-valuenow="0" aria-disabled="undefined"><!----><!----><!---->
+                            </div>
+                        </div>
+                    </div>
+                    <div data-v-0ae22c83="" class="select-number mt--18">
+                        <div data-v-0ae22c83="" class="select-number__title">
+                            <p data-v-0ae22c83="" class="mb--0 semi-bold">Trẻ sơ sinh</p>
+                            <p data-v-0ae22c83="" class="mb--0 p--small-2 c-gray-5">Dưới 2 tuổi</p>
+                        </div>
+                        <div data-v-0ae22c83="" class="el-input-number">
+                            <span role="button" class="el-input-number__decrease is-disabled"><i class="el-icon-minus"></i></span><span role="button" class="el-input-number__increase is-disabled"><i class="el-icon-plus"></i></span>
+                            <div class="el-input">
+                                <!----><input type="text" autocomplete="off" min="0" class="el-input__inner" role="spinbutton" aria-valuemax="null" aria-valuemin="0" aria-valuenow="0" aria-disabled="undefined"><!----><!----><!---->
+                            </div>
+                        </div>
+                    </div>
+                    <div data-v-0ae22c83="" class="is-flex align-center jbetween mt--30"><button data-v-0ae22c83="" class="cursor bold">Xoá</button> <button data-v-0ae22c83="" class="cursor bold c-primary">Áp dụng</button></div>
+                </div>
+                <div data-v-0ae22c83="" class="modal-booking-time el-popover__reference" aria-describedby="el-popover-7434" tabindex="0">
+                    <p data-v-0ae22c83="" class="cursor">
+                        1 khách
+                    </p>
+                </div>
+            </span>
+        </div>
+    </div>
+    <!---->
+    <button id="addtocart-btn" data-value="12972" class="btn btn-grad--primary px--6 mb--12 btn--sm btn--full bold rounded btn--shadow-primary">
+        <svg version="1.1" viewBox="0 0 20 20" class="mr--6 svg-icon svg-fill" style="width: 20px; height: 20px;">
+            <g fill="none" fill-rule="evenodd" transform="translate(-2 -2)">
+                <path pid="0" d="M0 0h24v24H0z"></path>
+                <circle pid="1" cx="12" cy="12" r="10" fill="#FFF" opacity=".3"></circle>
+                <path pid="2" fill="#FFF" d="M12.42 17.158l3.037-6.073a.75.75 0 00-.67-1.085H12V7.177a.75.75 0 00-1.42-.335l-3.037 6.073A.75.75 0 008.213 14H11v2.823a.75.75 0 001.42.335z"></path>
+            </g>
+        </svg>
+        <span>Đặt ngay</span>
+    </button>
+    <div class="mt--18">
+        <div class="room-event__wrap"></div>
+    </div>
+</div>
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        function setStartDate(start, end, label) {
+            $('#checkinSidebar').html(start.format('DD/MM/YYYY'));
+        }
+
+        $('#checkinSidebar').daterangepicker({
+            applyButtonClasses: "btn-apply-date-picker",
+            cancelButtonClasses: "btn-cancel-date-picker",
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        }, setStartDate);
+    });
+</script>
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        function setEndDate(start, end, label) {
+            $('#checkoutSidebar').html(end.format('DD/MM/YYYY'));
+        }
+
+        $('#checkoutSidebar').daterangepicker({
+            applyButtonClasses: "btn-apply-date-picker",
+            cancelButtonClasses: "btn-cancel-date-picker",
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'), 10)
+        }, setEndDate);
+    });
+</script>
+
+@*@if (Model.UpdatedShoppingCartItemId > 0)
+    {
+        <input asp-for="UpdatedShoppingCartItemId" type="hidden" />
+    }
+    @if (!Model.DisableBuyButton || Model.CustomerEntersPrice)
+    {
+        <div class="add-to-cart">
+            @if (Model.CustomerEntersPrice)
             {
-                <div class="pre-order-availability-date">
-                    <label>@T("ShoppingCart.PreOrderAvailability"):</label>
-                    @Html.Raw(Model.PreOrderAvailabilityStartDateTimeUserTime)
+                <div class="customer-entered-price clearfix">
+                    <div class="price-input">
+                        <label asp-for="CustomerEnteredPrice" asp-postfix=":" class="enter-price-label"></label>*@
+@*round price*@
+@*<input asp-for="CustomerEnteredPrice" value="@Convert.ToInt32(Math.Ceiling(Model.CustomerEnteredPrice))" class="enter-price-input form-control" />
+                    </div>
+                    <div class="price-range alert alert-info">
+                        @Model.CustomerEnteredPriceRange
+                    </div>
                 </div>
             }
+            @if (!string.IsNullOrEmpty(Model.MinimumQuantityNotification))
+            {
+                <div class="min-qty-notification">@Model.MinimumQuantityNotification</div>
+            }
+            @if (!Model.DisableBuyButton)
+            {
+                <div class="add-to-cart-panel">
+                    <div class="quantity-box">
+                        <label asp-for="EnteredQuantity" asp-postfix=":" class="qty-label"></label>
+                        @if (Model.AllowedQuantities.Count > 0)
+                        {
+                            <select asp-for="EnteredQuantity" asp-items="Model.AllowedQuantities" id="product_enteredQuantity_@Model.ProductId" class="qty-dropdown form-control" aria-label=@T("Products.Qty.AriaLabel")></select>
+                            <script asp-location="Footer">
+                                $(document).ready(function () {
+                                    $("#product_enteredQuantity_@Model.ProductId").on("change", function () {
+                                        var data = {
+                                            productId: @Model.ProductId,
+                                            quantity: $('#product_enteredQuantity_@Model.ProductId').find(":selected").text()
+                                        };
+                                        $(document).trigger({ type: "product_quantity_changed", changedData: data });
+                                    });
+                                });
+                            </script>
+                        }
+                        else
+                        {
+                            <div class="addtocart-quantity-box">
+                                <input asp-for="EnteredQuantity" class="qty-input form-control" type="text" />
+                                <span class="increase-quantity" onclick="IncreaseQuantity('@Html.IdFor(model => model.EnteredQuantity)');"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="decrease-quantity" onclick="DecreaseQuantity('@Html.IdFor(model => model.EnteredQuantity)');"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </div>
+                            //when a customer clicks 'Enter' button we submit the "add to cart" button (if visible)
+                            <script asp-location="Footer">
+                                $(document).ready(function () {
+                                    $("#@Html.IdFor(model => model.EnteredQuantity)").on("keydown", function(event) {
+                                        if (event.keyCode == 13) {
+                                            $("#add-to-cart-button-@Model.ProductId").trigger("click");
+                                            return false;
+                                        }
+                                    });
+                                    $("#product_enteredQuantity_@Model.ProductId").on("input propertychange paste", function () {
+                                        var data = {
+                                            productId: @Model.ProductId,
+                                            quantity: $('#product_enteredQuantity_@Model.ProductId').val()
+                                        };
+                                        $(document).trigger({ type: "product_quantity_changed", changedData: data });
+                                    });
+                                });
+                            </script>
+                        }
+                    </div>
+                    @{
+                        var addToCartText = "";
+                        if (Model.UpdatedShoppingCartItemId > 0 && Model.UpdateShoppingCartItemType.HasValue && Model.UpdateShoppingCartItemType.Value == ShoppingCartType.ShoppingCart)
+                        {
+                            addToCartText = T("ShoppingCart.AddToCart.Update").Text;
+                        }
+                        else
+                        {
+                            addToCartText = T("ShoppingCart.AddToCart").Text;
+                            if (Model.IsRental)
+                            {
+                                addToCartText = T("ShoppingCart.Rent").Text;
+                            }
+                            if (Model.AvailableForPreOrder)
+                            {
+                                addToCartText = T("ShoppingCart.PreOrder").Text;
+                            }
+                        }
+                        <div class="product-add-button">
+                            <button id="add-to-cart-button-@Model.ProductId" type="button" class=" btn btn-primary add-to-cart-button" data-productid="@Model.ProductId" onclick="AjaxCart.addproducttocart_details('@Url.RouteUrl("AddProductToCart-Details", new { productId = Model.ProductId, shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart })', '#product-details-form');return false;">@(Model.AvailableForPreOrder ? T("ShoppingCart.PreOrder") : T("ShoppingCart.AddToCart"))</button>
+                        </div>
+                    }
+                </div>
+                if (!string.IsNullOrEmpty(Model.PreOrderAvailabilityStartDateTimeUserTime))
+                {
+                    <div class="pre-order-availability-date">
+                        <label>@T("ShoppingCart.PreOrderAvailability"):</label>
+                        @Html.Raw(Model.PreOrderAvailabilityStartDateTimeUserTime)
+                    </div>
+                }
+            }
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAddInfo, additionalData = Model })
+        </div>
+    }*@
+
+
+@*<script type="text/javascript" asp-location="Footer">
+        function IncreaseQuantity(e) {
+            var id = document.getElementById(e).value;
+            var qtyValue = parseInt(id);
+            qtyValue = qtyValue + 1;
+            document.getElementById(e).value = qtyValue;
+            return true;
         }
-        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAddInfo, additionalData = Model })
-    </div>
-}
 
+        function DecreaseQuantity(e) {
+            var id = document.getElementById(e).value;
 
-<script type="text/javascript" asp-location="Footer">
-    function IncreaseQuantity(e) {
-        var id = document.getElementById(e).value;
-        var qtyValue = parseInt(id);
-        qtyValue = qtyValue + 1;
-        document.getElementById(e).value = qtyValue;
-        return true;
-    }
+            if (id <= 0)
+                return 0;
 
-    function DecreaseQuantity(e) {
-        var id = document.getElementById(e).value;
-
-        if (id <= 0)
-            return 0;
-
-        var qtyValue = parseInt(id);
-        qtyValue = qtyValue - 1;
-        document.getElementById(e).value = qtyValue;
-        return true;
-    }
-</script>
+            var qtyValue = parseInt(id);
+            qtyValue = qtyValue - 1;
+            document.getElementById(e).value = qtyValue;
+            return true;
+        }
+    </script>*@

@@ -1,0 +1,20 @@
+﻿.promotion-slider .box-image-frame > img {
+  border-radius: 10px
+}
+
+.promotion-slider .frame-shadow {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 5px;
+  z-index: -1;
+  filter: blur(15px);
+  overflow: hidden
+}
+
+.promotion-slider .slick-next,
+.promotion-slider .slick-prev {
+  top: 45%
+}

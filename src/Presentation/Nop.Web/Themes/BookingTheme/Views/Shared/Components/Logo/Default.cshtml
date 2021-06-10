@@ -1,4 +1,4 @@
 ﻿@model LogoModel
-<a href="@Url.RouteUrl("Homepage")">
-    <img title="" alt="@Model.StoreName" src="@Model.LogoPath">
+<a href="@Url.RouteUrl("Homepage")" title="@Model.StoreName" aria-current="page" class="header__logo is-inline-block nuxt-link-exact-active nuxt-link-active">
+    <img title="@Model.StoreName" alt="@Model.StoreName" src="@Model.LogoPath">
 </a>
