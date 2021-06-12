@@ -1,0 +1,60 @@
+﻿@using static System.String;
+@model Nop.Plugin.Widgets.HomePopUp.Models.PublicInfoModel
+@{
+    Layout = "";
+    Html.AddCssFileParts("~/Plugins/Nop.Plugin.Widgets.HomePopUp/Contents/ModalOnly/css/modal-widget.css");
+}
+<div id="myModal" class="modal-widget@(Model.Position?"-center":"-top")">
+    <!-- Modal content -->
+    <div class="modal-content-widget">
+        <div class="modal-content-widget-body">
+            <div class="modal-content-widget-body-upper">
+                @if (!IsNullOrWhiteSpace(Model.PictureUrl))
+                {
+                    <div class="modal-content-widget-body-upper-image">
+                        <img src="@Model.PictureUrl" style="width:4rem !important;" />
+                    </div>
+                }
+                <div class="modal-content-widget-body-upper-text">
+                    @Model.Text
+                </div>
+                @if (!IsNullOrWhiteSpace(Model.FromDate) && !IsNullOrWhiteSpace(Model.ToDate))
+                {
+                    <div class="modal-content-widget-body-upper-date">
+                        Thời gian: @Model.FromDate - @Model.ToDate
+                    </div>
+                }
+
+            </div>
+            @*<div class="modal-content-widget-body-white-space"></div>*@
+            <div class="modal-content-widget-body-lower">
+                <div style="float: right !important;">
+                    <button class="modal-content-widget-body-lower-btn-close" onclick="closeModal()">
+                        Bỏ qua
+                    </button>
+                    @if (!IsNullOrWhiteSpace(Model.Link))
+                    {
+                        <button class="modal-content-widget-body-lower-btn-accept" onClick="location.href = '@Model.Link'">
+                            Nhận ưu đãi
+                        </button>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script asp-location="Footer">
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close-widget")[0];
+    function closeModal() {
+        modal.style.display = "none";
+    }
+    document.getElementsByTagName("BODY")[0].onload = function (){
+        modal.style.display = "block";
+    };
+    @*function closeModal() {
+        modal.style.display = "block";
+    }*@
+</script>

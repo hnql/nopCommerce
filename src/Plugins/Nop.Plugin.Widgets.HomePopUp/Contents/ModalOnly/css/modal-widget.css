@@ -1,0 +1,180 @@
+﻿.modal-widget-top {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  animation: opac 0.8s;
+}
+.modal-widget-center {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  padding-top: 20rem; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  min-height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  bottom: 0;
+  animation: opac 0.8s;
+}
+@keyframes opac {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-widget {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0 20px 0px;
+  width: 22%;
+  box-shadow: rgb(136, 136, 136) 0px 0px 4px;
+}
+  .modal-content-widget-body  {
+    word-spacing: normal !important;
+    letter-spacing: normal !important;
+    font-family: "Open Sans",sans-serif !important;
+    position: relative !important;
+    color: #000 !important;
+    text-align: left !important;
+    margin: 0 !important;
+    line-height: 1.4em !important;
+    display: inline-block !important;
+  }
+.modal-content-widget-body-upper-image {
+  margin: 15px 0 0 !important;
+  padding: 0 !important;
+  float: left;
+  width: 20%;
+}
+.modal-content-widget-body-upper-text {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+/*  overflow: hidden;*/
+/*  height: 2.8em;*/
+  line-height: 1.4em;
+/*  display: inline;*/
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  color: rgb(35, 35, 35);
+  padding: 1rem 0 0 !important;
+  float: left;
+  width: 80%;
+}
+.modal-content-widget-body-upper-date {
+  float: left;
+  width: 100%;
+  position: relative;
+  margin-bottom: 1rem;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top:.5rem;
+}
+.modal-content-widget-body-white-space {
+  overflow: hidden;
+  height: 2.8em;
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1.4em !important;
+  margin: 10px 0px !important;
+  padding: 0px !important;
+  text-align: left !important;
+  color: rgb(255, 255, 255);
+}
+  .modal-content-widget-body-lower {
+      width:100%;
+      clear: both;
+      word-spacing: normal !important;
+      letter-spacing: normal !important;
+      font-family: "Open Sans",sans-serif !important;
+      display: inline-block !important;
+    }
+    .modal-content-widget-body-lower-btn-close {
+      overflow: hidden;
+      word-spacing: normal !important;
+      letter-spacing: normal !important;
+      width: 100px !important;
+      height: 26px !important;
+      font-size: 14px !important;
+      cursor: pointer !important;
+      line-height: 1.1em !important;
+      border-radius: 4px !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      display: inline-block !important;
+      font-weight: 400 !important;
+      margin: 0px 20px 0px 0px !important;
+      padding: 5px !important;
+      text-transform: none !important;
+      box-sizing: border-box !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      white-space: nowrap !important;
+      color: rgb(0, 0, 0);
+      background: rgb(255, 255, 255);
+    }
+    .modal-content-widget-body-lower-btn-accept {
+      overflow: hidden;
+      word-spacing: normal !important;
+      letter-spacing: normal !important;
+      width: 90px !important;
+      height: 26px !important;
+      font-size: 14px !important;
+      cursor: pointer !important;
+      line-height: 1.1em !important;
+      border-radius: 4px !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      display: inline-block !important;
+      font-weight: 400 !important;
+      margin: 0px !important;
+      padding: 5px !important;
+      text-transform: none !important;
+      box-sizing: border-box !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      white-space: nowrap !important;
+      color: rgb(255, 255, 255);
+      background: rgb(246, 94, 57);
+    }
+
+/* The Close Button */
+.close-widget {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+  .close-widget:hover,
+  .close-widget:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
