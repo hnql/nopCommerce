@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nop.Core;
+using Nop.Core.Domain.Directory;
 using Nop.Core.Infrastructure;
 using Nop.Services.Cms;
 using Nop.Services.Configuration;
+using Nop.Services.Directory;
 using Nop.Services.Localization;
 using Nop.Services.Media;
 using Nop.Services.Plugins;
@@ -21,19 +23,22 @@ namespace Nop.Plugin.Widgets.Location
         private readonly ISettingService _settingService;
         private readonly IWebHelper _webHelper;
         private readonly INopFileProvider _fileProvider;
+        private readonly IStateProvinceService _stateProvinceService;
 
         public LocationPlugin(
             ILocalizationService localizationService,
             IPictureService pictureService,
             ISettingService settingService,
             IWebHelper webHelper,
-            INopFileProvider fileProvider)
+            INopFileProvider fileProvider,
+            IStateProvinceService stateProvinceService)
         {
             _localizationService = localizationService;
             _pictureService = pictureService;
             _settingService = settingService;
             _webHelper = webHelper;
             _fileProvider = fileProvider;
+            _stateProvinceService = stateProvinceService;
         }
 
         /// <summary>
@@ -75,15 +80,30 @@ namespace Nop.Plugin.Widgets.Location
             //pictures
             var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.Location/Content/nivoslider/sample-images/");
 
+            var stateProvince = await _stateProvinceService.GetStateProvinceByAbbreviationAsync("HN", 242);
+
             //settings
             var settings = new LocationSettings
             {
                 Picture1Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner1.jpg")), MimeTypes.ImagePJpeg, "banner_1")).Id,
                 Text1 = "",
                 Link1 = _webHelper.GetStoreLocation(false),
+                StateProvinceId1 = stateProvince.Id,
+
                 Picture2Id = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "banner2.jpg")), MimeTypes.ImagePJpeg, "banner_2")).Id,
                 Text2 = "",
-                Link2 = _webHelper.GetStoreLocation(false)
+                Link2 = _webHelper.GetStoreLocation(false),
+                StateProvinceId2 = stateProvince.Id,
+
+                StateProvinceId3 = stateProvince.Id,
+                StateProvinceId4 = stateProvince.Id,
+                StateProvinceId5 = stateProvince.Id,
+                StateProvinceId6 = stateProvince.Id,
+                StateProvinceId7 = stateProvince.Id,
+                StateProvinceId8 = stateProvince.Id,
+                StateProvinceId9 = stateProvince.Id,
+                StateProvinceId10 = stateProvince.Id
+
                 //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(_fileProvider.Combine(sampleImagesPath,"banner3.jpg")), MimeTypes.ImagePJpeg, "banner_3").Id,
                 //Text3 = "",
                 //Link3 = _webHelper.GetStoreLocation(false),
@@ -97,6 +117,11 @@ namespace Nop.Plugin.Widgets.Location
                 ["Plugins.Widgets.Location.Picture3"] = "Picture 3",
                 ["Plugins.Widgets.Location.Picture4"] = "Picture 4",
                 ["Plugins.Widgets.Location.Picture5"] = "Picture 5",
+                ["Plugins.Widgets.Location.Picture6"] = "Picture 6",
+                ["Plugins.Widgets.Location.Picture7"] = "Picture 7",
+                ["Plugins.Widgets.Location.Picture8"] = "Picture 8",
+                ["Plugins.Widgets.Location.Picture9"] = "Picture 9",
+                ["Plugins.Widgets.Location.Picture10"] = "Picture 10",
                 ["Plugins.Widgets.Location.Picture"] = "Picture",
                 ["Plugins.Widgets.Location.Picture.Hint"] = "Upload picture.",
                 ["Plugins.Widgets.Location.Text"] = "Comment",
@@ -104,7 +129,9 @@ namespace Nop.Plugin.Widgets.Location
                 ["Plugins.Widgets.Location.Link"] = "URL",
                 ["Plugins.Widgets.Location.Link.Hint"] = "Enter URL. Leave empty if you don't want this picture to be clickable.",
                 ["Plugins.Widgets.Location.AltText"] = "Image alternate text",
-                ["Plugins.Widgets.Location.AltText.Hint"] = "Enter alternate text that will be added to image."
+                ["Plugins.Widgets.Location.AltText.Hint"] = "Enter alternate text that will be added to image.",
+                ["Plugins.Widgets.Location.StateProvince"] = "State Province",
+                ["Plugins.Widgets.Location.StateProvince.Hint"] = "State Province."
             });
 
             await base.InstallAsync();
