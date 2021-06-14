@@ -44,6 +44,7 @@ namespace Nop.Plugin.Widgets.HomePopUp.Components
                 Text = bookingHomeBannerSettings.Text,
                 Link = bookingHomeBannerSettings.Link,
                 Position = bookingHomeBannerSettings.Position,
+                ShowDate = bookingHomeBannerSettings.ShowDate,
                 FromDate = bookingHomeBannerSettings.FromDate,
                 ToDate = bookingHomeBannerSettings.ToDate,
             };

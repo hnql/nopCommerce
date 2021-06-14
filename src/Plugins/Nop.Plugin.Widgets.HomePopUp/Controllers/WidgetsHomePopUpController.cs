@@ -57,6 +57,7 @@ namespace Nop.Plugin.Widgets.HomePopUp.Controllers
                 Text = homePopUpSettings.Text,
                 Link = homePopUpSettings.Link,
                 Position = homePopUpSettings.Position,
+                ShowDate = homePopUpSettings.ShowDate,
                 FromDate = homePopUpSettings.FromDate,
                 ToDate = homePopUpSettings.ToDate,
                 ActiveStoreScopeConfiguration = storeScope
@@ -68,6 +69,7 @@ namespace Nop.Plugin.Widgets.HomePopUp.Controllers
                 model.Text_OverrideForStore = await _settingService.SettingExistsAsync(homePopUpSettings, x => x.Text, storeScope);
                 model.Link_OverrideForStore = await _settingService.SettingExistsAsync(homePopUpSettings, x => x.Link, storeScope);
                 model.Position_OverrideForStore = await _settingService.SettingExistsAsync(homePopUpSettings, x => x.Position, storeScope);
+                model.ShowDate_OverrideForStore = await _settingService.SettingExistsAsync(homePopUpSettings, x => x.ShowDate, storeScope);
                 model.FromDate_OverrideForStore = await _settingService.SettingExistsAsync(homePopUpSettings, x => x.FromDate, storeScope);
                 model.ToDate_OverrideForStore = await _settingService.SettingExistsAsync(homePopUpSettings, x => x.ToDate, storeScope);
             }
@@ -92,6 +94,7 @@ namespace Nop.Plugin.Widgets.HomePopUp.Controllers
             homePopUpSettings.Text = model.Text;
             homePopUpSettings.Link = model.Link;
             homePopUpSettings.Position = model.Position;
+            homePopUpSettings.ShowDate = model.ShowDate;
             homePopUpSettings.FromDate = model.FromDate;
             homePopUpSettings.ToDate = model.ToDate;
 
@@ -102,6 +105,7 @@ namespace Nop.Plugin.Widgets.HomePopUp.Controllers
             await _settingService.SaveSettingOverridablePerStoreAsync(homePopUpSettings, x => x.Text, model.Text_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(homePopUpSettings, x => x.Link, model.Link_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(homePopUpSettings, x => x.Position, model.Position_OverrideForStore, storeScope, false);
+            await _settingService.SaveSettingOverridablePerStoreAsync(homePopUpSettings, x => x.ShowDate, model.ShowDate_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(homePopUpSettings, x => x.FromDate, model.FromDate_OverrideForStore, storeScope, false);
             await _settingService.SaveSettingOverridablePerStoreAsync(homePopUpSettings, x => x.ToDate, model.ToDate_OverrideForStore, storeScope, false);
 

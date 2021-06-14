@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Core.Infrastructure;
@@ -77,8 +78,8 @@ namespace Nop.Plugin.Widgets.HomePopUp
                 Text = "Đăng ký nhận ưu đãi chỗ ở tốt nhất hiện nay tại Luxstay",
                 Link = _webHelper.GetStoreLocation(false),
                 Position=true,
-                FromDate="",
-                ToDate=""
+                FromDate=DateTime.Now,
+                ToDate= DateTime.Now
             };
             await _settingService.SaveSettingAsync(settings);
 
@@ -93,10 +94,12 @@ namespace Nop.Plugin.Widgets.HomePopUp
                 ["Plugins.Widgets.HomePopUp.Link.Hint"] = "Enter URL. If you don't want the button to be hidden, leave the link empty",
                 ["Plugins.Widgets.HomePopUp.Position"] = "Position",
                 ["Plugins.Widgets.HomePopUp.Position.Hint"] = "The modal can be on top or in the middle of the page. If unchecked, the modal will be on top.",
+                ["Plugins.Widgets.HomePopUp.ShowDate"] = "Show date",
+                ["Plugins.Widgets.HomePopUp.ShowDate.Hint"] = "Check the box if you want dates to be rendered",
                 ["Plugins.Widgets.HomePopUp.FromDate"] = "From date",
-                ["Plugins.Widgets.HomePopUp.FromDate.Hint"] = "Please enter both dates, so they can be rendered.",
+                ["Plugins.Widgets.HomePopUp.FromDate.Hint"] = "",
                 ["Plugins.Widgets.HomePopUp.ToDate"] = "To date",
-                ["Plugins.Widgets.HomePopUp.ToDate.Hint"] = "Please enter both dates, so they can be rendered."
+                ["Plugins.Widgets.HomePopUp.ToDate.Hint"] = ""
             });
 
             await base.InstallAsync();

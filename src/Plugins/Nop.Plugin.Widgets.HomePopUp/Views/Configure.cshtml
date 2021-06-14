@@ -56,6 +56,16 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="ShowDate_OverrideForStore" asp-input="ShowDate" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="ShowDate" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ShowDate" />
+                                <span asp-validation-for="ShowDate"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="FromDate_OverrideForStore" asp-input="FromDate" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
                                 <nop-label asp-for="FromDate" />
                             </div>

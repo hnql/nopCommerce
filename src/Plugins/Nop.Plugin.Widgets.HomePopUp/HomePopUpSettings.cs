@@ -9,7 +9,8 @@ namespace Nop.Plugin.Widgets.HomePopUp
         public string Text { get; set; }
         public string Link { get; set; }
         public bool Position { get; set; }
-        public string FromDate { get; set; }
-        public string ToDate { get; set; }
+        public bool ShowDate { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
     }
 }

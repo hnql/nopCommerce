@@ -22,11 +22,14 @@ namespace Nop.Plugin.Widgets.HomePopUp.Models
         [NopResourceDisplayName("Plugins.Widgets.HomePopUp.Position")]
         public bool Position { get; set; }
         public bool Position_OverrideForStore { get; set; }
+        [NopResourceDisplayName("Plugins.Widgets.HomePopUp.ShowDate")]
+        public bool ShowDate { get; set; }
+        public bool ShowDate_OverrideForStore { get; set; }
         [NopResourceDisplayName("Plugins.Widgets.HomePopUp.FromDate")]
-        public string FromDate { get; set; }
+        public DateTime FromDate { get; set; }
         public bool FromDate_OverrideForStore { get; set; }
         [NopResourceDisplayName("Plugins.Widgets.HomePopUp.ToDate")]
-        public string ToDate { get; set; }
+        public DateTime ToDate { get; set; }
         public bool ToDate_OverrideForStore { get; set; }
 
     }
