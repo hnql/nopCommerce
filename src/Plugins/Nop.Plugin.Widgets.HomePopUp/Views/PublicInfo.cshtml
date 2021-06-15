@@ -2,6 +2,7 @@
 @model Nop.Plugin.Widgets.HomePopUp.Models.PublicInfoModel
 @{
     Layout = "";
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Nop.Plugin.Widgets.HomePopUp/Scripts/modal.js");
     Html.AddCssFileParts("~/Plugins/Nop.Plugin.Widgets.HomePopUp/Contents/ModalOnly/css/modal-widget.css");
 }
 <div id="myModal" class="modal-widget@(Model.Position?"-center":"-top")">
@@ -29,13 +30,13 @@
             @*<div class="modal-content-widget-body-white-space"></div>*@
             <div class="modal-content-widget-body-lower">
                 <div style="float: right !important;">
-                    <button id="btnClosePopUp" class="modal-content-widget-body-lower-btn-close" onclick="closeModal()">
+                    <button id="btnClosePopUp" class="modal-content-widget-body-lower-btn-close" onclick="buttonFunction('close')">
                         Bỏ qua
                     </button>
                     @if (!IsNullOrWhiteSpace(Model.Link))
                     {
                         @*<button id="btnAcceptPopUp" class="modal-content-widget-body-lower-btn-accept" onClick="location.href = '@Model.Link'" data-location="@Model.Link">*@
-                        <button id="btnAcceptPopUp" class="modal-content-widget-body-lower-btn-accept" data-location="@Model.Link">
+                        <button id="btnAcceptPopUp" class="modal-content-widget-body-lower-btn-accept" onclick="buttonFunction('accept')" data-location="@Model.Link">
                             Nhận ưu đãi
                         </button>
                     }
@@ -47,28 +48,4 @@
 </div>
 
 <script asp-location="Footer">
-    var modal = document.getElementById("myModal");
-    var span = document.getElementsByClassName("close-widget")[0];
-    function closeModal() {
-        modal.style.display = "none";
-    }
-    document.getElementsByTagName("BODY")[0].onload = function (){
-        modal.style.display = "block";
-    };
-    function buttonFunction(button) {
-        if (button === "close") {
-            document.cookie = "username=" + encodeURIComponent("cookie") +"; expires=Thu, 31 Dec 2099 23:59:59 GMT";
-        }
-    }
-    function setCookie(name, value, daysToLive) {
-        var cookie = name + "=" + encodeURIComponent(value);
-
-        if (typeof daysToLive === "number") {
-            /* Sets the max-age attribute so that the cookie expires
-            after the specified number of days */
-            cookie += "; max-age=" + (daysToLive * 24 * 60 * 60);
-
-            document.cookie = cookie;
-        }
-    }
 </script>

@@ -14,6 +14,8 @@
     <None Remove="Contents\SampleImages\icon.webp" />
     
     <None Remove="Contents\ModalOnly\css\modal-widget.css" />
+    <None Remove="Contents\ModalOnly\css\modal-widget.css" />
+    <None Remove="Scripts\modal.js" />
     
     <None Remove="logo.jpg" />
 	  <None Remove="plugin.json" />
@@ -28,6 +30,10 @@
     </Content>
 
     <Content Include="Contents\ModalOnly\css\modal-widget.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="Scripts\modal.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     
