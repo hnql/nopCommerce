@@ -1,0 +1,101 @@
+﻿@model Nop.Plugin.Widgets.HomePopUp.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="WidgetsHomePopUp" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-header">
+                        Configuration
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture_OverrideForStore" asp-input="Picture" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture" />
+                                <span asp-validation-for="Picture"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text_OverrideForStore" asp-input="Text" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text" />
+                                <span asp-validation-for="Text"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link_OverrideForStore" asp-input="Link" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link" />
+                                <span asp-validation-for="Link"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Position_OverrideForStore" asp-input="Position" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Position" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Position" />
+                                <span asp-validation-for="Position"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="ShowDate_OverrideForStore" asp-input="ShowDate" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="ShowDate" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ShowDate" />
+                                <span asp-validation-for="ShowDate"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="FromDate_OverrideForStore" asp-input="FromDate" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="FromDate" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="FromDate" />
+                                <span asp-validation-for="FromDate"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="ToDate_OverrideForStore" asp-input="ToDate" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="ToDate" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="ToDate" />
+                                <span asp-validation-for="ToDate"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

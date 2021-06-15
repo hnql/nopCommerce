@@ -292,6 +292,30 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddLocaleStringResource
                 );
             }
 
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.homepopup.showdate", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.homepopup.showdate",
+                        ResourceValue = "Show Date",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.homepopup.showdate", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.homepopup.showdate",
+                        ResourceValue = "Hiển thị ngày",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
             #endregion
         }
 
