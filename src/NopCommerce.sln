@@ -67,7 +67,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nop.Plugin.Booking.Main", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nop.Plugin.Widgets.BookingHomeBanner", "Plugins\Nop.Plugin.Widgets.BookingHomeBanner\Nop.Plugin.Widgets.BookingHomeBanner.csproj", "{CC6E2067-C586-48BE-8B71-B1792D20CF7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nop.Plugin.Widgets.Location", "Plugins\Nop.Plugin.Widgets.Location\Nop.Plugin.Widgets.Location.csproj", "{38475855-0ADF-4A88-9DD4-E5367EE92CCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nop.Plugin.Widgets.Location", "Plugins\Nop.Plugin.Widgets.Location\Nop.Plugin.Widgets.Location.csproj", "{38475855-0ADF-4A88-9DD4-E5367EE92CCB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nop.Plugin.Widgets.HomePopUp", "Plugins\Nop.Plugin.Widgets.HomePopUp\Nop.Plugin.Widgets.HomePopUp.csproj", "{9189E113-2BBF-4F74-B77A-9EEBDA217E01}"
 EndProject
@@ -370,6 +370,18 @@ Global
 		{CC6E2067-C586-48BE-8B71-B1792D20CF7C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CC6E2067-C586-48BE-8B71-B1792D20CF7C}.Release|x86.ActiveCfg = Release|Any CPU
 		{CC6E2067-C586-48BE-8B71-B1792D20CF7C}.Release|x86.Build.0 = Release|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Debug|x86.Build.0 = Debug|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Release|x86.ActiveCfg = Release|Any CPU
+		{38475855-0ADF-4A88-9DD4-E5367EE92CCB}.Release|x86.Build.0 = Release|Any CPU
 		{9189E113-2BBF-4F74-B77A-9EEBDA217E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9189E113-2BBF-4F74-B77A-9EEBDA217E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9189E113-2BBF-4F74-B77A-9EEBDA217E01}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
