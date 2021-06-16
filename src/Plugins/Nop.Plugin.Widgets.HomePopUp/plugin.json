@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Home pop up",
+  "SystemName": "Widgets.HomePopUp",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.HomePopUp.dll",
+  "Description": "A pop up in the home page."
+}

@@ -76,6 +76,246 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddLocaleStringResource
                 );
             }
 
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture1", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture1",
+                        ResourceValue = "Picture 1",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture1", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture1",
+                        ResourceValue = "Hình ảnh 1",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture2", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture2",
+                        ResourceValue = "Picture 2",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture2", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture2",
+                        ResourceValue = "Hình ảnh 2",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture3", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture3",
+                        ResourceValue = "Picture 3",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture3", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture3",
+                        ResourceValue = "Hình ảnh 3",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture4", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture4",
+                        ResourceValue = "Picture 4",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture4", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture4",
+                        ResourceValue = "Hình ảnh 4",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture5", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture5",
+                        ResourceValue = "Picture 5",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture5", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture5",
+                        ResourceValue = "Hình ảnh 5",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture",
+                        ResourceValue = "Picture",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.picture", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.picture",
+                        ResourceValue = "Hình ảnh",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.text", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.text",
+                        ResourceValue = "Comment",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.text", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.text",
+                        ResourceValue = "Văn bản",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.alttext", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.alttext",
+                        ResourceValue = "Image alternate text",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.alttext", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.alttext",
+                        ResourceValue = "Văn bản thay thế hình ảnh",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.link", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.link",
+                        ResourceValue = "Link",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.bookinghomebanner.link", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.bookinghomebanner.link",
+                        ResourceValue = "Liên kết",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.homepopup.showdate", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.homepopup.showdate",
+                        ResourceValue = "Show Date",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.homepopup.showdate", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.homepopup.showdate",
+                        ResourceValue = "Hiển thị ngày",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
             #endregion
         }
 
