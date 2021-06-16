@@ -79,7 +79,6 @@
     <Content Remove="Themes\BookingTheme\Content\js\discovery.js" />
     <Content Remove="Themes\BookingTheme\Content\js\header.custom.js" />
     <Content Remove="Themes\BookingTheme\Content\js\moment.min.js" />
-    <Content Remove="Themes\BookingTheme\Content\js\place_suggestion.js" />
     <Content Remove="Themes\BookingTheme\Content\js\promotion.js" />
     <Content Remove="Themes\BookingTheme\Content\js\user_manual.js" />
     <None Remove="Themes\BookingTheme\Content\images\banner_slide_1.png" />

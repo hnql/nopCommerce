@@ -1,0 +1,151 @@
+﻿@model Nop.Plugin.Widgets.Location.Models.PublicInfoModel
+@{
+    Layout = "";
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.Location/Scripts/place_suggestion.js");
+}
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="29" readmore="29">
+                <div class="title">
+                    <h2 class="extra-bold p--giant">Địa điểm nổi bật</h2>
+                    <p class="d-none d-md-block">Cùng Luxstay bắt đầu chuyến hành trình chinh phục thế giới của bạn</p>
+                </div>
+                <div>
+                    <div class="location-slider">
+                        @{ var dataSlide1 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture1Url},
+                                { "text", Model.Text1},
+                                { "link", Model.Link1},
+                                {"alttext", Model.AltText1 },
+                                {"stateProvince", Model.StateProvince1 },
+                                {"available", Model.Available1 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide1)
+                        }
+
+                        @{ var dataSlide2 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture2Url},
+                                { "text", Model.Text2},
+                                { "link", Model.Link2},
+                                {"alttext", Model.AltText2 },
+                                {"stateProvince", Model.StateProvince2 },
+                                {"available", Model.Available2 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide2) 
+                        }
+
+                        @{ var dataSlide3 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture3Url},
+                                { "text", Model.Text3},
+                                { "link", Model.Link3},
+                                {"alttext", Model.AltText3 },
+                                {"stateProvince", Model.StateProvince3 },
+                                {"available", Model.Available3 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide3) 
+                        }
+
+                        @{ var dataSlide4 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture4Url},
+                                { "text", Model.Text4},
+                                { "link", Model.Link4},
+                                {"alttext", Model.AltText4 },
+                                {"stateProvince", Model.StateProvince4 },
+                                {"available", Model.Available4 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide4) 
+                        }
+
+                        @{ var dataSlide5 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture5Url},
+                                { "text", Model.Text5},
+                                { "link", Model.Link5},
+                                {"alttext", Model.AltText5 },
+                                {"stateProvince", Model.StateProvince5 },
+                                {"available", Model.Available5 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide5) 
+                        }
+
+                        @{ var dataSlide6 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture6Url},
+                                { "text", Model.Text6},
+                                { "link", Model.Link6},
+                                {"alttext", Model.AltText6 },
+                                {"stateProvince", Model.StateProvince6 },
+                                {"available", Model.Available6 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide6) 
+                        }
+
+                        @{ var dataSlide7 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture7Url},
+                                { "text", Model.Text7},
+                                { "link", Model.Link7},
+                                {"alttext", Model.AltText7 },
+                                {"stateProvince", Model.StateProvince7 },
+                                {"available", Model.Available7 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide7) 
+                        }
+
+                        @{ var dataSlide8 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture8Url},
+                                { "text", Model.Text8},
+                                { "link", Model.Link8},
+                                {"alttext", Model.AltText8 },
+                                {"stateProvince", Model.StateProvince8 },
+                                {"available", Model.Available8 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide8) 
+                        }
+
+                        @{ var dataSlide9 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture9Url},
+                                { "text", Model.Text9},
+                                { "link", Model.Link9},
+                                {"alttext", Model.AltText9 },
+                                {"stateProvince", Model.StateProvince9 },
+                                {"available", Model.Available9 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide9) 
+                        }
+
+                        @{ var dataSlide10 = new ViewDataDictionary(ViewData)
+                           {
+                                {"pictureUrl", Model.Picture10Url},
+                                { "text", Model.Text10},
+                                { "link", Model.Link10},
+                                {"alttext", Model.AltText10 },
+                                {"stateProvince", Model.StateProvince10 },
+                                {"available", Model.Available10 }
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.Location/Views/_PublicInfo.SliderLine.cshtml", dataSlide10) 
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
