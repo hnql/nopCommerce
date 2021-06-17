@@ -858,6 +858,7 @@ namespace Nop.Services.Catalog
                             (searchManufacturerPartNumber && p.ManufacturerPartNumber == keywords) ||
                             (searchSku && p.Sku == keywords)
                         select p.Id;
+                var test = from p in _productRepository.Table select p;
 
                 //search by SKU for ProductAttributeCombination
                 if (searchSku)

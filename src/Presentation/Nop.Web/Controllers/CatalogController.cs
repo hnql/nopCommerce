@@ -1,13 +1,18 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Nop.Core;
 using Nop.Core.Domain.Catalog;
+using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Vendors;
+using Nop.Data;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
+using Nop.Services.Directory;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Security;
@@ -17,6 +22,8 @@ using Nop.Web.Factories;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Catalog;
+
+
 
 namespace Nop.Web.Controllers
 {
@@ -44,6 +51,10 @@ namespace Nop.Web.Controllers
         private readonly MediaSettings _mediaSettings;
         private readonly VendorSettings _vendorSettings;
 
+        private readonly IRepository<Address> _addressRepository;
+        private readonly IRepository<StateProvince> _stateProvinceRepository;
+        private readonly IRepository<Vendor> _vendorRepository;
+        private readonly IRepository<Product> _productRepository;
         #endregion
 
         #region Ctor
@@ -66,7 +77,11 @@ namespace Nop.Web.Controllers
             IWebHelper webHelper,
             IWorkContext workContext,
             MediaSettings mediaSettings,
-            VendorSettings vendorSettings)
+            VendorSettings vendorSettings
+            , IRepository<Address> addressRepository,
+            IRepository<StateProvince> stateProvinceRepository,
+            IRepository<Vendor> vendorRepository,
+            IRepository<Product> productRepository)
         {
             _catalogSettings = catalogSettings;
             _aclService = aclService;
@@ -87,6 +102,10 @@ namespace Nop.Web.Controllers
             _workContext = workContext;
             _mediaSettings = mediaSettings;
             _vendorSettings = vendorSettings;
+            _addressRepository = addressRepository;
+            _stateProvinceRepository = stateProvinceRepository;
+            _vendorRepository = vendorRepository;
+            _productRepository = productRepository;
         }
 
         #endregion
@@ -325,10 +344,12 @@ namespace Nop.Web.Controllers
 
             if (string.IsNullOrWhiteSpace(term) || term.Length < _catalogSettings.ProductSearchTermMinimumLength)
                 return Content("");
-
+            
             //products
             var productNumber = _catalogSettings.ProductSearchAutoCompleteNumberOfProducts > 0 ?
                 _catalogSettings.ProductSearchAutoCompleteNumberOfProducts : 10;
+
+            /////////find stateprovince, compare result's to products's number, if it's greater then use it
 
             var products = await _productService.SearchProductsAsync(0,
                 storeId: (await _storeContext.GetCurrentStoreAsync()).Id,
@@ -337,19 +358,36 @@ namespace Nop.Web.Controllers
                 visibleIndividuallyOnly: true,
                 pageSize: productNumber);
 
+            //future: hava to update below var based on user's selected country
+            const int vnCountryId = 242;
+            var provinces = await SearchStateProvincesAsync(term, vnCountryId);
+            //future: add url to stateProvince page
+            if (products.Count < provinces.Count())
+            {
+                var res = (from p in provinces
+                            select new
+                            {
+                                label = p.Name,
+                                producturl = "",
+                                productpictureurl = "",
+                                showlinktoresultsearch = ""
+                            }).ToList();
+                return Json(res);
+            }
             var showLinkToResultSearch = _catalogSettings.ShowLinkToAllResultInSearchAutoComplete && (products.TotalCount > productNumber);
 
             var models = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, _catalogSettings.ShowProductImagesInSearchAutoComplete, _mediaSettings.AutoCompleteSearchThumbPictureSize)).ToList();
             var result = (from p in models
-                          select new
-                          {
-                              label = p.Name,
-                              producturl = Url.RouteUrl("Product", new { SeName = p.SeName }),
-                              productpictureurl = p.DefaultPictureModel.ImageUrl,
-                              showlinktoresultsearch = showLinkToResultSearch
-                          })
+                        select new
+                        {
+                            label = p.Name,
+                            producturl = Url.RouteUrl("Product", new { SeName = p.SeName }),
+                            productpictureurl = p.DefaultPictureModel.ImageUrl,
+                            showlinktoresultsearch = showLinkToResultSearch
+                        })
                 .ToList();
             return Json(result);
+            
         }
 
         //ignore SEO friendly URLs checks
@@ -426,7 +464,29 @@ namespace Nop.Web.Controllers
 
             return Task.FromResult(isAvailable);
         }
-
+        private async Task<IEnumerable<StateProvince>> SearchStateProvincesAsync(string keywords, int countryId=242)
+        {
+            var result = new List<StateProvince>();
+            if (string.IsNullOrEmpty(keywords))
+            {
+                return null;
+                
+            }
+            var productsByKeywords = (from v in _vendorRepository.Table
+                                      from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
+                                      from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
+                                      from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
+                                      where !v.Deleted && v.Active
+                                      group new { sp, p } by new { sp.Name } into g
+                                      select new { Name = g.Key.Name, ProductCount = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
+                                   ).Distinct().ToListAsync();
+            foreach (var province in productsByKeywords)
+            {
+                var model = new Product();
+                model.Name = "";
+            }
+            return result;
+        }
         #endregion
     }
 }

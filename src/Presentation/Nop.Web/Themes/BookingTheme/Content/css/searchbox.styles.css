@@ -388,3 +388,44 @@
   background: rgba(0,0,0,.04);
   border-radius: 50%
 }
+
+.ui-autocomplete {
+  position: absolute;
+  cursor: default;
+  width: 30rem;
+  position: absolute;
+  top: 100% !important;
+  padding: 20px !important;
+  overflow-y: auto;
+  max-height: 15rem;
+  transform: translateY(6px);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
+  border-radius: 10px;
+}
+.ui-state-active {
+  border: none !important;
+  background: none !important;
+  font-weight: normal !important;
+  color: #f65e39 !important;
+}
+.ui-menu-item {
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ui-menu-item-wrapper img {
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  display: flex;
+  background: #dbdbdb;
+  object-fit: cover;
+}
+.ui-menu-item-wrapper span {
+  margin-bottom: 0;
+  width: calc(100% - 50px);
+  padding-left: 1rem;
+}
