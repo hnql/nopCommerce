@@ -392,7 +392,7 @@
 .ui-autocomplete {
   position: absolute;
   cursor: default;
-  width: 30rem;
+  width: 100% !important;
   position: absolute;
   top: 100% !important;
   padding: 20px !important;
@@ -401,6 +401,8 @@
   transform: translateY(6px);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
   border-radius: 10px;
+  left: 0 !important;
+  
 }
 .ui-state-active {
   border: none !important;
@@ -429,3 +431,25 @@
   width: calc(100% - 50px);
   padding-left: 1rem;
 }
+.thumb-suggestion {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  display: flex;
+  background: #dbdbdb;
+  padding: 0!important
+}
+  .thumb-suggestion img, .thumb-suggestion svg {
+    width: 100%;
+    align-self: center;
+  }
+.search-suggest__item-text {
+  margin-bottom: 0;
+  width: calc(100% - 50px);
+  padding-left: 1rem;
+}
+  .search-suggest__item-text p {
+    margin-bottom: 0 !important;
+  }
+

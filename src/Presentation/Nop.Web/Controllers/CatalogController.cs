@@ -12,7 +12,6 @@ using Nop.Core.Domain.Vendors;
 using Nop.Data;
 using Nop.Services.Catalog;
 using Nop.Services.Common;
-using Nop.Services.Directory;
 using Nop.Services.Localization;
 using Nop.Services.Logging;
 using Nop.Services.Security;
@@ -22,8 +21,7 @@ using Nop.Web.Factories;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Catalog;
-
-
+using Nop.Web.Models.Custom;
 
 namespace Nop.Web.Controllers
 {
@@ -348,9 +346,6 @@ namespace Nop.Web.Controllers
             //products
             var productNumber = _catalogSettings.ProductSearchAutoCompleteNumberOfProducts > 0 ?
                 _catalogSettings.ProductSearchAutoCompleteNumberOfProducts : 10;
-
-            /////////find stateprovince, compare result's to products's number, if it's greater then use it
-
             var products = await _productService.SearchProductsAsync(0,
                 storeId: (await _storeContext.GetCurrentStoreAsync()).Id,
                 keywords: term,
@@ -358,19 +353,17 @@ namespace Nop.Web.Controllers
                 visibleIndividuallyOnly: true,
                 pageSize: productNumber);
 
-            //future: hava to update below var based on user's selected country
-            const int vnCountryId = 242;
-            var provinces = await SearchStateProvincesAsync(term, vnCountryId);
+            var provinces = await SearchStateProvincesAsync(term);
             //future: add url to stateProvince page
             if (products.Count < provinces.Count())
             {
                 var res = (from p in provinces
                             select new
                             {
+                                type="province",
                                 label = p.Name,
-                                producturl = "",
-                                productpictureurl = "",
-                                showlinktoresultsearch = ""
+                                avaiablelocation = p.AvaiableLocation,
+                                showlinktoresultsearch = "a"
                             }).ToList();
                 return Json(res);
             }
@@ -380,10 +373,13 @@ namespace Nop.Web.Controllers
             var result = (from p in models
                         select new
                         {
+                            type="product",
                             label = p.Name,
                             producturl = Url.RouteUrl("Product", new { SeName = p.SeName }),
                             productpictureurl = p.DefaultPictureModel.ImageUrl,
                             showlinktoresultsearch = showLinkToResultSearch
+                            //add location
+
                         })
                 .ToList();
             return Json(result);
@@ -464,28 +460,42 @@ namespace Nop.Web.Controllers
 
             return Task.FromResult(isAvailable);
         }
-        private async Task<IEnumerable<StateProvince>> SearchStateProvincesAsync(string keywords, int countryId=242)
+        private async Task<IEnumerable<ProvinceSearchModel>> SearchStateProvincesAsync(string keywords)
         {
-            var result = new List<StateProvince>();
             if (string.IsNullOrEmpty(keywords))
             {
                 return null;
                 
             }
-            var productsByKeywords = (from v in _vendorRepository.Table
-                                      from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
-                                      from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
-                                      from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
-                                      where !v.Deleted && v.Active
-                                      group new { sp, p } by new { sp.Name } into g
-                                      select new { Name = g.Key.Name, ProductCount = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
+            var provinces = await (from v in _vendorRepository.Table
+                                            from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
+                                            from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
+                                            from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
+                                            where !v.Deleted && v.Active 
+                                            group new { sp, p } by new { sp.Name } into g
+                                            where g.Key.Name.Contains(keywords)
+                                            select new { Name = g.Key.Name, ProductCount = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
                                    ).Distinct().ToListAsync();
-            foreach (var province in productsByKeywords)
+            var result = new List<ProvinceSearchModel>();
+            foreach (var province in provinces)
             {
-                var model = new Product();
-                model.Name = "";
+                var model = new ProvinceSearchModel();
+                model.Name = province.Name;
+                model.AvaiableLocation = province.ProductCount;
+                result.Add(model);
             }
             return result;
+        }
+        public virtual async Task<IPagedList<ProductWithLocationModel>> AddLocationToProduct(IEnumerable<Product> products)
+        {
+            var productWithLocation= await (from v in _vendorRepository.Table
+                                            from p in products.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
+                                            from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
+                                            from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
+                                            where !v.Deleted && v.Active
+                                            group new { sp, p } by new { sp.Name } into g
+                                            select new { Name = g.Key.Name, ProductCount = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
+                                   ).Distinct().ToListAsync();
         }
         #endregion
     }
