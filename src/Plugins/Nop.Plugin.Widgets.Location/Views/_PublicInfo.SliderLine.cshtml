@@ -1,0 +1,42 @@
+﻿@model Nop.Plugin.Widgets.Location.Models.PublicInfoModel
+
+@{
+    var pictureUrl = ViewData["pictureUrl"]?.ToString() ?? "";
+    var link = ViewData["link"]?.ToString() ?? "";
+    var text = ViewData["text"]?.ToString() ?? "";
+    var alttext = ViewData["alttext"]?.ToString() ?? "";
+    var stateProvince = ViewData["stateProvince"]?.ToString() ?? "";
+    var available = ViewData["available"]?.ToString() ?? "";
+
+    if (!string.IsNullOrEmpty(pictureUrl))
+    {
+        <div>
+            @if (!string.IsNullOrEmpty(link))
+            {
+                <a href="@link" aria-label="@alttext" target="_blank" tabindex="0" style="width: 100%; display: inline-block;">
+                    <div class="product is-relative">
+                        <div class="product__cover">
+                            <img src="@pictureUrl" alt="@alttext" title="@text" width="336" height="420" class="product__image" lazy="loaded">
+                        </div>
+                        <div class="product__content is-absolute white-deep">
+                            <div class="product__title extra-bold">@stateProvince</div>
+                            <span class="product__price d-block"><b>@available</b> Chỗ ở</span>
+                        </div>
+                    </div>
+                </a>
+            }
+            else
+            {
+                <div class="product is-relative">
+                    <div class="product__cover">
+                        <img src="@pictureUrl" alt="@alttext" title="@text" width="336" height="420" class="product__image" lazy="loaded">
+                    </div>
+                    <div class="product__content is-absolute white-deep">
+                        <div class="product__title extra-bold">@stateProvince</div>
+                        <span class="product__price d-block"><b>@available</b> Chỗ ở</span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}
