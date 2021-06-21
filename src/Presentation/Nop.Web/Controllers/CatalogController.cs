@@ -368,7 +368,7 @@ namespace Nop.Web.Controllers
                 return Json(res);
             }
             var showLinkToResultSearch = _catalogSettings.ShowLinkToAllResultInSearchAutoComplete && (products.TotalCount > productNumber);
-
+            //why not add location inside the method below?
             var models = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, _catalogSettings.ShowProductImagesInSearchAutoComplete, _mediaSettings.AutoCompleteSearchThumbPictureSize)).ToList();
             var result = (from p in models
                         select new
@@ -485,17 +485,6 @@ namespace Nop.Web.Controllers
                 result.Add(model);
             }
             return result;
-        }
-        public virtual async Task<IPagedList<ProductWithLocationModel>> AddLocationToProduct(IEnumerable<Product> products)
-        {
-            var productWithLocation= await (from v in _vendorRepository.Table
-                                            from p in products.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
-                                            from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
-                                            from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
-                                            where !v.Deleted && v.Active
-                                            group new { sp, p } by new { sp.Name } into g
-                                            select new { Name = g.Key.Name, ProductCount = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
-                                   ).Distinct().ToListAsync();
         }
         #endregion
     }
