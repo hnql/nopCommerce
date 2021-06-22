@@ -612,9 +612,5 @@ namespace Nop.Core.Domain.Catalog
             get => (RentalPricePeriod)RentalPricePeriodId;
             set => RentalPricePeriodId = (int)value;
         }
-        /// <summary>
-        /// Gets or sets the location name of the product
-        /// </summary>
-        public string LocationName { get; set; }
     }
 }

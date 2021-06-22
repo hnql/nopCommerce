@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -370,17 +371,18 @@ namespace Nop.Web.Controllers
             var showLinkToResultSearch = _catalogSettings.ShowLinkToAllResultInSearchAutoComplete && (products.TotalCount > productNumber);
             //why not add location inside the method below?
             var models = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, _catalogSettings.ShowProductImagesInSearchAutoComplete, _mediaSettings.AutoCompleteSearchThumbPictureSize)).ToList();
-            var result = (from p in models
-                        select new
+            var productsWithLocation = (await AddLocationToProductOverview(models)).ToList();
+            var result = (from p in productsWithLocation
+                          select new
                         {
                             type="product",
                             label = p.Name,
                             producturl = Url.RouteUrl("Product", new { SeName = p.SeName }),
                             productpictureurl = p.DefaultPictureModel.ImageUrl,
-                            showlinktoresultsearch = showLinkToResultSearch
-                            //add location
+                            showlinktoresultsearch = showLinkToResultSearch,
+                            location= String.IsNullOrWhiteSpace(p.LocationName)?"": p.LocationName
 
-                        })
+                          })
                 .ToList();
             return Json(result);
             
@@ -467,24 +469,37 @@ namespace Nop.Web.Controllers
                 return null;
                 
             }
-            var provinces = await (from v in _vendorRepository.Table
+            List<ProvinceSearchModel> provinces = await (from v in _vendorRepository.Table
                                             from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
                                             from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
                                             from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
                                             where !v.Deleted && v.Active 
                                             group new { sp, p } by new { sp.Name } into g
                                             where g.Key.Name.Contains(keywords)
-                                            select new { Name = g.Key.Name, ProductCount = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
+                                            select new ProvinceSearchModel { Name = g.Key.Name, AvaiableLocation = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
                                    ).Distinct().ToListAsync();
-            var result = new List<ProvinceSearchModel>();
-            foreach (var province in provinces)
+            return provinces;
+        }
+        private async Task<IEnumerable<ProductOverviewModel>> AddLocationToProductOverview(List<ProductOverviewModel> products)
+        {
+            var locations = await (from v in _vendorRepository.Table
+                                              from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
+                                              from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
+                                              where !v.Deleted && v.Active
+                                              group new { sp, v } by new { Id=v.Id, Name = sp.Name } into g
+                                              select new  { Id = g.Key.Id, Name=g.Key.Name }
+                                   ).Distinct().ToListAsync();
+            for (int i = 0; i < products.Count; i++)
             {
-                var model = new ProvinceSearchModel();
-                model.Name = province.Name;
-                model.AvaiableLocation = province.ProductCount;
-                result.Add(model);
+                foreach(var location in locations)
+                {
+                    if (location.Id == products[i].VendorId)
+                    {
+                        products[i].LocationName = location.Name;
+                    }
+                }
             }
-            return result;
+            return products;
         }
         #endregion
     }

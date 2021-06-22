@@ -77,7 +77,7 @@
                                 .append("<div class= \"thumb-suggestion\">" + (item.productpictureurl ? ("<img src=\" "+ item.productpictureurl +" \">") : (provinceImg)) + "</div>" +
                                     "<div class=\"search-suggest__item-text\">"+
                                 "<p class=\"text-ellipsis\" title=" + item.label + ">" + item.label + "</p>" +
-                                "<small>" + (item.avaiablelocation ? (item.avaiablelocation+" Chỗ ở") : ("wer")) + "</small>" +
+                                "<small>" + (item.avaiablelocation ? (item.avaiablelocation + " Chỗ ở") : (item.location)) + "</small>" +
                                     "</div>")
                             @*.append(imgForProvince+"</div> <div class=\"search-suggest__item-text\"><p class=\"text-ellipsis\" title=" + t.label + ">" + t.label + "</p><small>" + t.avaiablelocation ? t.avaiablelocation : "" + "</small> </div>")*@
                             .appendTo(ul);
