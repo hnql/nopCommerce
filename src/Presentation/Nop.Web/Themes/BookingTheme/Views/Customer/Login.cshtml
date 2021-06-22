@@ -25,18 +25,18 @@
                 <div class="form-group">
                     <div class="input-group__icon is-relative">
                         <input asp-for="Email" name="username" placeholder="Địa chỉ email" autocomplete="username" data-vv-as="Email" class="input" aria-required="true" aria-invalid="false" />
-                        <span class="is-absolute input-icon"><i class="icon-envelope"></i></span>
+                        <span class="is-absolute input-icon" style="top:12px"><i class="icon-envelope"></i></span>
                         <span asp-validation-for="Email"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group__icon is-relative">
                         <input asp-for="Password" name="password" type="password" placeholder="Mật khẩu" autocomplete="password" class="input" aria-required="true" aria-invalid="false" />
-                        <span class="is-absolute input-icon"><img src="./Themes/BookingTheme/Content/images/locked.svg" width="14"></span>
+                        <span class="is-absolute input-icon" style="top:12px"><img src="./Themes/BookingTheme/Content/images/locked.svg" width="14"></span>
                         <span asp-validation-for="Password"></span>
                     </div>
                 </div>
-                <button type="submit" class="account__btn btn btn-grad--primary btn--shadow btn--md btn--radius btn--full bold">Đăng nhập</button>
+                <button type="submit" class="account__btn btn btn-grad--primary btn--shadow btn--md btn--radius btn--full bold">@T("account.login")</button>
                 <div class="center-xs">
                     <div>
                         Quên mật khẩu?
@@ -46,7 +46,7 @@
                     </div>
                     <div class="mt--30">Bạn chưa có tài khoản Luxstay?
                         <span class="text-orange bold" style="cursor: pointer;">
-                            <a asp-route="Register" class="color-i bold">Đăng ký</a>
+                            <a asp-route="Register" class="color-i bold">@T("account.register")</a>
                         </span>
                     </div>
                 </div>

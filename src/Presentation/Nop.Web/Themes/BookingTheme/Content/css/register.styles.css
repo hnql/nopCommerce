@@ -18,15 +18,14 @@
 }
 
   .country .code {
-    padding: 0;
+    padding: 0px 0px 0px 30px;
     display: flex;
     align-items: center;
-    justify-content: center;
     height: 100%;
     background: #f6f6f6;
     border-radius: 2rem;
-    width: 120px;
-    margin-right: 1rem
+    width: 140px;
+    margin-right: 1rem;
   }
 
 .dropdown-flag {
