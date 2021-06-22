@@ -18795,6 +18795,12 @@
   <LocaleResource Name="Search.SearchBox.Tooltip">
     <Value>Search store</Value>
   </LocaleResource>
+  <LocaleResource Name="Search.SearchBox.EnterDates">
+    <Value>Dates</Value>
+  </LocaleResource>
+  <LocaleResource Name="Search.SearchBox.EnterGuests">
+    <Value>Guests</Value>
+  </LocaleResource>
   <LocaleResource Name="Search.SearchInDescriptions">
     <Value>Search In product descriptions</Value>
   </LocaleResource>

@@ -392,12 +392,12 @@
 .ui-autocomplete {
   position: absolute;
   cursor: default;
-  width: 100% !important;
+  width: 110% !important;
   position: absolute;
   top: 100% !important;
   padding: 20px !important;
   overflow-y: auto;
-  max-height: 15rem;
+  max-height: 30rem;
   transform: translateY(6px);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
   border-radius: 10px;
