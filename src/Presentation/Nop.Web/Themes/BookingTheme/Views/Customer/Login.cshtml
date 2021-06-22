@@ -3,7 +3,7 @@
 @using Nop.Core.Domain.Customers
 @inject IWebHelper webHelper
 @{
-    Layout = "_ColumnsOne";
+    Layout = "_ColumnsThree";
 
     //title
     Html.AddTitleParts(T("PageTitle.Login").Text);
@@ -13,7 +13,70 @@
     //register URL with return URL (if specified)
     var registerUrl = Url.RouteUrl("Register", new { returnUrl = this.Context.Request.Query["returnUrl"] }, webHelper.GetCurrentRequestProtocol());
 }
-<div class="page login-page">
+
+@await Html.PartialAsync("_ExternalAuthentication.Errors")
+<div class="col-md-4 col-xs-12 first-xs">
+    <div class="account">
+        <div>
+            <h3 class="account__title">Đăng nhập</h3>
+            <div class="input-group"><label class="input-group__label bold is-block">Đăng nhập Luxstay để trải nghiệm</label></div>
+            <form class="account__body" asp-route="Login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
+                <div asp-validation-summary="ModelOnly" class="message-error alert alert-danger">@T("Account.Login.Unsuccessful")</div>
+                <div class="form-group">
+                    <div class="input-group__icon is-relative">
+                        <input asp-for="Email" name="username" placeholder="Địa chỉ email" autocomplete="username" data-vv-as="Email" class="input" aria-required="true" aria-invalid="false" />
+                        <span class="is-absolute input-icon" style="top:12px"><i class="icon-envelope"></i></span>
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group__icon is-relative">
+                        <input asp-for="Password" name="password" type="password" placeholder="Mật khẩu" autocomplete="password" class="input" aria-required="true" aria-invalid="false" />
+                        <span class="is-absolute input-icon" style="top:12px"><img src="./Themes/BookingTheme/Content/images/locked.svg" width="14"></span>
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                </div>
+                <button type="submit" class="account__btn btn btn-grad--primary btn--shadow btn--md btn--radius btn--full bold">@T("account.login")</button>
+                <div class="center-xs">
+                    <div>
+                        Quên mật khẩu?
+                        <a asp-route="PasswordRecovery" class="color-i bold">
+                            Nhấn vào đây
+                        </a>
+                    </div>
+                    <div class="mt--30">Bạn chưa có tài khoản Luxstay?
+                        <span class="text-orange bold" style="cursor: pointer;">
+                            <a asp-route="Register" class="color-i bold">@T("account.register")</a>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            <div class="account__body">
+                <div class="center-xs">Hoặc</div>
+                <div class="account__3rd">
+                    <div>
+                        <div class="btn btn-outline--secondary btn--md btn--radius btn--full is-relative"><span>Đăng nhập với Facebook</span> <i class="is-absolute icon-facebook-square"></i></div>
+                    </div>
+                    <div class="mt-2">
+                        <div id="g-signin-btn" class="btn btn-outline--secondary btn--md btn--radius btn--full is-relative">
+                            <span>Đăng nhập với Google</span>
+                            <svg version="1.1" viewBox="0 0 16 16" class="is-absolute svg-icon svg-fill">
+                                <g fill="none">
+                                    <path pid="0" fill="#557EBF" d="M15.85 8.2c0-.55-.05-1.1-.15-1.65H8.15v3.1h4.3c-.2 1-.75 1.85-1.6 2.4v2h2.6c1.5-1.4 2.4-3.45 2.4-5.85z"></path>
+                                    <path pid="1" fill="#36A852" d="M8.15 16c2.15 0 3.95-.7 5.3-1.95l-2.6-2c-.7.5-1.65.75-2.7.75-2.1 0-3.85-1.4-4.5-3.3H1v2.05C2.35 14.2 5.05 16 8.15 16z"></path>
+                                    <path pid="2" fill="#F9BC15" d="M3.7 9.5c-.15-.5-.25-1-.25-1.5s.1-1.05.25-1.5V4.4H1C.45 5.5.15 6.7.15 8c0 1.3.3 2.5.85 3.6l2.7-2.1z"></path>
+                                    <path pid="3" fill="#EA4535" d="M8.15 3.2c1.15 0 2.25.4 3.05 1.2l2.3-2.3C12.15.8 10.3 0 8.15 0 5.05 0 2.35 1.8 1 4.4l2.7 2.1c.6-1.9 2.4-3.3 4.45-3.3z"></path>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="page login-page">
     <div class="page-title panel-heading">
         <h1>@T("Account.Login.Welcome")</h1>
     </div>
@@ -22,17 +85,17 @@
         <div class="customer-blocks">
             <div class="row">
                 @if (Model.RegistrationType == UserRegistrationType.Disabled)
-                {				
+                {
                     <div class="col-sm-6 col-md-6">
-						<div class="new-wrapper">
-							<div class="title">
-								@T("Account.Register")
-							</div>
-							<div class="text">
-								@T("Account.Register.Result.Disabled")
-							</div>
-						</div>
-					</div>
+                        <div class="new-wrapper">
+                            <div class="title">
+                                @T("Account.Register")
+                            </div>
+                            <div class="text">
+                                @T("Account.Register.Result.Disabled")
+                            </div>
+                        </div>
+                    </div>
                 }
                 else if (Model.CheckoutAsGuest)
                 {
@@ -147,4 +210,4 @@
     <div class="col-sm-12 col-md-12">
         @await Component.InvokeAsync("TopicBlock", new { systemName = "LoginRegistrationInfo" })
     </div>
-</div>
+</div>*@
