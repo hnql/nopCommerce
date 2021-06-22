@@ -95,6 +95,11 @@ namespace Nop.Web.Infrastructure
                 pattern: $"catalog/searchtermautocomplete",
                 defaults: new { controller = "Catalog", action = "SearchTermAutoComplete" });
 
+            //custom autocomplete search term (AJAX)
+            endpointRouteBuilder.MapControllerRoute(name: "Custom_ProductSearchAutoComplete",
+                pattern: $"catalog/custom-searchtermautocomplete",
+                defaults: new { controller = "Custom_Catalog", action = "SearchTermAutoComplete" });
+
             //change currency
             endpointRouteBuilder.MapControllerRoute(name: "ChangeCurrency",
                 pattern: $"{lang}/changecurrency/{{customercurrency:min(0)}}",

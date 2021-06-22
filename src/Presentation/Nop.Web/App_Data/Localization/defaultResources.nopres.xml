@@ -1471,7 +1471,7 @@
     <Value>The affiliate has been deleted successfully.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Affiliates.Description">
-    <Value>Affiliate is an Internet-based marketing practice in which a business rewards one or more affiliates for each visitor or customer. It is a web-based pay-for-performance program designed to compensate affiliate partner for driving qualified leads or sales to a merchant web site.</Value>
+    <Value>Affiliate is an Internet-based marketing practice in which a business rewards one or more affiliates for each visitor or customer. It is a web-based pay-for-performance program designed to compensate affiliate partner for driving qualified leads or sales to a merchant web site.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Affiliates.EditAffiliateDetails">
     <Value>Edit affiliate details</Value>
@@ -2722,7 +2722,7 @@
     <Value>Product</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.CrossSells.Hint">
-    <Value>The Cross-sell products option provides the opportunity to buy additional products that generally go with the selected product. They are displayed at the bottom of the checkout page.</Value>
+    <Value>The Cross-sell products option provides the opportunity to buy additional products that generally go with the selected product. They are displayed at the bottom of the checkout page.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Catalog.Products.CrossSells.SaveBeforeEdit">
     <Value>You need to save the product before you can add cross-sell products for this product page.</Value>
@@ -10150,16 +10150,16 @@
     <Value>The message template has been deleted successfully.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Blog.BlogComment">
-    <Value><![CDATA[This message template is used when a new blog comment to the certain blog post is created. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new blog comments</strong> in Configuration - Settings - Blog settings.]]></Value>
+    <Value><![CDATA[This message template is used when a new blog comment to the certain blog post is created. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new blog comments</strong> in Configuration - Settings - Blog settings.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Customer.BackInStock">
-    <Value><![CDATA[This message template is used when the customer subscribed for the certain product which is unavailable at the moment to notify the customer about the product being back to stock again. You can set up this option by ticking the checkbox <strong>Allow back in stock subscriptions</strong> in Product info tab - Inventory section.]]></Value>
+    <Value><![CDATA[This message template is used when the customer subscribed for the certain product which is unavailable at the moment to notify the customer about the product being back to stock again. You can set up this option by ticking the checkbox <strong>Allow back in stock subscriptions</strong> in Product info tab - Inventory section.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Customer.EmailRevalidationMessage">
     <Value>This message template is used when a customer changes an email address in his account. The customer receives a message to confirm an email address used when changing email address.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Customer.EmailValidationMessage">
-    <Value>This message template is used when Configuration - Settings - Customer settings - "Registration method" dropdownlist is set to "Email validation". The customer receives a message to confirm an email address used when registering.</Value>
+    <Value>This message template is used when Configuration - Settings - Customer settings - "Registration method" dropdownlist is set to "Email validation". The customer receives a message to confirm an email address used when registering.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.Customer.NewOrderNote">
     <Value>This message template is used when the customer gets a notification about a new order being placed from this account.</Value>
@@ -10183,7 +10183,7 @@
     <Value>This message template is used to send a notification to a customer about getting a gift card.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.NewCustomer.Notification">
-    <Value><![CDATA[This message template is used when a new customer is registered. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new customer registration</strong> in Configuration - Settings - Customer settings.]]></Value>
+    <Value><![CDATA[This message template is used when a new customer is registered. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new customer registration</strong> in Configuration - Settings - Customer settings.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.NewReturnRequest.CustomerNotification">
     <Value>This message template is used to notify a customer about a new return request submitted from his/her account.</Value>
@@ -10192,7 +10192,7 @@
     <Value>This message template is used when a new return request is created. The message is received by a store owner.</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.News.NewsComment">
-    <Value><![CDATA[This message template is used when a new comment to the certain news item is created. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new news comments</strong> in Configuration - Settings - News settings.]]></Value>
+    <Value><![CDATA[This message template is used when a new comment to the certain news item is created. The message is received by a store owner. You can set up this option by ticking the checkbox <strong>Notify about new news comments</strong> in Configuration - Settings - News settings.]]></Value>
   </LocaleResource>
   <LocaleResource Name="Admin.ContentManagement.MessageTemplates.Description.NewsLetterSubscription.ActivationMessage">
     <Value>This message template is used when a customer subscribes to the newsletter to confirm the subscription.</Value>
@@ -18794,12 +18794,6 @@
   </LocaleResource>
   <LocaleResource Name="Search.SearchBox.Tooltip">
     <Value>Search store</Value>
-  </LocaleResource>
-  <LocaleResource Name="Search.SearchBox.EnterDates">
-    <Value>Dates</Value>
-  </LocaleResource>
-  <LocaleResource Name="Search.SearchBox.EnterGuests">
-    <Value>Guests</Value>
   </LocaleResource>
   <LocaleResource Name="Search.SearchInDescriptions">
     <Value>Search In product descriptions</Value>

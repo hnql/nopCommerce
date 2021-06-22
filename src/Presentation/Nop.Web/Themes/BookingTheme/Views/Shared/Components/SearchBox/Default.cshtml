@@ -54,7 +54,7 @@
                     $('#small-searchterms').autocomplete({
                             delay: 500,
                             minLength: @(Model.SearchTermMinimumLength.ToString()),
-                            source: '@(Url.RouteUrl("ProductSearchAutoComplete"))',
+                            source: '@(Url.RouteUrl("Custom_ProductSearchAutoComplete"))',
                             appendTo: '.search-box',
                             select: function(event, ui) {
                                 $("#small-searchterms").val(ui.item.label);
@@ -79,7 +79,6 @@
                                 "<p class=\"text-ellipsis\" title=" + item.label + ">" + item.label + "</p>" +
                                 "<small>" + (item.avaiablelocation ? (item.avaiablelocation + " Chỗ ở") : (item.location)) + "</small>" +
                                     "</div>")
-                            @*.append(imgForProvince+"</div> <div class=\"search-suggest__item-text\"><p class=\"text-ellipsis\" title=" + t.label + ">" + t.label + "</p><small>" + t.avaiablelocation ? t.avaiablelocation : "" + "</small> </div>")*@
                             .appendTo(ul);
                         };
                 });
