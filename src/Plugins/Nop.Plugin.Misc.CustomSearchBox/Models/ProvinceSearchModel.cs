@@ -1,6 +1,6 @@
 ﻿using Nop.Web.Framework.Models;
 
-namespace Nop.Web.Models.Custom
+namespace Nop.Plugin.Misc.CustomSearchBox.Models
 {
     public partial record ProvinceSearchModel : BaseNopModel
     {

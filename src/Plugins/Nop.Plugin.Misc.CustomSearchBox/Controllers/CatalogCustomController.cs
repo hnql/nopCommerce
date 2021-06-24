@@ -18,16 +18,17 @@ using Nop.Services.Logging;
 using Nop.Services.Security;
 using Nop.Services.Stores;
 using Nop.Services.Vendors;
+using Nop.Web.Controllers;
 using Nop.Web.Factories;
 using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Catalog;
-using Nop.Web.Models.Custom;
+using Nop.Plugin.Misc.CustomSearchBox.Models;
 
-namespace Nop.Web.Controllers
+namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
 {
-    
-    public class Custom_CatalogController : BasePublicController
+
+    public class CatalogCustomController : BasePublicController
     {
         private readonly CatalogSettings _catalogSettings;
         private readonly IProductService _productService;
@@ -39,7 +40,7 @@ namespace Nop.Web.Controllers
         private readonly IRepository<Address> _addressRepository;
         private readonly IRepository<StateProvince> _stateProvinceRepository;
         private readonly IRepository<Vendor> _vendorRepository;
-        public Custom_CatalogController(
+        public CatalogCustomController(
             CatalogSettings catalogSettings,
             IProductService productService,
             IStoreContext storeContext,

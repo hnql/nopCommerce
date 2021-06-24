@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Custom",
+  "FriendlyName": "Custom search box",
+  "SystemName": "Misc.CustomSearchBox",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Misc.CustomSearchBox.dll",
+  "Description": "redirect normal route to custom controller"
+}
