@@ -123,14 +123,14 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
                 return null;
             }
             List<ProvinceSearchModel> provinces = await (from v in _vendorRepository.Table
-                                                         from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
-                                                         from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
-                                                         from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
-                                                         where !v.Deleted && v.Active
-                                                         group new { sp, p } by new { sp.Name } into g
-                                                         where g.Key.Name.Contains(keywords)
-                                                         select new ProvinceSearchModel { Name = g.Key.Name, AvaiableLocation = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString())) }
-                                   ).Distinct().ToListAsync();
+                                                        from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
+                                                        from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
+                                                        from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
+                                                        where !v.Deleted && v.Active
+                                                        group new { sp, p } by new { sp.Name } into g
+                                                        where g.Key.Name.Contains(keywords)
+                                                        select new ProvinceSearchModel { Name = g.Key.Name, AvaiableLocation = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString()) && g.p.Deleted==false) }
+                                ).Distinct().ToListAsync();
             return provinces;
         }
         private async Task<IEnumerable<ProductOverviewModel>> AddLocationToProductOverview(List<ProductOverviewModel> products)
