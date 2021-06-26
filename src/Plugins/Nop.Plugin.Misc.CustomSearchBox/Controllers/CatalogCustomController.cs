@@ -24,6 +24,9 @@ using Nop.Web.Framework;
 using Nop.Web.Framework.Mvc.Filters;
 using Nop.Web.Models.Catalog;
 using Nop.Plugin.Misc.CustomSearchBox.Models;
+using Nop.Plugin.Misc.CustomSearchBox.Services;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
 {
@@ -31,7 +34,7 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
     public class CatalogCustomController : BasePublicController
     {
         private readonly CatalogSettings _catalogSettings;
-        private readonly IProductService _productService;
+        private readonly IProductCustomService _productCustomService;
         private readonly IStoreContext _storeContext;
         private readonly IWorkContext _workContext;
         private readonly IProductModelFactory _productModelFactory;
@@ -42,7 +45,7 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
         private readonly IRepository<Vendor> _vendorRepository;
         public CatalogCustomController(
             CatalogSettings catalogSettings,
-            IProductService productService,
+            IProductCustomService productCustomService,
             IStoreContext storeContext,
             IWorkContext workContext,
             IProductModelFactory productModelFactory,
@@ -53,7 +56,7 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
             IRepository<Vendor> vendorRepository)
         {
             _catalogSettings = catalogSettings;
-            _productService = productService;
+            _productCustomService = productCustomService;
             _storeContext = storeContext;
             _workContext = workContext;
             _productModelFactory = productModelFactory;
@@ -77,7 +80,8 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
             //products
             var productNumber = _catalogSettings.ProductSearchAutoCompleteNumberOfProducts > 0 ?
                 _catalogSettings.ProductSearchAutoCompleteNumberOfProducts : 10;
-            var products = await _productService.SearchProductsAsync(0,
+
+            var products = await _productCustomService.SearchProductsAsync(0,
                 storeId: (await _storeContext.GetCurrentStoreAsync()).Id,
                 keywords: term,
                 languageId: (await _workContext.GetWorkingLanguageAsync()).Id,
@@ -98,8 +102,9 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
                            }).ToList();
                 return Json(res);
             }
-            var showLinkToResultSearch = _catalogSettings.ShowLinkToAllResultInSearchAutoComplete && (products.TotalCount > productNumber);
-            var models = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, _catalogSettings.ShowProductImagesInSearchAutoComplete, _mediaSettings.AutoCompleteSearchThumbPictureSize)).ToList();
+            var showLinkToResultSearch = _catalogSettings.ShowLinkToAllResultInSearchAutoComplete && (products.Count > productNumber);
+            //var models = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, _catalogSettings.ShowProductImagesInSearchAutoComplete, _mediaSettings.AutoCompleteSearchThumbPictureSize)).ToList();
+            var models = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, true, 100)).ToList();
             var productsWithLocation = (await AddLocationToProductOverview(models)).ToList();
             var result = (from p in productsWithLocation
                           select new
@@ -123,15 +128,17 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
                 return null;
             }
             List<ProvinceSearchModel> provinces = await (from v in _vendorRepository.Table
-                                                        from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
-                                                        from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
-                                                        from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
-                                                        where !v.Deleted && v.Active
-                                                        group new { sp, p } by new { sp.Name } into g
-                                                        where g.Key.Name.Contains(keywords)
-                                                        select new ProvinceSearchModel { Name = g.Key.Name, AvaiableLocation = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString()) && g.p.Deleted==false) }
-                                ).Distinct().ToListAsync();
-            return provinces;
+                                                         from p in _productRepository.Table.Where(p => p.VendorId == v.Id).DefaultIfEmpty()
+                                                         from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
+                                                         from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
+                                                         where !v.Deleted && v.Active
+                                                         group new { sp, p } by new { sp.Name } into g
+                                                         select new ProvinceSearchModel { Name = g.Key.Name, AvaiableLocation = g.Count(g => !string.IsNullOrEmpty(g.p.Id.ToString()) && g.p.Deleted == false) }
+                                                         ).ToListAsync();
+            var data = await (from a in provinces
+                       where (MiscService.ConvertToUnSign(a.Name).IndexOf(keywords, StringComparison.CurrentCultureIgnoreCase) >= 0)
+                       select a).Distinct().ToListAsync();
+            return data;
         }
         private async Task<IEnumerable<ProductOverviewModel>> AddLocationToProductOverview(List<ProductOverviewModel> products)
         {
@@ -154,5 +161,6 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
             }
             return products;
         }
+        
     }
 }
