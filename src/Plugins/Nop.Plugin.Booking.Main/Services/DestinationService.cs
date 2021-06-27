@@ -9,6 +9,8 @@ using Nop.Core.Domain.Vendors;
 using Nop.Data;
 using Nop.Plugin.Booking.Main.Models;
 using Nop.Services.Media;
+using Nop.Services.Vendors;
+using Nop.Web.Areas.Admin.Factories;
 
 namespace Nop.Plugin.Booking.Main.Services
 {
@@ -23,6 +25,8 @@ namespace Nop.Plugin.Booking.Main.Services
         private readonly IRepository<Product> _productRepository;
         private readonly IRepository<Picture> _pictureRepository;
         private readonly IPictureService _pictureService;
+        private readonly IVendorModelFactory _vendorModelFactory;
+        private readonly IVendorService _vendorService;
 
         #endregion
 
@@ -33,7 +37,9 @@ namespace Nop.Plugin.Booking.Main.Services
             IRepository<Vendor> vendorRepository,
             IRepository<Product> productRepository,
             IRepository<Picture> pictureRepository,
-            IPictureService pictureService)
+            IPictureService pictureService,
+            IVendorModelFactory vendorModelFactory,
+            IVendorService vendorService)
         {
             _addressRepository = addressRepository;
             _stateProvinceRepository = stateProvinceRepository;
@@ -41,6 +47,8 @@ namespace Nop.Plugin.Booking.Main.Services
             _productRepository = productRepository;
             _pictureRepository = pictureRepository;
             _pictureService = pictureService;
+            _vendorModelFactory = vendorModelFactory;
+            _vendorService = vendorService;
         }
 
         #endregion
@@ -52,19 +60,26 @@ namespace Nop.Plugin.Booking.Main.Services
                                    from a in _addressRepository.Table.Where(a => a.Id == v.AddressId).DefaultIfEmpty()
                                    from sp in _stateProvinceRepository.Table.Where(sp => sp.Id == a.StateProvinceId).DefaultIfEmpty()
                                    where !v.Deleted && v.Active
-                                   group new { sp, v } by new { sp.Name, v.PictureId, v.Description } into g
-                                   select new { StateProvince = g.Key.Name, PictureId = g.Key.PictureId, Description = g.Key.Description }
+                                   group new { sp, v } by new { sp.Name, v.Id, v.PictureId, v.Description } into g
+                                   select new { StateProvince = g.Key.Name, PictureId = g.Key.PictureId, Description = g.Key.Description, VendorId = g.Key.Id }
                                    ).Distinct().ToListAsync();
 
 
             foreach (var destination in destinations)
             {
+                var vendor = await _vendorService.GetVendorByIdAsync(destination.VendorId);
+                var vendorModel = await _vendorModelFactory.PrepareVendorModelAsync(null, vendor);
+                var typeAttribute = vendorModel.VendorAttributes.Where(va => va.Id == 1).FirstOrDefault();
+                var typeValue = typeAttribute.Values.Where(ta => ta.IsPreSelected).FirstOrDefault().Name;
+
                 var model = new DestinationModel
                 {
                     StateProvince = destination.StateProvince,
                     PictureUrl = await _pictureService.GetPictureUrlAsync(destination.PictureId, showDefaultPicture: false) ?? "",
-                    Excerpt = destination.Description
+                    Excerpt = destination.Description,
+                    VendorType = typeValue
                 };
+
                 models.Add(model);
             }
 

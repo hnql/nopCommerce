@@ -17,6 +17,8 @@ namespace Nop.Plugin.Booking.Main.Models
         {
             PictureUrl = "";
             StateProvince = "Ha Noi";
+            VendorType = "Biet Thu Ho Boi";
+            Excerpt = "";
         }
     }
 }

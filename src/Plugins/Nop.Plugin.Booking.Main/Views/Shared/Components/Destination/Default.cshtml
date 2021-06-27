@@ -18,9 +18,9 @@
                                 <a href="@destination.PictureUrl" class="article is-relative" tabindex="-1" style="width: 100%; display: inline-block;">
                                     <span class="is-block bg-img bg-img--85 radius-xs" data-src="@destination.PictureUrl" lazy="loaded" style="background-image: url(@destination.PictureUrl)"></span>
                                     <div class="article__content">
-                                        <div class="article__title bold">@destination.StateProvince</div>
+                                        <div class="article__title bold">@destination.StateProvince @destination.VendorType</div>
                                         <span class="article__excerpt">
-                                            <p>@destination.Excerpt</p>
+                                            @Html.Raw(@destination.Excerpt)
                                         </span>
                                     </div>
                                 </a>
