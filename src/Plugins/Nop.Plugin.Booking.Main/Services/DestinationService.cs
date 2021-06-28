@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Nop.Core.Domain.Catalog;
@@ -67,10 +68,21 @@ namespace Nop.Plugin.Booking.Main.Services
 
             foreach (var destination in destinations)
             {
+                var typeValue = "";
+
                 var vendor = await _vendorService.GetVendorByIdAsync(destination.VendorId);
                 var vendorModel = await _vendorModelFactory.PrepareVendorModelAsync(null, vendor);
-                var typeAttribute = vendorModel.VendorAttributes.Where(va => va.Id == 1).FirstOrDefault();
-                var typeValue = typeAttribute.Values.Where(ta => ta.IsPreSelected).FirstOrDefault().Name;
+
+                if (vendorModel != null)
+                {
+                    var typeAttribute = vendorModel.VendorAttributes.Where(va => va.Name.Equals("Type")).FirstOrDefault();
+
+                    if (typeAttribute != null)
+                    {
+                        var typeAttributeValue = typeAttribute.Values.Where(ta => ta.IsPreSelected).FirstOrDefault();
+                        typeValue = typeAttributeValue != null ? typeAttributeValue.Name : "";
+                    }
+                }
 
                 var model = new DestinationModel
                 {
