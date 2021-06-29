@@ -144,8 +144,6 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Services
                 //Set a flag which will to points need to search in localized properties. If showHidden doesn't set to true should be at least two published languages.
                 var searchLocalizedValue = languageId > 0 && langs.Count() >= 2 && (showHidden || langs.Count(l => l.Published) >= 2);
 
-                //IQueryable<int> productsByKeywords;
-
                 var data = await (from p in _productRepository.Table where p.Deleted == false select p).Distinct().ToListAsync();
                 var productsByKeywords = (from p in data
                                          where (MiscService.ConvertToUnSign(p.Name).IndexOf(keywords, StringComparison.CurrentCultureIgnoreCase) >= 0) ||
@@ -154,12 +152,7 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Services
                                (searchManufacturerPartNumber && p.ManufacturerPartNumber == keywords) ||
                                (searchSku && p.Sku == keywords))
                                          select p.Id).AsQueryable();
-                ;
-                //productsQuery =
-                //    from p in productsQuery
-                //    from pbk in productsByKeywords
-                //    where pbk.Con
-                //    select p;
+
                 foreach(var product in productsQuery)
                 {
                     foreach(var id in productsByKeywords)
@@ -171,81 +164,9 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Services
                     }
                 }
             }
+            var convertedProducts = testProduct.AsQueryable();
 
-            //if (categoryIds is not null)
-            //{
-            //    if (categoryIds.Contains(0))
-            //        categoryIds.Remove(0);
-
-            //    if (categoryIds.Any())
-            //    {
-            //        var productCategoryQuery =
-            //            from pc in _productCategoryRepository.Table
-            //            where (!excludeFeaturedProducts || !pc.IsFeaturedProduct) &&
-            //                categoryIds.Contains(pc.CategoryId)
-            //            select pc;
-
-            //        productsQuery =
-            //            from p in productsQuery
-            //            where productCategoryQuery.Any(pc => pc.ProductId == p.Id)
-            //            select p;
-            //    }
-            //}
-
-            //if (manufacturerIds is not null)
-            //{
-            //    if (manufacturerIds.Contains(0))
-            //        manufacturerIds.Remove(0);
-
-            //    if (manufacturerIds.Any())
-            //    {
-            //        var productManufacturerQuery =
-            //            from pm in _productManufacturerRepository.Table
-            //            where (!excludeFeaturedProducts || !pm.IsFeaturedProduct) &&
-            //                manufacturerIds.Contains(pm.ManufacturerId)
-            //            select pm;
-
-            //        productsQuery =
-            //            from p in productsQuery
-            //            where productManufacturerQuery.Any(pm => pm.ProductId == p.Id)
-            //            select p;
-            //    }
-            //}
-
-            //if (productTagId > 0)
-            //{
-            //    productsQuery =
-            //        from p in productsQuery
-            //        join ptm in _productTagMappingRepository.Table on p.Id equals ptm.ProductId
-            //        where ptm.ProductTagId == productTagId
-            //        select p;
-            //}
-
-            //if (filteredSpecOptions?.Count > 0)
-            //{
-            //    var specificationAttributeIds = filteredSpecOptions
-            //        .Select(sao => sao.SpecificationAttributeId)
-            //        .Distinct();
-
-            //    foreach (var specificationAttributeId in specificationAttributeIds)
-            //    {
-            //        var optionIdsBySpecificationAttribute = filteredSpecOptions
-            //            .Where(o => o.SpecificationAttributeId == specificationAttributeId)
-            //            .Select(o => o.Id);
-
-            //        var productSpecificationQuery =
-            //            from psa in _productSpecificationAttributeRepository.Table
-            //            where psa.AllowFiltering && optionIdsBySpecificationAttribute.Contains(psa.SpecificationAttributeOptionId)
-            //            select psa;
-
-            //        productsQuery =
-            //            from p in productsQuery
-            //            where productSpecificationQuery.Any(pc => pc.ProductId == p.Id)
-            //            select p;
-            //    }
-            //}
-           
-            return await productsQuery.OrderBy(orderBy).ToPagedListAsync(pageIndex, pageSize);
+            return await convertedProducts.OrderBy(orderBy).ToPagedListAsync(pageIndex, pageSize);
         }
     }
 }
