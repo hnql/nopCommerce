@@ -328,14 +328,86 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddLocaleStringResource
                 );
             }
 
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "account.login", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "account.login",
+                        ResourceValue = "Login",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
             if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "account.register", true) == 0 && lsrt.LanguageId == vietnameseId))
             {
                 _dataProvider.InsertEntity(
                     new LocaleStringResource
                     {
                         ResourceName = "account.register",
-                        ResourceValue = "Đăng nhập",
+                        ResourceValue = "Đăng ký",
                         LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "account.register", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "account.register",
+                        ResourceValue = "Register",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "destination.title", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "destination.title",
+                        ResourceValue = "Gợi ý",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "destination.title", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "destination.title",
+                        ResourceValue = "Suggestions",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "destination.content", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "destination.content",
+                        ResourceValue = "Những địa điểm thường đến gợi ý dành cho bạn",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "destination.content", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "destination.content",
+                        ResourceValue = "Recommended places to visit often",
+                        LanguageId = englishId
                     }
                 );
             }
