@@ -42,6 +42,9 @@ namespace Nop.Web.Models.Catalog
 
         public ProductBreadcrumbModel Breadcrumb { get; set; }
 
+        public int VendorId { get; set; }
+        public string LocationName { get; set; }
+
         #region Nested Classes
 
         public partial record ProductPriceModel : BaseNopModel
