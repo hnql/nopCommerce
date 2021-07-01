@@ -12,7 +12,7 @@ namespace Nop.Plugin.Booking.Main.Factories
 
         Task<PromotionModel> PreparePromotionModelAsync();
 
-        Task<DestinationModel> PrepareDestinationModelAsync();
+        Task<IList<DestinationModel>> PrepareDestinationModelAsync();
 
         Task<DiscoveryModel> PrepareDiscoveryModelAsync();
 
