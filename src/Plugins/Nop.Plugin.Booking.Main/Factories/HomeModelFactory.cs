@@ -26,6 +26,7 @@ namespace Nop.Plugin.Booking.Main.Factories
         private readonly IRepository<Vendor> _vendorRepository;
         private readonly IRepository<Address> _addressRepository;
         private readonly IPlaceSuggestionService _customVendorService;
+        private readonly IDestinationService _destinationService;
 
         #endregion
 
@@ -38,7 +39,8 @@ namespace Nop.Plugin.Booking.Main.Factories
             ILocalizationService localizationService,
             IRepository<Vendor> vendorRepository,
             IRepository<Address> addressRepository,
-            IPlaceSuggestionService customVendorService)
+            IPlaceSuggestionService customVendorService,
+            IDestinationService destinationService)
         {
             _locationCategoryService = locationCategoryService;
             _locationService = locationService;
@@ -49,6 +51,7 @@ namespace Nop.Plugin.Booking.Main.Factories
             _vendorRepository = vendorRepository;
             _addressRepository = addressRepository;
             _customVendorService = customVendorService;
+            _destinationService = destinationService;
         }
 
         public virtual Task<BannerModel> PrepareBannerModelAsync()
@@ -102,10 +105,9 @@ namespace Nop.Plugin.Booking.Main.Factories
             return Task.FromResult(model);
         }
 
-        public virtual Task<DestinationModel> PrepareDestinationModelAsync()
+        public virtual async Task<IList<DestinationModel>> PrepareDestinationModelAsync()
         {
-            var model = new DestinationModel();
-            return Task.FromResult(model);
+            return await _destinationService.GetDestinationAsync();
         }
 
         public virtual Task<DiscoveryModel> PrepareDiscoveryModelAsync()

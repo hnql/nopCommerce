@@ -19,6 +19,7 @@ namespace Nop.Plugin.Booking.Main.Infrastructure
         {
             services.AddScoped<IHomeModelFactory, HomeModelFactory>();
             services.AddScoped<IPlaceSuggestionService, PlaceSuggestionService>();
+            services.AddScoped<IDestinationService, DestinationService>();
         }
 
         public int Order => 1;
