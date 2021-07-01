@@ -16,8 +16,8 @@ namespace Nop.Plugin.Booking.Main.Models
         public DestinationModel()
         {
             PictureUrl = "";
-            StateProvince = "Ha Noi";
-            VendorType = "Biet Thu Ho Boi";
+            StateProvince = "";
+            VendorType = "";
             Excerpt = "";
         }
     }
