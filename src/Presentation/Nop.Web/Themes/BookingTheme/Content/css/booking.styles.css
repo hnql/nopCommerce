@@ -8862,44 +8862,53 @@ canvas {
 }
 
 .slick-next, .slick-prev {
-  position: absolute;
-  display: block;
-  line-height: 0;
-  font-size: 0;
-  cursor: pointer;
-  color: transparent;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0;
-  outline: none;
-  border: 1px solid #e6e6e6;
-  box-shadow: 0 0 7px -4px #000;
-  width: 56px;
-  height: 56px;
-  border-radius: 56px;
-  transition: all .3s ease-in-out;
-  z-index: 1
+  position: absolute !important;
+  display: block !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+  cursor: pointer !important;
+  color: transparent !important;
+/*  top: 50% !important;*/
+  transform: translateY(-50%) !important;
+  padding: 0 !important;
+  outline: none !important;
+  border: 1px solid #e6e6e6 !important;
+  box-shadow: 0 0 7px -4px #000 !important;
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 56px !important;
+  transition: all .3s ease-in-out !important;
+  z-index: 1 !important;
+  background: #fff !important;
+  border: none !important;
 }
 
+
   .slick-next:not(.slick-disabled):hover, .slick-prev:not(.slick-disabled):hover {
-    outline: none;
-    box-shadow: 0 0 5px 0 rgba(246,94,57,.5)
+    outline: none !important;
+    box-shadow: 0 0 5px 0 rgba(246,94,57,.5) !important;
+    fill: orange
   }
 
     .slick-next:not(.slick-disabled):hover:before, .slick-prev:not(.slick-disabled):hover:before {
-      color: #f65e39
+      color: #f65e39 !important;
     }
 
   .slick-next.slick-disabled, .slick-prev.slick-disabled {
-    opacity: .5
+    opacity: .5 !important;
   }
-
+  .slick-next:before {
+    content: "\f105" !important;
+  }
+  .slick-prev:before {
+    content: "\f104" !important;
+  }
   .slick-next:before, .slick-prev:before {
-    font-family: slick;
-    font-size: 20px;
-    line-height: 1;
-    transition: all .3s;
-    color: #222
+    font-family: slick !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    transition: all .3s !important;
+    color: #222 !important;
   }
 
 .icon:before {
@@ -8938,13 +8947,13 @@ canvas {
 
 @media (min-width:1500px) {
   .slick-prev {
-    left: -32px
+    left: -32px !important;
   }
 }
 
-.slick-next {
-  right: -15px
-}
+/*.slick-next {
+  right: -15px !important;
+}*/
 
 [dir=rtl] .slick-next {
   left: -32px;
@@ -8952,9 +8961,15 @@ canvas {
 }
 
 .slick-next:before {
-  content: ""
+  content: url(../images/right-chevron.svg) !important;
+  display: block;
+  transform: scale(.3);
 }
-
+.slick-prev:before {
+  content: url(../images/left-chevron.svg) !important;
+  display: block;
+  transform: scale(.3);
+}
 [dir=rtl] .slick-next:before {
   content: ""
 }
@@ -9100,13 +9115,13 @@ canvas {
   display: none
 }
 
-.slick-next:before {
+/*.slick-next:before {
   content: "\f105"
 }
 
 .slick-prev:after {
   content: "\f104"
-}
+}*/
 
 .slick-next, .slick-prev {
   background: #fff;

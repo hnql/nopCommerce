@@ -11,24 +11,38 @@
                     <p>Để mỗi chuyến đi là một hành trình truyền cảm hứng, mỗi căn phòng là một khoảng trời an yên</p>
                 </div>
                 <div class="discovery">
-                    @foreach (var discovery in Model.Discoveries) {
-                    <div>
-                        <div class="post bg-img bg-img--85 radius-xs is-relative" style="width: 100%; display: inline-block; background-image: url(&quot;https://www.luxstay.com/blog/wp-content/uploads/2020/03/@discovery.ImagePath&quot;);" data-src="https://www.luxstay.com/blog/wp-content/uploads/2020/03/@discovery.ImagePath" lazy="loaded">
-                            <a href="https://www.luxstay.com/blog/@discovery.HrefTitle" target="_blank" tabindex="-1"></a>
-                            <div class="post__inner is-flex column between-xs is-absolute is-absolute--tl w--100 h--100">
-                                <div class="post__header">
-                                    <a href="https://www.luxstay.com/blog/@discovery.HrefHeader" target="_blank" class="post__category" tabindex="-1">@discovery.Header</a>
-                                </div>
-                                <div class="post__title bold">
-                                    <a href="https://www.luxstay.com/blog/@discovery.HrefTitle" target="_blank" tabindex="-1">@discovery.Title</a>
+                    @foreach (var discovery in Model.Discoveries)
+                    {
+                        <div>
+                            <div class="post bg-img bg-img--85 radius-xs is-relative" style="width: 100%; display: inline-block; background-image: url(&quot;https://www.luxstay.com/blog/wp-content/uploads/2020/03/@discovery.ImagePath&quot;);" data-src="https://www.luxstay.com/blog/wp-content/uploads/2020/03/@discovery.ImagePath" lazy="loaded">
+                                <a href="https://www.luxstay.com/blog/@discovery.HrefTitle" target="_blank" tabindex="-1"></a>
+                                <div class="post__inner is-flex column between-xs is-absolute is-absolute--tl w--100 h--100">
+                                    <div class="post__header">
+                                        <a href="https://www.luxstay.com/blog/@discovery.HrefHeader" target="_blank" class="post__category" tabindex="-1">@discovery.Header</a>
+                                    </div>
+                                    <div class="post__title bold">
+                                        <a href="https://www.luxstay.com/blog/@discovery.HrefTitle" target="_blank" tabindex="-1">@discovery.Title</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     }
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script asp-location="Footer">
+    $(document).ready(function() {
+        $.ajax({
+            url: '@(Url.RouteUrl("BlogPostListHomeAsync"))',
+            method:'get',
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+</script>
