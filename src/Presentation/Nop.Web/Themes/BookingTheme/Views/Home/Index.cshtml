@@ -24,7 +24,7 @@
     Html.AppendCssFileParts("~/Themes/BookingTheme/Content/css/datepicker.styles.css");
     Html.AddScriptParts(ResourceLocation.Head, "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js");
     Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/banner.js");
-    
+
     Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/promotion.js");
     Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/destination.js");
     Html.AppendScriptParts(ResourceLocation.Footer, "~/Themes/BookingTheme/Content/js/discovery.js");
@@ -35,7 +35,7 @@
 @await Component.InvokeAsync("Promotion")
 @await Component.InvokeAsync("Destination")
 @await Component.InvokeAsync("Discovery")
-@await Component.InvokeAsync("UserManual")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageUserManual })
 @await Component.InvokeAsync("Introduction")
 @*@await Component.InvokeAsync("TopicBlock", new { systemName = "HomepageText" })
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforeCategories })

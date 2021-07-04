@@ -1,0 +1,33 @@
+﻿@model Nop.Plugin.Widgets.UserManual.Models.PublicInfoModel
+
+@{
+    var pictureUrl = ViewData["pictureUrl"]?.ToString() ?? "";
+    var link = ViewData["link"]?.ToString() ?? "";
+    var text = ViewData["text"]?.ToString() ?? "";
+
+    if (!string.IsNullOrEmpty(pictureUrl))
+    {
+        <div>
+            @if (!string.IsNullOrEmpty(link))
+            {
+                <div class="bg-img bg-img--95 is-relative radius-xs gutter-mt" style="width: 100%; display: inline-block; background-image: url(@pictureUrl);" data-src="@pictureUrl" lazy="loaded">
+                    <a href="@link" target="_blank" rel="noopener" tabindex="0">
+                        <div class="card is-absolute is-absolute--tl w--100 h--100">
+                            <div class="card__inner"></div>
+                        </div>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="bg-img bg-img--95 is-relative radius-xs gutter-mt" style="width: 100%; display: inline-block; background-image: url(@pictureUrl);" data-src="@pictureUrl" lazy="loaded">
+                    <a href="" target="_blank" rel="noopener" tabindex="0">
+                        <div class="card is-absolute is-absolute--tl w--100 h--100">
+                            <div class="card__inner"></div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+}

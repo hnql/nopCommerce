@@ -1,0 +1,121 @@
+﻿@model Nop.Plugin.Widgets.UserManual.Models.PublicInfoModel
+@{
+    Layout = "";
+
+    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.UserManual/Scripts/user_manual.js");
+}
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="29" readmore="29">
+                <div class="title">
+                    <h2 class="extra-bold p--giant">@T("plugins.widgets.userManual.title")</h2>
+                    <p class="d-none d-md-block">@T("plugins.widgets.userManual.content")</p>
+                </div>
+                <div>
+                    <div class="user_manual">
+                        @{ var dataSlide1 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture1Url},
+                                { "text", Model.Text1},
+                                { "link", Model.Link1},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide1)
+                        }
+
+                        @{ var dataSlide2 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture2Url},
+                                { "text", Model.Text2},
+                                { "link", Model.Link2},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide2) 
+                        }
+
+                        @{ var dataSlide3 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture3Url},
+                                { "text", Model.Text3},
+                                { "link", Model.Link3},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide3) 
+                        }
+
+                        @{ var dataSlide4 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture4Url},
+                                { "text", Model.Text4},
+                                { "link", Model.Link4},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide4) 
+                        }
+
+                        @{ var dataSlide5 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture5Url},
+                                { "text", Model.Text5},
+                                { "link", Model.Link5},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide5) 
+                        }
+
+                        @{ var dataSlide6 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture6Url},
+                                { "text", Model.Text6},
+                                { "link", Model.Link6},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide6) 
+                        }
+
+                        @{ var dataSlide7 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture7Url},
+                                { "text", Model.Text7},
+                                { "link", Model.Link7},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide7) 
+                        }
+
+                        @{ var dataSlide8 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture8Url},
+                                { "text", Model.Text8},
+                                { "link", Model.Link8},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide8) 
+                        }
+
+                        @{ var dataSlide9 = new ViewDataDictionary(ViewData)
+                            {
+                                {"pictureUrl", Model.Picture9Url},
+                                { "text", Model.Text9},
+                                { "link", Model.Link9},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide9) 
+                        }
+
+                        @{ var dataSlide10 = new ViewDataDictionary(ViewData)
+                           {
+                                {"pictureUrl", Model.Picture10Url},
+                                { "text", Model.Text10},
+                                { "link", Model.Link10},
+                            };
+
+                            @await Html.PartialAsync("~/Plugins/Widgets.UserManual/Views/_PublicInfo.SliderLine.cshtml", dataSlide10) 
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

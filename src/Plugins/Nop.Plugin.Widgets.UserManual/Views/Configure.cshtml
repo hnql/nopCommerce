@@ -1,0 +1,394 @@
+﻿@model Nop.Plugin.Widgets.UserManual.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="WidgetsUserManual" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture1")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture1Id_OverrideForStore" asp-input="Picture1Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture1Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture1Id" />
+                                <span asp-validation-for="Picture1Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text1_OverrideForStore" asp-input="Text1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text1" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text1" />
+                                <span asp-validation-for="Text1"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link1_OverrideForStore" asp-input="Link1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link1" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link1" />
+                                <span asp-validation-for="Link1"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture2")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture2Id_OverrideForStore" asp-input="Picture2Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture2Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture2Id" />
+                                <span asp-validation-for="Picture2Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text2_OverrideForStore" asp-input="Text2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text2" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text2" />
+                                <span asp-validation-for="Text2"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link2_OverrideForStore" asp-input="Link2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link2" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link2" />
+                                <span asp-validation-for="Link2"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture3")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture3Id_OverrideForStore" asp-input="Picture3Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture3Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture3Id" />
+                                <span asp-validation-for="Picture3Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text3_OverrideForStore" asp-input="Text3" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text3" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text3" />
+                                <span asp-validation-for="Text3"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link3_OverrideForStore" asp-input="Link3" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link3" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link3" />
+                                <span asp-validation-for="Link3"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture4")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture4Id_OverrideForStore" asp-input="Picture4Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture4Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture4Id" />
+                                <span asp-validation-for="Picture4Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text4_OverrideForStore" asp-input="Text4" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text4" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text4" />
+                                <span asp-validation-for="Text4"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link4_OverrideForStore" asp-input="Link4" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link4" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link4" />
+                                <span asp-validation-for="Link4"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture5")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture5Id_OverrideForStore" asp-input="Picture5Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture5Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture5Id" />
+                                <span asp-validation-for="Picture5Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text5_OverrideForStore" asp-input="Text5" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text5" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text5" />
+                                <span asp-validation-for="Text5"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link5_OverrideForStore" asp-input="Link5" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link5" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link5" />
+                                <span asp-validation-for="Link5"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture6")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture6Id_OverrideForStore" asp-input="Picture6Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture6Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture6Id" />
+                                <span asp-validation-for="Picture6Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text6_OverrideForStore" asp-input="Text6" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text6" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text6" />
+                                <span asp-validation-for="Text6"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link6_OverrideForStore" asp-input="Link6" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link6" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link6" />
+                                <span asp-validation-for="Link6"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture7")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture7Id_OverrideForStore" asp-input="Picture7Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture7Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture7Id" />
+                                <span asp-validation-for="Picture7Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text7_OverrideForStore" asp-input="Text7" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text7" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text7" />
+                                <span asp-validation-for="Text7"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link7_OverrideForStore" asp-input="Link7" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link7" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link7" />
+                                <span asp-validation-for="Link7"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture8")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture8Id_OverrideForStore" asp-input="Picture8Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture8Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture8Id" />
+                                <span asp-validation-for="Picture8Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text8_OverrideForStore" asp-input="Text8" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text8" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text8" />
+                                <span asp-validation-for="Text8"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link8_OverrideForStore" asp-input="Link8" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link8" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link8" />
+                                <span asp-validation-for="Link8"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture9")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture9Id_OverrideForStore" asp-input="Picture9Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture9Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture9Id" />
+                                <span asp-validation-for="Picture9Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text9_OverrideForStore" asp-input="Text9" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text9" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text9" />
+                                <span asp-validation-for="Text9"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link9_OverrideForStore" asp-input="Link9" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link9" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link9" />
+                                <span asp-validation-for="Link9"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.UserManual.Picture10")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Picture10Id_OverrideForStore" asp-input="Picture10Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Picture10Id" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Picture10Id" />
+                                <span asp-validation-for="Picture10Id"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Text10_OverrideForStore" asp-input="Text10" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Text10" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Text10" />
+                                <span asp-validation-for="Text10"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Link10_OverrideForStore" asp-input="Link10" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Link10" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Link10" />
+                                <span asp-validation-for="Link10"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-9 offset-md-3">
+                                <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
