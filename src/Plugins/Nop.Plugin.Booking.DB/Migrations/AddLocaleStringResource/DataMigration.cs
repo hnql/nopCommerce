@@ -412,6 +412,54 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddLocaleStringResource
                 );
             }
 
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.userManual.title", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.userManual.title",
+                        ResourceValue = "User Manual",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.userManual.title", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.userManual.title",
+                        ResourceValue = "Hướng dẫn sử dụng",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.userManual.content", true) == 0 && lsrt.LanguageId == englishId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.userManual.content",
+                        ResourceValue = "Fast booking, easy payment, easy use",
+                        LanguageId = englishId
+                    }
+                );
+            }
+
+            if (!localeStringResourceTable.Any(lsrt => string.Compare(lsrt.ResourceName, "plugins.widgets.userManual.content", true) == 0 && lsrt.LanguageId == vietnameseId))
+            {
+                _dataProvider.InsertEntity(
+                    new LocaleStringResource
+                    {
+                        ResourceName = "plugins.widgets.userManual.content",
+                        ResourceValue = "Đặt chỗ nhanh, thanh toán đơn giản, sử dụng dễ dàng",
+                        LanguageId = vietnameseId
+                    }
+                );
+            }
+
             #endregion
         }
 
