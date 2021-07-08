@@ -108,6 +108,58 @@ namespace Nop.Plugin.Booking.DB.Migrations.AddProductAttribute
 
                 #endregion
             }
+
+            if (!productAttributeTable.Any(pat => string.Compare(pat.Name, "RoomType", true) == 0))
+            {
+                #region Insert data to ProductAttribute table
+
+                var patEntity = _dataProvider.InsertEntity(
+                    new ProductAttribute
+                    {
+                        Name = "RoomType",
+                        Description = "Show room type"
+                    }
+                );
+
+                #endregion
+
+                #region Insert data to PredefinedProductAttributeValue table
+
+                var predefinedProductAttributeValueTable = _dataProvider.GetTable<PredefinedProductAttributeValue>();
+                if (!predefinedProductAttributeValueTable.Any(ppavt => string.Compare(ppavt.Name, "RoomType.SingleRoom") == 0))
+                {
+                    _dataProvider.InsertEntity(
+                        new PredefinedProductAttributeValue
+                        {
+                            ProductAttributeId = patEntity.Id,
+                            Name = "RoomType.SingleRoom",
+                            PriceAdjustment = 100,
+                            PriceAdjustmentUsePercentage = false,
+                            WeightAdjustment = 0,
+                            IsPreSelected = false,
+                            DisplayOrder = 0
+                        }
+                    );
+                }
+
+                if (!predefinedProductAttributeValueTable.Any(ppavt => string.Compare(ppavt.Name, "RoomType.DoubleRoom") == 0))
+                {
+                    _dataProvider.InsertEntity(
+                        new PredefinedProductAttributeValue
+                        {
+                            ProductAttributeId = patEntity.Id,
+                            Name = "RoomType.DoubleRoom",
+                            PriceAdjustment = 200,
+                            PriceAdjustmentUsePercentage = false,
+                            WeightAdjustment = 0,
+                            IsPreSelected = false,
+                            DisplayOrder = 1
+                        }
+                    );
+                }
+
+                #endregion
+            }
         }
 
         public override void Down()
