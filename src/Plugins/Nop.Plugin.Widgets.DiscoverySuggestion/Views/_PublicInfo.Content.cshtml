@@ -1,0 +1,32 @@
+﻿@model Nop.Plugin.Widgets.DiscoverySuggestion.Models.PublicInfoModel
+
+@{
+    var pictureUrl = ViewData["pictureUrl"]?.ToString() ?? "";
+    var link = ViewData["link"]?.ToString() ?? "";
+    var title = ViewData["title"]?.ToString() ?? "";
+    var header = ViewData["header"]?.ToString() ?? "";
+    var alttext = ViewData["alttext"]?.ToString() ?? "";
+
+    if (!string.IsNullOrWhiteSpace(pictureUrl))
+    {
+        <div>
+            <div class="post bg-img bg-img--85 radius-xs is-relative" style="width: 100%; display: inline-block; background-image: url(&quot;@pictureUrl&quot;);" data-src="@pictureUrl" lazy="loaded">
+                <a href="@link" target="_blank" tabindex="-1"></a>
+                <div class="post__inner is-flex column between-xs is-absolute is-absolute--tl w--100 h--100">
+                    @if (!string.IsNullOrWhiteSpace(header))
+                    {
+                        <div class="post__header">
+                            <a href="#" target="_blank" class="post__category" tabindex="-1">@header</a>
+                        </div>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(title))
+                    {
+                        <div class="post__title bold">
+                            <a href="@link" target="_blank" tabindex="-1">@title</a>
+                        </div>
+                    }
+                    </div>
+            </div>
+        </div>
+    }
+}
