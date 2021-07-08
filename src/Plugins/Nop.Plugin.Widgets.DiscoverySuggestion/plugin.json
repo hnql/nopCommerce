@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widget",
+  "FriendlyName": "Discovery Suggestion",
+  "SystemName": "Widgets.Discovery Suggestion",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "TDA Solutions Corp.",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.DiscoverySuggestion.dll",
+  "Description": "Discovery Suggestion description "
+}

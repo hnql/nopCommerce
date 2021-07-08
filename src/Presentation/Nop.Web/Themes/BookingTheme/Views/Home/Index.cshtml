@@ -34,7 +34,8 @@
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageLocation })
 @await Component.InvokeAsync("Promotion")
 @await Component.InvokeAsync("Destination")
-@await Component.InvokeAsync("Discovery")
+@*@await Component.InvokeAsync("Discovery")*@
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageBeforePoll })
 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HomepageUserManual })
 @await Component.InvokeAsync("Introduction")
 @*@await Component.InvokeAsync("TopicBlock", new { systemName = "HomepageText" })

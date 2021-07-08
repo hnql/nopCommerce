@@ -1,0 +1,141 @@
+﻿@model Nop.Plugin.Widgets.DiscoverySuggestion.Models.PublicInfoModel
+@{
+    Layout = "";
+
+    @*Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Scripts/script.js");*@
+    @*Html.AddCssFileParts("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Content/css/styles.css");*@
+}
+<div class="section fadeIn">
+    <div class="container container--sm">
+        <div>
+            <div id="32" readmore="32">
+                <div class="testingPlugin"></div>
+                <div class="title">
+                    <h2 class="extra-bold p--giant">@Model.Headline</h2>
+                    <p>@Model.Description</p>
+                </div>
+                <div class="discovery">
+                    @{
+                        if(!String.IsNullOrWhiteSpace (Model.Picture1Url))
+                        { 
+                            var data1 = new ViewDataDictionary(ViewData)
+                            {
+                                                    {"pictureUrl", Model.Picture1Url},
+                                                    { "title", Model.Title1},
+                                                    { "header", Model.Header1},
+                                                    { "link", Model.Link1},
+                                                    {"alttext", Model.AltText1 }
+                            };
+                            @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data1)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture2Url))
+                        {
+                            var data2 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture2Url},
+                                                { "title", Model.Title2},
+                                                { "header", Model.Header2},
+                                                { "link", Model.Link2},
+                                                {"alttext", Model.AltText2 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data2)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture3Url))
+                        {
+                            var data3 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture3Url},
+                                                { "title", Model.Title3},
+                                                { "header", Model.Header3},
+                                                { "link", Model.Link3},
+                                                {"alttext", Model.AltText3 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data3)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture4Url))
+                        {
+                            var data4 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture4Url},
+                                                { "title", Model.Title4},
+                                                { "header", Model.Header4},
+                                                { "link", Model.Link4},
+                                                {"alttext", Model.AltText4 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data4)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture5Url))
+                        {
+                            var data5 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture5Url},
+                                                { "title", Model.Title5},
+                                                { "header", Model.Header5},
+                                                { "link", Model.Link5},
+                                                {"alttext", Model.AltText5 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data5)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture6Url))
+                        {
+                            var data6 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture6Url},
+                                                { "title", Model.Title6},
+                                                { "header", Model.Header6},
+                                                { "link", Model.Link6},
+                                                {"alttext", Model.AltText6 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data6)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture7Url))
+                        {
+                            var data7 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture7Url},
+                                                { "title", Model.Title7},
+                                                { "header", Model.Header7},
+                                                { "link", Model.Link7},
+                                                {"alttext", Model.AltText7 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data7)
+                        }
+                    }
+                    @{
+                        if (!String.IsNullOrWhiteSpace(Model.Picture8Url))
+                        {
+                            var data8 = new ViewDataDictionary(ViewData)
+                        {
+                                                {"pictureUrl", Model.Picture8Url},
+                                                { "title", Model.Title8},
+                                                { "header", Model.Header8},
+                                                { "link", Model.Link8},
+                                                {"alttext", Model.AltText8 }
+                        };
+
+                        @await Html.PartialAsync("~/Plugins/Nop.Plugin.Widgets.DiscoverySuggestion/Views/_PublicInfo.Content.cshtml", data8)
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
