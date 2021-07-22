@@ -33,6 +33,8 @@
   $('#trigger-date-range').daterangepicker();
   $('#trigger-date-range').on('apply.daterangepicker', function (ev, picker) {
     $(this).text(picker.startDate.format('MMMM D') + ' - ' + picker.endDate.format('MMMM D'));
+    $('#arrivalDate').val(picker.startDate.format('YYYY-MM-DD'));
+    $('#departureDate').val(picker.endDate.format('YYYY-MM-DD'));
   });
 
   $('#trigger-date-range').on('cancel.daterangepicker', function (ev, picker) {

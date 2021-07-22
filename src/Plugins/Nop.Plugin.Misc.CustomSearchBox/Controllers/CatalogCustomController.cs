@@ -163,11 +163,8 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
             return products;
         }
 
-        public virtual async Task<IActionResult> SearchByDate(SearchModel model, CatalogProductsCommand command)
+        public virtual async Task<IActionResult> SearchByDate(string q, string arrivalDate, string departureDate)
         {
-            string arrivalDate = "2021/07/08";
-            string departureDate = "2021/07/08";
-
             DataParameter[] dates = new DataParameter[] {
                 new DataParameter(name: "ArrivalDate", value: arrivalDate),
                 new DataParameter(name: "DepartureDate", value: departureDate)

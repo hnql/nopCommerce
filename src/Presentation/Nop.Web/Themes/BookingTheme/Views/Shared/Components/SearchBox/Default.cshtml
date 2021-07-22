@@ -21,7 +21,9 @@
                                 <div class="datepicker-range">
                                     <button type="button" id="trigger-date-range" class="btn btn-outline--gray btn-xs search-filter__button">
                                         @T("Search.EnterDates")
-                                    </button> 
+                                    </button>
+                                    <input id="arrivalDate" type="hidden" name="arrivalDate" value=""/>
+                                    <input id="departureDate" type="hidden" name="departureDate" value=""/>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +49,6 @@
                 <button type="submit" id="search-btn" class="booking__btn btn btn--secondary bold mt--12 mt--md--0">
                     <svg version="1.1" viewBox="0 0 15 15" class="svg-icon svg-fill" style="width: 14px; height: 14px;"><g stroke="#FFF" stroke-width="2" fill="none" fill-rule="evenodd"><path pid="0" d="M10 10l4 4"></path><circle pid="1" cx="6.5" cy="6.5" r="5.5"></circle></g></svg>
                 </button>
-                @*<button type="submit" class="button-1 search-box-button">@T("Search.Button")</button>*@
             </div>
             @if (Model.AutoCompleteEnabled)
             {
