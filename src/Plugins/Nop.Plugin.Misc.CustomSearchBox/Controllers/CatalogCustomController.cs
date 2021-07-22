@@ -172,18 +172,15 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
 
             IList<Product> products = await _productRepository.EntityFromSqlAsync("ROOMAVAILABLE", dates);
 
-            IList<object> result = new List<object>();
-            foreach(var product in products)
-            {
-                result.Add(new{
-                    product.Id,
-                    product.Name,
-                    product.AvailableStartDateTimeUtc,
-                    product.AvailableEndDateTimeUtc
-                });
-            }
+            var model = new CategoryModel();
+            var catalogProductsModel = new CatalogProductsModel();
 
-            return Json(result);
+            var productOverviewModel = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, true, 100)).ToList();
+            var productsWithLocation = (await AddLocationToProductOverview(productOverviewModel)).ToList();
+            catalogProductsModel.Products = productsWithLocation;
+            model.CatalogProductsModel = catalogProductsModel;
+
+            return View("../Catalog/CategoryTemplate.ProductsInGridOrLines", model);
         }
 
     }
