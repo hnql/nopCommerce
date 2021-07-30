@@ -7,7 +7,7 @@ using Nop.Data.Migrations;
 namespace Nop.Plugin.Booking.DB.Migrations.AddLanguage
 {
     [SkipMigrationOnUpdate] // If you want to re-install plugin, please remove [SkipMigrationOnUpdate]
-    [NopMigration("2021/06/01 22:31:01:1234567", "Add data for language table")]
+    [NopMigration("2021/07/30 20:50:01:1234562", "Add data for language table")]
     public class DataMigration : Migration
     {
         private readonly INopDataProvider _dataProvider;

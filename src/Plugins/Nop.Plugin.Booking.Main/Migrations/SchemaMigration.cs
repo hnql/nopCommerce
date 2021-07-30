@@ -5,7 +5,7 @@ using Nop.Data;
 
 namespace Nop.Plugin.Booking.Main.Migrations
 {
-    [NopMigration("2021/05/18 13:46:12:1234567", "Nop.Plugin.Booking.Main schema")]
+    [NopMigration("2021/07/30 20:50:01:1234561", "Nop.Plugin.Booking.Main schema")]
     public class SchemaMigration : AutoReversingMigration
     {
         private readonly IMigrationManager _migrationManager;

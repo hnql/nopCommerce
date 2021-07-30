@@ -10,7 +10,7 @@ using Nop.Core.Domain.Vendors;
 namespace Nop.Plugin.Booking.DB.Migrations.AddVendorAttribute
 {
     [SkipMigrationOnUpdate] // If you want to re-install plugin, please remove [SkipMigrationOnUpdate]
-    [NopMigration("2021/06/01 21:30:01:1234567", "Add data for vendor attribute table")]
+    [NopMigration("2021/06/01 21:30:01:1234566", "Add data for vendor attribute table")]
     public class DataMigration : Migration
     {
         private readonly INopDataProvider _dataProvider;

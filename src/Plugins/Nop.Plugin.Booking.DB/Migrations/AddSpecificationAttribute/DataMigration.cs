@@ -7,7 +7,7 @@ using Nop.Data.Migrations;
 namespace Nop.Plugin.Booking.DB.Migrations.AddSpecificationAttribute
 {
     [SkipMigrationOnUpdate] // If you want to re-install plugin, please remove [SkipMigrationOnUpdate]
-    [NopMigration("2021/06/03 21:30:01:1234567", "Add data for specification attribute table")]
+    [NopMigration("2021/07/30 20:50:01:1234565", "Add data for specification attribute table")]
     public class DataMigration : Migration
     {
         private readonly INopDataProvider _dataProvider;
