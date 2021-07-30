@@ -27,6 +27,7 @@ using Nop.Plugin.Misc.CustomSearchBox.Models;
 using Nop.Plugin.Misc.CustomSearchBox.Services;
 using System.Text.RegularExpressions;
 using System.Text;
+using LinqToDB.Data;
 
 namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
 {
@@ -161,6 +162,26 @@ namespace Nop.Plugin.Misc.CustomSearchBox.Controllers
             }
             return products;
         }
-        
+
+        public virtual async Task<IActionResult> SearchByDate(string q, string arrivalDate, string departureDate)
+        {
+            DataParameter[] dates = new DataParameter[] {
+                new DataParameter(name: "ArrivalDate", value: arrivalDate),
+                new DataParameter(name: "DepartureDate", value: departureDate)
+            };
+
+            IList<Product> products = await _productRepository.EntityFromSqlAsync("ROOMAVAILABLE", dates);
+
+            var model = new CategoryModel();
+            var catalogProductsModel = new CatalogProductsModel();
+
+            var productOverviewModel = (await _productModelFactory.PrepareProductOverviewModelsAsync(products, false, true, 100)).ToList();
+            var productsWithLocation = (await AddLocationToProductOverview(productOverviewModel)).ToList();
+            catalogProductsModel.Products = productsWithLocation;
+            model.CatalogProductsModel = catalogProductsModel;
+
+            return View("../Catalog/CategoryTemplate.ProductsInGridOrLines", model);
+        }
+
     }
 }

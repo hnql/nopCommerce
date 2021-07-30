@@ -1,0 +1,509 @@
+﻿@model Nop.Plugin.Widgets.DiscoverySuggestion.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+<form asp-controller="WidgetsDiscoverySuggestion" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-header">
+                        @T("Plugins.Widgets.DiscoverySuggestion.Headline")
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Headline_OverrideForStore" asp-input="Headline" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Headline" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Headline" />
+                                <span asp-validation-for="Headline"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-override-store-checkbox asp-for="Description_OverrideForStore" asp-input="Description" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                <nop-label asp-for="Description" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="Description" />
+                                <span asp-validation-for="Description"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture1")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture1Id_OverrideForStore" asp-input="Picture1Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture1Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture1Id" />
+                                    <span asp-validation-for="Picture1Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title1_OverrideForStore" asp-input="Title1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title1" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title1" />
+                                    <span asp-validation-for="Title1"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header1_OverrideForStore" asp-input="Header1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header1" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header1" />
+                                    <span asp-validation-for="Header1"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText1_OverrideForStore" asp-input="AltText1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText1" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText1" />
+                                    <span asp-validation-for="AltText1"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link1_OverrideForStore" asp-input="Link1" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link1" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link1" />
+                                    <span asp-validation-for="Link1"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture2")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture2Id_OverrideForStore" asp-input="Picture2Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture2Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture2Id" />
+                                    <span asp-validation-for="Picture2Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title2_OverrideForStore" asp-input="Title2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title2" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title2" />
+                                    <span asp-validation-for="Title2"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header2_OverrideForStore" asp-input="Header2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header2" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header2" />
+                                    <span asp-validation-for="Header2"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText2_OverrideForStore" asp-input="AltText2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText2" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText2" />
+                                    <span asp-validation-for="AltText2"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link2_OverrideForStore" asp-input="Link2" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link2" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link2" />
+                                    <span asp-validation-for="Link2"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture3")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture3Id_OverrideForStore" asp-input="Picture3Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture3Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture3Id" />
+                                    <span asp-validation-for="Picture3Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title3_OverrideForStore" asp-input="Title3" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title3" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title3" />
+                                    <span asp-validation-for="Title3"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header3_OverrideForStore" asp-input="Header3" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header3" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header3" />
+                                    <span asp-validation-for="Header3"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText3_OverrideForStore" asp-input="AltText3" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText3" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText3" />
+                                    <span asp-validation-for="AltText3"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link3_OverrideForStore" asp-input="Link3" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link3" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link3" />
+                                    <span asp-validation-for="Link3"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture4")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture4Id_OverrideForStore" asp-input="Picture4Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture4Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture4Id" />
+                                    <span asp-validation-for="Picture4Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title4_OverrideForStore" asp-input="Title4" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title4" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title4" />
+                                    <span asp-validation-for="Title4"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header4_OverrideForStore" asp-input="Header4" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header4" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header4" />
+                                    <span asp-validation-for="Header4"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText4_OverrideForStore" asp-input="AltText4" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText4" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText4" />
+                                    <span asp-validation-for="AltText4"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link4_OverrideForStore" asp-input="Link4" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link4" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link4" />
+                                    <span asp-validation-for="Link4"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture5")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture5Id_OverrideForStore" asp-input="Picture5Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture5Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture5Id" />
+                                    <span asp-validation-for="Picture5Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title5_OverrideForStore" asp-input="Title5" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title5" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title5" />
+                                    <span asp-validation-for="Title5"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header5_OverrideForStore" asp-input="Header5" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header5" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header5" />
+                                    <span asp-validation-for="Header5"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText5_OverrideForStore" asp-input="AltText5" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText5" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText5" />
+                                    <span asp-validation-for="AltText5"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link5_OverrideForStore" asp-input="Link5" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link5" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link5" />
+                                    <span asp-validation-for="Link5"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture6")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture6Id_OverrideForStore" asp-input="Picture6Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture6Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture6Id" />
+                                    <span asp-validation-for="Picture6Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title6_OverrideForStore" asp-input="Title6" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title6" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title6" />
+                                    <span asp-validation-for="Title6"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header6_OverrideForStore" asp-input="Header6" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header6" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header6" />
+                                    <span asp-validation-for="Header6"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText6_OverrideForStore" asp-input="AltText6" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText6" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText6" />
+                                    <span asp-validation-for="AltText6"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link6_OverrideForStore" asp-input="Link6" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link6" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link6" />
+                                    <span asp-validation-for="Link6"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture7")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture7Id_OverrideForStore" asp-input="Picture7Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture7Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture7Id" />
+                                    <span asp-validation-for="Picture7Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title7_OverrideForStore" asp-input="Title7" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title7" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title7" />
+                                    <span asp-validation-for="Title7"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header7_OverrideForStore" asp-input="Header7" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header7" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header7" />
+                                    <span asp-validation-for="Header7"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText7_OverrideForStore" asp-input="AltText7" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText7" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText7" />
+                                    <span asp-validation-for="AltText7"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link7_OverrideForStore" asp-input="Link7" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link7" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link7" />
+                                    <span asp-validation-for="Link7"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            @T("Plugins.Widgets.DiscoverySuggestion.Picture8")
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Picture8Id_OverrideForStore" asp-input="Picture8Id" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Picture8Id" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Picture8Id" />
+                                    <span asp-validation-for="Picture8Id"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Title8_OverrideForStore" asp-input="Title8" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Title8" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Title8" />
+                                    <span asp-validation-for="Title8"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Header8_OverrideForStore" asp-input="Header8" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Header8" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Header8" />
+                                    <span asp-validation-for="Header8"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="AltText8_OverrideForStore" asp-input="AltText8" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="AltText8" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="AltText8" />
+                                    <span asp-validation-for="AltText8"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-override-store-checkbox asp-for="Link8_OverrideForStore" asp-input="Link8" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
+                                    <nop-label asp-for="Link8" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="Link8" />
+                                    <span asp-validation-for="Link8"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-9 offset-md-3">
+                                    <button type="submit" name="save" class="btn btn-primary">@T("Admin.Common.Save")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+</form>
