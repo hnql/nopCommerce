@@ -1,7 +1,7 @@
 ﻿{
   "Group": "Widget",
   "FriendlyName": "Discovery Suggestion",
-  "SystemName": "Widgets.Discovery Suggestion",
+  "SystemName": "Widgets.DiscoverySuggestion",
   "Version": "1.00",
   "SupportedVersions": [ "4.40" ],
   "Author": "TDA Solutions Corp.",
