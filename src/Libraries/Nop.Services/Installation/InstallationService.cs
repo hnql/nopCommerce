@@ -1208,12 +1208,12 @@ namespace Nop.Services.Installation
             var defaultAdminUserAddress = await InsertInstallationDataAsync(
                 new Address
                 {
-                    FirstName = "John",
-                    LastName = "Smith",
+                    FirstName = "Admin",
+                    LastName = "Admin",
                     PhoneNumber = "12345678",
                     Email = defaultUserEmail,
                     FaxNumber = string.Empty,
-                    Company = "Nop Solutions Ltd",
+                    Company = "TDA Solutions Ltd",
                     Address1 = "21 West 52nd Street",
                     Address2 = string.Empty,
                     City = "New York",

@@ -284,7 +284,7 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="@Url.Content("~/Admin")" class="brand-link navbar-dark logo-switch">
-                    <img src="~/css/admin/images/logo.png" alt="logo.png" class="brand-image-xl logo-xl">
+                    <img src="~/css/admin/images/logo.png" alt="logo.png" class="brand-image-xl logo-xl" style="left: 100px;">
                     <img src="~/css/admin/images/logo-mini.png" alt="logo.png" class="brand-image-xs logo-xs">
                 </a>
                 <div class="sidebar">
@@ -321,7 +321,7 @@
                                 <div class="col-md-4 col-xs-12 text-md-left text-center">
                                     @*Would you like to remove the "Powered by nopCommerce" link in the bottom of the footer?
                         Please find more info at https://www.nopcommerce.com/nopcommerce-copyright-removal-key*@
-                                    Powered by <a href="@(OfficialSite.Main + Utm.OnAdminFooter)" target="_blank">nopCommerce</a>
+                                    Powered by <a href="@(OfficialSite.Main + Utm.OnAdminFooter)" target="_blank">DiBooking</a>
                                 </div>
                             }else
                             {
@@ -331,7 +331,7 @@
                                 @((await dateTimeHelper.ConvertToUserTimeAsync(DateTime.Now)).ToString("f", currentCulture))
                             </div>
                             <div class="col-md-4 col-xs-12 text-md-right text-center">
-                                <b>nopCommerce version @NopVersion.FULL_VERSION</b>
+                                <b>DiBooking version @NopVersion.FULL_VERSION</b>
                             </div>
                         </div>
                     </div>
