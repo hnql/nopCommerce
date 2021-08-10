@@ -75,7 +75,7 @@ namespace Nop.Plugin.Widgets.HomePopUp
             var settings = new HomePopUpSettings
             {
                 Picture = (await _pictureService.InsertPictureAsync(await _fileProvider.ReadAllBytesAsync(_fileProvider.Combine(sampleImagesPath, "icon.webp")), MimeTypes.ImagePJpeg, "icon")).Id,
-                Text = "Đăng ký nhận ưu đãi chỗ ở tốt nhất hiện nay tại DiBooking",
+                Text = "Đăng ký nhận ưu đãi chỗ ở tốt nhất hiện nay tại Luxstay",
                 Link = _webHelper.GetStoreLocation(false),
                 Position=true,
                 FromDate=DateTime.Now,

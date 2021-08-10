@@ -16,7 +16,6 @@
     <None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
     <None Remove="Views\Shared\Components\Banner\Default.cshtml" />
     <None Remove="Views\Shared\Components\Destination\Default.cshtml" />
-    <None Remove="Views\Shared\Components\DiemDiem\Default.cshtml" />
     <None Remove="Views\Shared\Components\Discovery\Default.cshtml" />
     <None Remove="Views\Shared\Components\Introduction\Default.cshtml" />
     <None Remove="Views\Shared\Components\OtherProducts\Default.cshtml" />
@@ -38,9 +37,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Components\Destination\Default.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Shared\Components\DiemDiem\Default.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\Components\Discovery\Default.cshtml">
