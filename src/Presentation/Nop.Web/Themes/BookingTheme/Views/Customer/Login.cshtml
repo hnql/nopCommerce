@@ -19,7 +19,7 @@
     <div class="account">
         <div>
             <h3 class="account__title">Đăng nhập</h3>
-            <div class="input-group"><label class="input-group__label bold is-block">Đăng nhập Luxstay để trải nghiệm</label></div>
+            <div class="input-group"><label class="input-group__label bold is-block">Đăng nhập Dibooking để trải nghiệm</label></div>
             <form class="account__body" asp-route="Login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" autocomplete="off">
                 <div asp-validation-summary="ModelOnly" class="message-error alert alert-danger">@T("Account.Login.Unsuccessful")</div>
                 @if (Model.UsernamesEnabled)
@@ -58,7 +58,7 @@
                         </a>
                     </div>
                     <div class="mt--30">
-                        Bạn chưa có tài khoản Luxstay?
+                        Bạn chưa có tài khoản Dibooking?
                         <span class="text-orange bold" style="cursor: pointer;">
                             <a asp-route="Register" class="color-i bold">@T("account.register")</a>
                         </span>
