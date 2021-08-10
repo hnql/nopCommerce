@@ -20,10 +20,10 @@ namespace Nop.Plugin.Booking.Main.Models
         #endregion
 
         public IntroductionModel() {
-            Title = "Introduction about luxstay";
-            Description = "Introduction about luxstay";
+            Title = "Introduction about DiBooking";
+            Description = "Introduction about DiBooking";
             Header = "TÌM KIẾM CHỖ Ở GIÁ TỐT NHẤT";
-            Excerpt = "Luxstay hiện là nền tảng đặt phòng trực tuyến #1 Việt Nam. Đồng hành cùng chúng tôi, bạn có những chuyến đi mang đầy trải nghiệm. Với Luxstay, việc đặt chỗ ở, biệt thự nghỉ dưỡng, khách sạn, nhà riêng, chung cư... trở nên nhanh chóng, thuận tiện và dễ dàng.";
+            Excerpt = "DiBooking hiện là nền tảng đặt phòng trực tuyến #1 Việt Nam. Đồng hành cùng chúng tôi, bạn có những chuyến đi mang đầy trải nghiệm. Với DiBooking, việc đặt chỗ ở, biệt thự nghỉ dưỡng, khách sạn, nhà riêng, chung cư... trở nên nhanh chóng, thuận tiện và dễ dàng.";
         }
     }
 }

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Tutorial",
+  "FriendlyName": "Tutorial DistOfCustByCountry",
+  "SystemName": "Tutorial.DistOfCustByCountry",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.40" ],
+  "Author": "Author Name",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Tutorial.DistOfCustByCountry.dll",
+  "Description": " duy "
+}

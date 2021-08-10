@@ -1,0 +1,21 @@
+﻿
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+<form asp-controller="WidgetsDiscoverySuggestion" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+                       <button>sdasd</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </section>
+</form>
